@@ -1,0 +1,147 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+DatabaseManager
+</name>
+</assembly>
+<members>
+<member name="T:DatabaseManager.TYPE_FOLDER">
+	<summary>
+ LIST OF GENERAL USE ENUMERATORS
+ </summary>
+	<remarks></remarks>
+</member><member name="M:DatabaseManager.REGEDIT.GetRegistry(System.String,System.String,System.String)">
+	<summary>
+ Read a key/value in the windows registry.
+ Recording path: HKEY_CURRENT_USER/Software/[APP_NAME]:[KEY]-&gt;[NAME::VALUE]
+ </summary>
+	<param name="key">registry key name</param>
+	<param name="name">Name value</param>
+	<param name="value">Default value</param>
+	<returns></returns>
+</member><member name="M:DatabaseManager.REGEDIT.SetRegistry(System.String,System.String,System.String)">
+	<summary>
+ Record a key/value in the windows registry.
+ Recording path: HKEY_CURRENT_USER/Software/[APP_NAME]:[KEY]-&gt;[NAME::VALUE]
+ </summary>
+	<param name="key">registry key name</param>
+	<param name="name">Name value</param>
+	<param name="value">Key valeu</param>
+	<returns></returns>
+</member><member name="T:DatabaseManager.REGEDIT">
+	<summary>
+ CLASSE PARA ACESSO/MANIPULACAO DO REGISTRO DO WINDOWS
+ </summary>
+	<remarks></remarks>
+</member><member name="M:DatabaseManager.DB_AC.VerificarConexao">
+	<summary>
+ Verifica se a conexão com o banco de dados esta ok.
+ Ao iniciar o aplicativo, é feito a verificação na tabela de operadoras. Se não tiver nenhum registro, 
+ entende que é o primeiro acesso ao sistema,e será solicitado a chave.
+ Porém se o banco não estiver acessível, não sera retornado nenhum registro, mesmo que não
+ seja o primeiro acesso. Neste caso o aplicativo sera encerrado.
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:DatabaseManager.DB_AC.CONECTAR">
+	<summary>
+ Abre uma conexão com o banco de dados ACCESS
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:DatabaseManager.DB_AC.FecharConexao(System.Data.OleDb.OleDbCommand@)">
+	<summary>
+ Fecha a conexão do banco de dados amarrada ao comando SQL e libera o comando
+ </summary>
+	<param name="comando"></param>
+	<remarks></remarks>
+</member><member name="M:DatabaseManager.DB_AC.FecharConexao(System.Data.IDbConnection@)">
+	<summary>
+ Fecha a conexao passada como parametro.
+ </summary>
+	<param name="conexao"></param>
+	<remarks></remarks>
+</member><member name="P:DatabaseManager.DB_AC.StringConexao(System.String,System.String)">
+	<summary>
+ Lê os parametros no registro e gera a string de conexao ACCESS.
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:DatabaseManager.DB_AC.ExecutaComando(System.Data.OleDb.OleDbCommand@)">
+	<summary>
+ Executa o comando sql passado como parametro
+ </summary>
+	<param name="comando"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:DatabaseManager.DB_AC.ExecutaComandoEscalar(System.Data.OleDb.OleDbCommand@)">
+	<summary>
+ Executa o comando e retorna o primeiro resultado
+ </summary>
+	<param name="comando"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:DatabaseManager.DB_AC.CarregaDS(System.Data.OleDb.OleDbCommand@,System.Boolean@)">
+	<summary>
+ Carrega um dataset a partir do comando passado como parametro
+ </summary>
+	<param name="comando">IDbCommand</param>
+	<param name="mostarMsgErro">Em caso de erro, define se será ou não mostrado a mensagem de erro para o usuário</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:DatabaseManager.DB_AC.CarregaDS(System.Data.OleDb.OleDbCommand@)">
+	<summary>
+ Carrega um dataset a partir do comando passado como parametro
+ Em caso de erro sera mostrado a mensagem ao usuário
+ </summary>
+	<param name="comando"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:DatabaseManager.DB_AC.CarregaGrid(System.Data.OleDb.OleDbCommand@,System.Windows.Forms.DataGridView@)">
+	<summary>
+ Carrega um grid a partir de um comando sql.
+ </summary>
+	<param name="comando">Comando ACCESS</param>
+	<param name="grid">Grid para ser preenchido</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="T:DatabaseManager.DB_AC">
+	<summary>
+ CLASSE COM MÉTODOS/ROTINAS PARA ACESSO AO BANCO DE DADOS ACCESS
+ </summary>
+	<remarks></remarks>
+</member><member name="P:DatabaseManager.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:DatabaseManager.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="P:DatabaseManager.My.Resources.Resources.Data_table_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:DatabaseManager.My.Resources.Resources.Folder_Explorer_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:DatabaseManager.My.Resources.Resources.Play_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:DatabaseManager.My.Resources.Resources.Refresh_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="T:DatabaseManager.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>

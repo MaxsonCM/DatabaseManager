@@ -1,0 +1,32 @@
+D:\PROJETOS\VS2013\SQL_Execute\SQL_Execute\obj\Debug\SQL_Execute.FrmComando.resources
+D:\PROJETOS\VS2013\SQL_Execute\SQL_Execute\obj\Debug\SQL_Execute.FrmConsulta.resources
+D:\PROJETOS\VS2013\SQL_Execute\SQL_Execute\obj\Debug\SQL_Execute.FrmEstrutura.resources
+D:\PROJETOS\VS2013\SQL_Execute\SQL_Execute\obj\Debug\SQL_Execute.FrmMenu.resources
+D:\PROJETOS\VS2013\SQL_Execute\SQL_Execute\obj\Debug\SQL_Execute.FrmTableEditor.resources
+D:\PROJETOS\VS2013\SQL_Execute\SQL_Execute\obj\Debug\SQL_Execute.Resources.resources
+D:\PROJETOS\VS2013\SQL_Execute\SQL_Execute\obj\Debug\DatabaseManager.vbproj.GenerateResource.Cache
+D:\PROJETOS\VS2013\SQL_Execute\SQL_Execute\bin\Debug\Database Manager.exe.config
+D:\PROJETOS\VS2013\SQL_Execute\SQL_Execute\bin\Debug\Database Manager.exe
+D:\PROJETOS\VS2013\SQL_Execute\SQL_Execute\bin\Debug\Database Manager.pdb
+D:\PROJETOS\VS2013\SQL_Execute\SQL_Execute\bin\Debug\Database Manager.xml
+D:\PROJETOS\VS2013\SQL_Execute\SQL_Execute\obj\Debug\Database Manager.exe
+D:\PROJETOS\VS2013\SQL_Execute\SQL_Execute\obj\Debug\Database Manager.xml
+D:\PROJETOS\VS2013\SQL_Execute\SQL_Execute\obj\Debug\Database Manager.pdb
+D:\PROJETOS\VS2013\DatabaseManager\SQL_Execute\bin\Debug\Database Manager.exe.config
+D:\PROJETOS\VS2013\DatabaseManager\SQL_Execute\obj\Debug\Database Manager.exe
+D:\PROJETOS\VS2013\DatabaseManager\SQL_Execute\obj\Debug\Database Manager.xml
+D:\PROJETOS\VS2013\DatabaseManager\SQL_Execute\obj\Debug\Database Manager.pdb
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.exe.config
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Database Manager.exe
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Database Manager.xml
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Database Manager.pdb
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.exe
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.pdb
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.xml
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmComando.resources
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmConsulta.resources
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmEstrutura.resources
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmMenu.resources
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmTableEditor.resources
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.Resources.resources
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.vbproj.GenerateResource.Cache
