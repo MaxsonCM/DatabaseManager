@@ -4,15 +4,9 @@ Imports System.IO
 Public Class FrmMenu
 
     Private Sub ShowNewForm(ByVal sender As Object, ByVal e As EventArgs) Handles NewToolStripMenuItem.Click
-        ' Create a new instance of the child form.
-        Dim ChildForm As New System.Windows.Forms.Form
-        ' Make it a child of this MDI form before showing it.
-        ChildForm.MdiParent = Me
-
-        m_ChildFormNumber += 1
-        ChildForm.Text = "Window " & m_ChildFormNumber
-
-        ChildForm.Show()
+        Dim new_form As New FrmCommand
+        new_form.MdiParent = Me
+        new_form.Show()
     End Sub
 
     Private Sub OpenFile(ByVal sender As Object, ByVal e As EventArgs) Handles OpenToolStripMenuItem.Click

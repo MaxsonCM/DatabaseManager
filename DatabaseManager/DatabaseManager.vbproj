@@ -89,11 +89,11 @@
     <Compile Include="Framework\Components\ccoBotaoPasta.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\FrmComando.vb">
+    <Compile Include="Forms\FrmCommand.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmComando.Designer.vb">
-      <DependentUpon>FrmComando.vb</DependentUpon>
+    <Compile Include="Forms\FrmCommand.Designer.vb">
+      <DependentUpon>FrmCommand.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Framework\clsComponentsLoad.vb" />
@@ -103,12 +103,6 @@
       <DependentUpon>FrmConsulta.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmConsulta.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FrmEstrutura.Designer.vb">
-      <DependentUpon>FrmEstrutura.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FrmEstrutura.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Framework\clsUTIL.vb" />
@@ -130,14 +124,11 @@
     <Compile Include="Framework\REGEDIT.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\FrmComando.resx">
-      <DependentUpon>FrmComando.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmCommand.resx">
+      <DependentUpon>FrmCommand.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmConsulta.resx">
       <DependentUpon>FrmConsulta.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmEstrutura.resx">
-      <DependentUpon>FrmEstrutura.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmMenu.resx">
       <DependentUpon>FrmMenu.vb</DependentUpon>

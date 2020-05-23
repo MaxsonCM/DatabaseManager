@@ -23,10 +23,10 @@ D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Database Manager.pd
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.exe
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.pdb
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.xml
-D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmComando.resources
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmConsulta.resources
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmEstrutura.resources
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmMenu.resources
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmTableEditor.resources
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.Resources.resources
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.vbproj.GenerateResource.Cache
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmCommand.resources

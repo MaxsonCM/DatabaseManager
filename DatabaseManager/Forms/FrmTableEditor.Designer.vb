@@ -47,7 +47,7 @@ Partial Class FrmTableEditor
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 25)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(711, 403)
+        Me.Panel2.Size = New System.Drawing.Size(567, 261)
         Me.Panel2.TabIndex = 1
         '
         'TabControl1
@@ -58,7 +58,7 @@ Partial Class FrmTableEditor
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(711, 403)
+        Me.TabControl1.Size = New System.Drawing.Size(567, 261)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
@@ -67,18 +67,27 @@ Partial Class FrmTableEditor
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(703, 377)
+        Me.TabPage1.Size = New System.Drawing.Size(559, 235)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Estructure"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'Grid
         '
+        Me.Grid.AllowUserToAddRows = False
+        Me.Grid.AllowUserToDeleteRows = False
+        Me.Grid.AllowUserToResizeRows = False
+        Me.Grid.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Grid.Location = New System.Drawing.Point(3, 3)
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(697, 371)
+        Me.Grid.RowHeadersVisible = False
+        Me.Grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.Grid.ShowCellErrors = False
+        Me.Grid.ShowEditingIcon = False
+        Me.Grid.ShowRowErrors = False
+        Me.Grid.Size = New System.Drawing.Size(553, 229)
         Me.Grid.TabIndex = 0
         '
         'TabPage2
@@ -96,7 +105,7 @@ Partial Class FrmTableEditor
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbSalve, Me.tsbRefresh, Me.ToolStripButton1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(711, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(567, 25)
         Me.ToolStrip1.TabIndex = 8
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -116,7 +125,7 @@ Partial Class FrmTableEditor
         Me.tsbRefresh.ImageTransparentColor = System.Drawing.Color.Black
         Me.tsbRefresh.Name = "tsbRefresh"
         Me.tsbRefresh.Size = New System.Drawing.Size(23, 22)
-        Me.tsbRefresh.Text = "Print Preview"
+        Me.tsbRefresh.Text = "Refresh data"
         '
         'ToolStripButton1
         '
@@ -133,17 +142,19 @@ Partial Class FrmTableEditor
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(711, 25)
+        Me.Panel1.Size = New System.Drawing.Size(567, 25)
         Me.Panel1.TabIndex = 0
         '
         'FrmTableEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(711, 428)
+        Me.BackColor = System.Drawing.SystemColors.Control
+        Me.ClientSize = New System.Drawing.Size(567, 286)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "FrmTableEditor"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Table: "
         Me.Panel2.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
