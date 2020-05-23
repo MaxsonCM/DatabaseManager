@@ -85,6 +85,7 @@
     <Compile Include="Forms\FrmTableEditor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Framework\clsSchemaTable.vb" />
     <Compile Include="Framework\Databases\DB_AC.vb" />
     <Compile Include="Framework\Components\ccoBotaoPasta.vb">
       <SubType>Component</SubType>

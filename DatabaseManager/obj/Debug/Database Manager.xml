@@ -34,6 +34,12 @@ DatabaseManager
  CLASSE PARA ACESSO/MANIPULACAO DO REGISTRO DO WINDOWS
  </summary>
 	<remarks></remarks>
+</member><member name="M:DatabaseManager.DB_AC.Version">
+	<summary>
+ Function test
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
 </member><member name="T:DatabaseManager.DB_AC">
 	<summary>
  CLASS WITH METHODS / ROUTINES FOR ACCESS TO DATABASE ACCESS

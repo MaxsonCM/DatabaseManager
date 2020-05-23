@@ -82,6 +82,7 @@ Public Class FrmMenu
     Private Sub tsbRefresh_Click(sender As Object, e As EventArgs) Handles tsbRefresh.Click
         If File.Exists(clsGlobal.localDataBase) Then
             Call clsComponentsLoad.LoadListTable(ListTables)
+            lblVersionDB.Text = clsComponentsLoad.GetVersionDB
         Else
             MsgBox("Database not found!")
         End If

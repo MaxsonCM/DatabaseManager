@@ -5,7 +5,7 @@
 ''' <remarks></remarks>
 Public Class DB_AC
 
-#Region "Conexoes Banco de dados"
+#Region "Configuration"
 
     Public Shared ReadOnly Property string_conection() As String
         Get
@@ -32,7 +32,7 @@ Public Class DB_AC
 
 #End Region
 
-#Region "Acesso BD"
+#Region "Functions"
 
     Public Shared Sub execute(ByVal my_command As String)
         Dim cn As New OleDb.OleDbConnection
@@ -105,11 +105,39 @@ Public Class DB_AC
 
 #Region "Get the structure of the database"
 
+    ''' <summary>
+    ''' Function test
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Shared Function Version() As String
+        Dim objAccess As Object
+        Dim intFormat As Integer
+        objAccess = CreateObject("Access.Application")
+
+        objAccess.OpenCurrentDatabase(clsGlobal.localDataBase)
+
+        intFormat = objAccess.CurrentProject.FileFormat
+
+        Select Case intFormat
+            Case 2 : Return "Microsoft Access 2"
+            Case 7 : Return "Microsoft Access 95"
+            Case 8 : Return "Microsoft Access 97"
+            Case 9 : Return "Microsoft Access 2000"
+            Case 10 : Return "Microsoft Access 2002/2003"
+            Case 12 : Return "Microsoft Access 2007/2010"
+            Case Else : Return intFormat & " Unknown"
+        End Select
+
+        objAccess.Close()
+
+    End Function
+
     Public Shared Function ListTable() As List(Of String)
         Dim list As New List(Of String)
 
         Try
-            Using conn As New System.Data.OleDb.OleDbConnection(DB_AC.string_conection())
+            Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
                 conn.Open()
                 Dim dt As DataTable = conn.GetSchema("TABLES", {Nothing, Nothing, Nothing, "TABLE"})
 
@@ -118,6 +146,7 @@ Public Class DB_AC
                 Next
 
                 dt.Dispose()
+                conn.Close()
             End Using
 
 
@@ -129,19 +158,87 @@ Public Class DB_AC
     End Function
 
 
-    Public Shared Function ListFields(ByVal table As String) As DataSet
+    Public Shared Function ListFieldsByDS(ByVal table As String) As DataSet
         Dim ds As New DataSet
+
         Try
-            Using conn As New System.Data.OleDb.OleDbConnection(DB_AC.string_conection())
+            Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
                 conn.Open()
 
                 Dim dt As DataTable = conn.GetSchema("Columns", {Nothing, Nothing, table})
+
                 ds.Tables.Add(dt)
 
                 dt.Dispose()
+                conn.Close()
 
                 Return ds
+            End Using
 
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        Return Nothing
+    End Function
+
+    Public Shared Function ListFields(ByVal table As String) As List(Of clsSchemaTable)
+        Dim dr As DataRow
+        Dim list_fields As New List(Of clsSchemaTable)
+        Dim field As clsSchemaTable
+
+        Try
+            Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
+                conn.Open()
+
+                Dim dt As DataTable = conn.GetSchema("Columns", {Nothing, Nothing, table})
+
+
+                For Each dr In dt.Rows
+                    field = New clsSchemaTable
+                    field.POSITION = dr("ORDINAL_POSITION")
+                    field.COLUMN_NAME = dr("COLUMN_NAME")
+                    field.DATA_TYPE_CODE = dr("DATA_TYPE")
+                    Select Case dr("DATA_TYPE")
+                        Case 2 : field.DATA_TYPE = "Intiger"
+                        Case 3 : field.DATA_TYPE = "Long"
+                        Case 4 : field.DATA_TYPE = "Simple"
+                        Case 5 : field.DATA_TYPE = "Double"
+                        Case 6 : field.DATA_TYPE = "Currency"
+                        Case 11 : field.DATA_TYPE = "Boolean"
+                        Case 17 : field.DATA_TYPE = "Byte"
+                        Case 72 : field.DATA_TYPE = "Replication code"
+
+                        Case 128 : field.DATA_TYPE = "Object OLE"
+                        Case 130
+                            field.DATA_TYPE = "Memo"
+                            If dr("CHARACTER_MAXIMUM_LENGTH") > 0 Then
+                                field.DATA_TYPE = "Text"
+                            End If
+                        Case 131 : field.DATA_TYPE = "Decimal"
+                        Case Else : field.DATA_TYPE = "Unknown"
+                    End Select
+
+                    If Not IsDBNull(dr("CHARACTER_MAXIMUM_LENGTH")) Then field.CHARACTER_LENGHT = dr("CHARACTER_MAXIMUM_LENGTH")
+
+                    field.DEFAULT_VALUE = ""
+                    If Not IsDBNull(dr("COLUMN_DEFAULT")) Then field.DEFAULT_VALUE = dr("COLUMN_DEFAULT")
+                    field.DESCRIPTION = ""
+                    If Not IsDBNull(dr("DESCRIPTION")) Then field.DESCRIPTION = dr("DESCRIPTION")
+                    field.IS_NULLABLE = dr("IS_NULLABLE")
+
+
+                    If Not IsDBNull(dr("NUMERIC_PRECISION")) Then field.NUMERIC_PRECISION = dr("NUMERIC_PRECISION")
+                    If Not IsDBNull(dr("NUMERIC_SCALE")) Then field.NUMERIC_SCALE = dr("NUMERIC_SCALE")
+
+                    list_fields.Add(field)
+                Next
+
+                dt.Dispose()
+                conn.Close()
+
+                Return list_fields
             End Using
 
 
