@@ -1,4 +1,5 @@
-﻿
+﻿Imports System.Data.OleDb
+
 ''' <summary>
 ''' CLASS WITH METHODS / ROUTINES FOR ACCESS TO DATABASE ACCESS
 ''' </summary>
@@ -157,7 +158,6 @@ Public Class DB_AC
         Return list
     End Function
 
-
     Public Shared Function ListFieldsByDS(ByVal table As String) As DataSet
         Dim ds As New DataSet
 
@@ -184,7 +184,8 @@ Public Class DB_AC
     End Function
 
     Public Shared Function ListFields(ByVal table As String) As List(Of clsSchemaTable)
-        Dim dr As DataRow
+        Dim dr, dr_pk As DataRow
+
         Dim list_fields As New List(Of clsSchemaTable)
         Dim field As clsSchemaTable
 
@@ -192,8 +193,8 @@ Public Class DB_AC
             Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
                 conn.Open()
 
-                Dim dt As DataTable = conn.GetSchema("Columns", {Nothing, Nothing, table})
-
+                Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Columns, {Nothing, Nothing, table})
+                Dim dt_pk As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Primary_Keys, {Nothing, Nothing, table})
 
                 For Each dr In dt.Rows
                     field = New clsSchemaTable
@@ -201,15 +202,15 @@ Public Class DB_AC
                     field.COLUMN_NAME = dr("COLUMN_NAME")
                     field.DATA_TYPE_CODE = dr("DATA_TYPE")
                     Select Case dr("DATA_TYPE")
-                        Case 2 : field.DATA_TYPE = "Intiger"
+                        Case 2 : field.DATA_TYPE = "Integer"
                         Case 3 : field.DATA_TYPE = "Long"
                         Case 4 : field.DATA_TYPE = "Simple"
                         Case 5 : field.DATA_TYPE = "Double"
                         Case 6 : field.DATA_TYPE = "Currency"
+                        Case 7 : field.DATA_TYPE = "Date Time"
                         Case 11 : field.DATA_TYPE = "Boolean"
                         Case 17 : field.DATA_TYPE = "Byte"
                         Case 72 : field.DATA_TYPE = "Replication code"
-
                         Case 128 : field.DATA_TYPE = "Object OLE"
                         Case 130
                             field.DATA_TYPE = "Memo"
@@ -228,6 +229,13 @@ Public Class DB_AC
                     If Not IsDBNull(dr("DESCRIPTION")) Then field.DESCRIPTION = dr("DESCRIPTION")
                     field.IS_NULLABLE = dr("IS_NULLABLE")
 
+                    field.IS_PRIMARY_KEY = False
+                    For Each dr_pk In dt_pk.Select("COLUMN_NAME='" & dr("COLUMN_NAME") & "' AND PK_NAME='PrimaryKey'")
+                        If dr_pk("COLUMN_NAME") = dr("COLUMN_NAME") Then
+                            field.IS_PRIMARY_KEY = True
+                            Exit For
+                        End If
+                    Next
 
                     If Not IsDBNull(dr("NUMERIC_PRECISION")) Then field.NUMERIC_PRECISION = dr("NUMERIC_PRECISION")
                     If Not IsDBNull(dr("NUMERIC_SCALE")) Then field.NUMERIC_SCALE = dr("NUMERIC_SCALE")
@@ -236,9 +244,51 @@ Public Class DB_AC
                 Next
 
                 dt.Dispose()
+                dt_pk.Dispose()
                 conn.Close()
 
+                'sort the result
+                list_fields.Sort(Function(x, y) x.POSITION.CompareTo(y.POSITION))
+                'or
+                'list_fields = list_fields.OrderBy(Function(x) x.POSITION).ToList()
+
                 Return list_fields
+            End Using
+
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        Return Nothing
+    End Function
+
+
+    Public Shared Function ListIndex(ByVal table As String) As DataSet
+        Dim ds As New DataSet
+
+
+        Try
+
+            Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
+
+                conn.Open()
+                Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Primary_Keys, {Nothing, Nothing, table})
+                'Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.DbInfoKeywords, {})
+                'Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.DbInfoLiterals, {})
+                'Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Indexes, {})
+
+
+
+                'Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, {Nothing, Nothing, Nothing, "TABLE"})
+
+                ds.Tables.Add(dt)
+
+                dt.Dispose()
+
+                conn.Close()
+
+                Return ds
             End Using
 
 

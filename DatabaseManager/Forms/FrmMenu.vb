@@ -89,24 +89,27 @@ Public Class FrmMenu
     End Sub
 
     Private Sub ListTables_DoubleClick(sender As Object, e As EventArgs) Handles ListTables.DoubleClick
-        Dim table As String = ListTables.Items.Item(ListTables.SelectedIndex)
-        Dim frmCollection As New FormCollection()
-        frmCollection = Application.OpenForms()
+        Dim table As String
 
-        Dim new_window As New FrmTableEditor
+        If ListTables.SelectedIndex > -1 Then
+            table = ListTables.Items.Item(ListTables.SelectedIndex)
+            Dim frmCollection As New FormCollection()
+            frmCollection = Application.OpenForms()
 
-        For Each new_window In frmCollection.OfType(Of FrmTableEditor)()
-            If new_window.table = table Then
-                new_window.BringToFront()
-                Exit Sub
-            End If
-        Next
+            Dim new_window As New FrmTableEditor
 
-        new_window = New FrmTableEditor
-        new_window.table = table
-        new_window.MdiParent = Me
-        new_window.Show()
+            For Each new_window In frmCollection.OfType(Of FrmTableEditor)()
+                If new_window.table = table Then
+                    new_window.BringToFront()
+                    Exit Sub
+                End If
+            Next
 
+            new_window = New FrmTableEditor
+            new_window.table = table
+            new_window.MdiParent = Me
+            new_window.Show()
+        End If
     End Sub
 
 End Class

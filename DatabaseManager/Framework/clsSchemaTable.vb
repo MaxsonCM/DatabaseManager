@@ -3,6 +3,7 @@
     Dim _COLUMN_NAME As String
     Dim _DEFAULT_VALUE As String
     Dim _IS_NULLABLE As Boolean
+    Dim _IS_PRIMARY_KEY As Boolean
     Dim _DATA_TYPE_CODE As Integer
     Dim _DATA_TYPE As String
     Dim _CHARACTER_LENGHT As Long
@@ -43,6 +44,15 @@
         End Get
         Set(ByVal value As Boolean)
             _IS_NULLABLE = value
+        End Set
+    End Property
+
+    Public Property IS_PRIMARY_KEY As Boolean
+        Get
+            Return _IS_PRIMARY_KEY
+        End Get
+        Set(ByVal value As Boolean)
+            _IS_PRIMARY_KEY = value
         End Set
     End Property
 

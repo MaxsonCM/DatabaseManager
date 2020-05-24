@@ -10,7 +10,6 @@
         End If
     End Function
 
-
     Public Shared Sub LoadListTable(ByRef listBox As ListBox)
         Dim myList As New List(Of String)
         Dim item As String
@@ -31,33 +30,20 @@
 
     End Sub
 
-    Public Shared Function LoadSchemaTable(ByVal tabela As String, ByRef grid As DataGridView) As DataTable
+    Public Shared Function LoadSchemaTable(ByVal my_table As String, ByRef grid As DataGridView) As Boolean
         Dim my_fields As New List(Of clsSchemaTable)
         Dim field As New clsSchemaTable
 
         Dim dt As DataTable
-        Dim dc As DataColumn
         Dim dr As DataRow
+        Dim imageConverter = New ImageConverter()
 
         dt = New DataTable()
 
-        dc = New DataColumn("POSITION", Type.GetType("System.Int32"))
-        dt.Columns.Add(dc)
-        dc = New DataColumn("COLUMN_NAME", Type.GetType("System.String"))
-        dt.Columns.Add(dc)
-        dc = New DataColumn("DATA_TYPE", Type.GetType("System.String"))
-        dt.Columns.Add(dc)
-        dc = New DataColumn("CHARACTER_LENGHT", Type.GetType("System.Int32"))
-        dt.Columns.Add(dc)
-        dc = New DataColumn("PRECISION", Type.GetType("System.Int32"))
-        dt.Columns.Add(dc)
-        dc = New DataColumn("SCALE", Type.GetType("System.Int32"))
-        dt.Columns.Add(dc)
-        dc = New DataColumn("DESCRIPTION", Type.GetType("System.String"))
-        dt.Columns.Add(dc)
+        dt = ConfigureDataTable()
 
         If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
-            my_fields = DB_AC.ListFields(tabela)
+            my_fields = DB_AC.ListFields(my_table)
         ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
             'exemple
             'ds = BD_FB.ListTable()
@@ -67,17 +53,54 @@
 
         For Each field In my_fields
             dr = dt.NewRow()
-            dr("POSITION") = field.POSITION
-            dr("COLUMN_NAME") = field.COLUMN_NAME
-            dr("DATA_TYPE") = field.DATA_TYPE
-            dr("CHARACTER_LENGHT") = field.CHARACTER_LENGHT
-            dr("PRECISION") = field.NUMERIC_PRECISION
+
+            If field.IS_PRIMARY_KEY Then
+                dr("Key") = imageConverter.ConvertTo(My.Resources.Key_16, System.Type.GetType("System.Byte[]"))
+            Else
+                dr("Key") = imageConverter.ConvertTo(My.Resources.blank_16, System.Type.GetType("System.Byte[]"))
+            End If
+
+            'dr("Key") = My.Resources.blank_16
+            dr("Position") = field.POSITION
+            dr("Column Name") = field.COLUMN_NAME
+            dr("Data Type") = field.DATA_TYPE
+            dr("Character Lenght") = field.CHARACTER_LENGHT
+            dr("Precision") = field.NUMERIC_PRECISION
+            dr("Scale") = field.NUMERIC_SCALE
+            dr("Description") = field.DESCRIPTION
             dt.Rows.Add(dr)
         Next
 
-        Return dt
+        grid.DataSource = dt
+
+        Return True
 
     End Function
 
+    Private Shared Function ConfigureDataTable() As DataTable
+        Dim dt As DataTable
+        Dim dc As DataColumn
+
+        dt = New DataTable()
+
+        dc = New DataColumn("Key", Type.GetType("System.Byte[]"))
+        dt.Columns.Add(dc)
+        dc = New DataColumn("Position", Type.GetType("System.Int32"))
+        dt.Columns.Add(dc)
+        dc = New DataColumn("Column Name", Type.GetType("System.String"))
+        dt.Columns.Add(dc)
+        dc = New DataColumn("Data Type", Type.GetType("System.String"))
+        dt.Columns.Add(dc)
+        dc = New DataColumn("Character Lenght", Type.GetType("System.Int32"))
+        dt.Columns.Add(dc)
+        dc = New DataColumn("Precision", Type.GetType("System.Int32"))
+        dt.Columns.Add(dc)
+        dc = New DataColumn("Scale", Type.GetType("System.Int32"))
+        dt.Columns.Add(dc)
+        dc = New DataColumn("Description", Type.GetType("System.String"))
+        dt.Columns.Add(dc)
+
+        Return dt
+    End Function
 
 End Class
