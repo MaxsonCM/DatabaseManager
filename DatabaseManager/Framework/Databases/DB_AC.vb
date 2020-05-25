@@ -35,7 +35,7 @@ Public Class DB_AC
 
 #Region "Functions"
 
-    Public Shared Sub execute(ByVal my_command As String)
+    Public Shared Function Execute(ByVal my_command As String) As DataTable
         Dim cn As New OleDb.OleDbConnection
         Dim myCmd As New OleDb.OleDbCommand
         Dim dr As OleDb.OleDbDataReader
@@ -52,23 +52,20 @@ Public Class DB_AC
             dr.Read()
             dt.Load(dr)
 
-            If FrmConsulta.IsHandleCreated Then
-                FrmConsulta.Focus()
-            Else
-                FrmConsulta.Show()
-            End If
+            dr.Close()
+            cn.Close()
 
-            FrmConsulta.Grid.AutoGenerateColumns = True
-            FrmConsulta.Grid.DataSource = dt
-            FrmConsulta.Grid.Refresh()
-
+            Return dt
         Else
             myCmd.ExecuteNonQuery()
         End If
-        cn.Close()
-    End Sub
 
-    Public Shared Sub execute2(ByVal my_command As String)
+        cn.Close()
+
+        Return Nothing
+    End Function
+
+    Public Shared Sub Execute2(ByVal my_command As String)
         Dim dataSet As New DataSet()
         Dim dataAdapter As System.Data.OleDb.OleDbDataAdapter
         Dim comando As System.Data.OleDb.OleDbCommand
@@ -263,7 +260,6 @@ Public Class DB_AC
         Return Nothing
     End Function
 
-
     Public Shared Function ListIndex(ByVal table As String) As DataSet
         Dim ds As New DataSet
 
@@ -298,6 +294,8 @@ Public Class DB_AC
 
         Return Nothing
     End Function
+
+
 
 #End Region
 

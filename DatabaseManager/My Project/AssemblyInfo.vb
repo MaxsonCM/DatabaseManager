@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("SQL_Execute")> 
-<Assembly: AssemblyDescription("Ferramenta parar manitulação simples e prática de execuções de comandos SQL")> 
-<Assembly: AssemblyCompany("Zap Serviços de Informática")> 
-<Assembly: AssemblyProduct("SQL_Execute")> 
-<Assembly: AssemblyCopyright("Copyright ©  2020")> 
+<Assembly: AssemblyTitle("Database Manager")> 
+<Assembly: AssemblyDescription("A simple database manager.")> 
+<Assembly: AssemblyCompany("Maxson Carlos Maidlinger")> 
+<Assembly: AssemblyProduct("Database Manager")> 
+<Assembly: AssemblyCopyright("Copyright © Maxson Carlos Maidlinger 2020")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>

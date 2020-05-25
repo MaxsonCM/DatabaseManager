@@ -112,4 +112,9 @@ Public Class FrmMenu
         End If
     End Sub
 
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        FrmAbout.MdiParent = Me
+        FrmAbout.Show()
+    End Sub
+
 End Class
