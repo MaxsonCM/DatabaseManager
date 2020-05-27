@@ -10,25 +10,33 @@
         End If
     End Function
 
-    Public Shared Sub LoadListTable(ByRef listBox As ListBox)
+    Public Shared Function LoadListTable(ByRef listBox As ListBox) As Boolean
         Dim myList As New List(Of String)
         Dim item As String
 
-        listBox.Items.Clear()
+        Try
 
-        If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
-            myList = DB_AC.ListTable()
-        ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
-            'myList = BD_FB.ListTable()
-        Else
-            Exit Sub
-        End If
+            listBox.Items.Clear()
 
-        For Each item In myList
-            listBox.Items.Add(item)
-        Next
+            If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
+                myList = DB_AC.ListTable()
+            ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
+                'myList = BD_FB.ListTable()
+                Return False
+            Else
+                Return False
+            End If
 
-    End Sub
+            For Each item In myList
+                listBox.Items.Add(item)
+            Next
+
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
 
     Public Shared Function LoadSchemaTable(ByVal my_table As String, ByRef grid As DataGridView) As Boolean
         Dim my_fields As New List(Of clsSchemaTable)

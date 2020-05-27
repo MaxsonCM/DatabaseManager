@@ -62,6 +62,7 @@ Public Class DB_AC
 
         cn.Close()
 
+
         Return Nothing
     End Function
 
@@ -109,25 +110,45 @@ Public Class DB_AC
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Shared Function Version() As String
-        Dim objAccess As Object
+        ' need access installaed
+        Dim objAccess As New Object
         Dim intFormat As Integer
-        objAccess = CreateObject("Access.Application")
 
-        objAccess.OpenCurrentDatabase(clsGlobal.localDataBase)
+        Try
+            objAccess = CreateObject("Access.Application")
 
-        intFormat = objAccess.CurrentProject.FileFormat
+            objAccess.OpenCurrentDatabase(clsGlobal.localDataBase, , clsGlobal.passDataBase)
 
-        Select Case intFormat
-            Case 2 : Return "Microsoft Access 2"
-            Case 7 : Return "Microsoft Access 95"
-            Case 8 : Return "Microsoft Access 97"
-            Case 9 : Return "Microsoft Access 2000"
-            Case 10 : Return "Microsoft Access 2002/2003"
-            Case 12 : Return "Microsoft Access 2007/2010"
-            Case Else : Return intFormat & " Unknown"
-        End Select
+            intFormat = objAccess.CurrentProject.FileFormat
 
-        objAccess.Close()
+            Select Case intFormat
+                Case 2 : Return "Microsoft Access 2"
+                Case 7 : Return "Microsoft Access 95"
+                Case 8 : Return "Microsoft Access 97"
+                Case 9 : Return "Microsoft Access 2000 (XP)"
+                Case 10 : Return "Microsoft Access 2002/2003"
+                Case 11 : Return "Microsoft Access 2003"
+                Case 12 : Return "Microsoft Access 2007/2010"
+                Case Else : Return intFormat & " Unknown"
+            End Select
+
+            objAccess.Close()
+
+        Catch ex As Exception
+
+            Try
+                objAccess.Close()
+            Catch ex2 As Exception
+            End Try
+
+            Return "error"
+        End Try
+
+        'Dim wks As Workspace
+        'Dim db As Database
+        'DBEngine.SystemDB = "c:\secureddb path.mdw"
+        'wks = DBEngine.CreateWorkspace("", "Username", "password")
+        'db = wks.OpenDatabase("c:\secureddb.mdb")
 
     End Function
 
@@ -270,6 +291,7 @@ Public Class DB_AC
 
                 conn.Open()
                 Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Primary_Keys, {Nothing, Nothing, table})
+                'Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Procedures, {})
                 'Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.DbInfoKeywords, {})
                 'Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.DbInfoLiterals, {})
                 'Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Indexes, {})

@@ -10,11 +10,8 @@ Public Class FrmMenu
     End Sub
 
     Private Sub OpenFile(ByVal sender As Object, ByVal e As EventArgs) Handles OpenToolStripMenuItem.Click
-        Dim my_file As String
-
-        my_file = clsUTIL.Search_folder(TYPE_FOLDER.FOLDER_FILE, TYPE_FILTER_FILE.ACCESS)
-
-        clsGlobal.localDataBase = my_file
+        
+        FrmInfoDB.ShowDialog()
 
         Call tsbRefresh_Click(sender, e)
 
@@ -38,10 +35,6 @@ Public Class FrmMenu
 
     Private Sub PasteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles PasteToolStripMenuItem.Click
         'Use My.Computer.Clipboard.GetText() or My.Computer.Clipboard.GetData to retrieve information from the clipboard.
-    End Sub
-
-    Private Sub ToolBarToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolBarToolStripMenuItem.Click
-        'Me.ToolStrip.Visible = Me.ToolBarToolStripMenuItem.Checked
     End Sub
 
     Private Sub StatusBarToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles StatusBarToolStripMenuItem.Click
@@ -71,18 +64,29 @@ Public Class FrmMenu
         Next
     End Sub
 
-    Private m_ChildFormNumber As Integer
-
     Private Sub FrmMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If File.Exists(clsGlobal.LocalDataBase) Then
+        lblVersionDB.Visible = False
+        lblCaptionLabel.Visible = False
+
+        If File.Exists(clsGlobal.localDataBase) Then
             Call clsComponentsLoad.LoadListTable(ListTables)
         End If
     End Sub
     
     Private Sub tsbRefresh_Click(sender As Object, e As EventArgs) Handles tsbRefresh.Click
+        lblVersionDB.Visible = False
+        lblCaptionLabel.Visible = False
+
         If File.Exists(clsGlobal.localDataBase) Then
-            Call clsComponentsLoad.LoadListTable(ListTables)
-            lblVersionDB.Text = clsComponentsLoad.GetVersionDB
+
+            If clsComponentsLoad.LoadListTable(ListTables) Then
+
+                lblVersionDB.Text = clsComponentsLoad.GetVersionDB
+                If lblVersionDB.Text <> "error" Then
+                    lblVersionDB.Visible = True
+                    lblCaptionLabel.Visible = True
+                End If
+            End If
         Else
             MsgBox("Database not found!")
         End If
