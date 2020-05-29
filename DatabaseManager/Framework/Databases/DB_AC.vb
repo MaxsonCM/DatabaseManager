@@ -1,4 +1,5 @@
 ﻿Imports System.Data.OleDb
+Imports System.IO
 
 ''' <summary>
 ''' CLASS WITH METHODS / ROUTINES FOR ACCESS TO DATABASE ACCESS
@@ -62,7 +63,6 @@ Public Class DB_AC
 
         cn.Close()
 
-
         Return Nothing
     End Function
 
@@ -100,6 +100,23 @@ Public Class DB_AC
         End Try
     End Sub
 
+    Public Shared Sub RepairDatabase()
+        Try
+            Dim File_Path, compact_file As String
+            File_Path = clsGlobal.localDataBase
+            compact_file = Path.GetFullPath(clsGlobal.localDataBase) & Replace(Path.GetFileName(clsGlobal.localDataBase), Path.GetExtension(clsGlobal.localDataBase), "") & "_NEW" & Path.GetExtension(clsGlobal.localDataBase)
+            If File.Exists(File_Path) Then
+                'Dim db As New DAO.DBEngine()
+                'db.CompactDatabase(File_Path, compact_file)
+            End If
+            If File.Exists(compact_file) Then
+                File.Delete(File_Path)
+                File.Move(compact_file, File_Path)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
 #End Region
 
 #Region "Get the structure of the database"
