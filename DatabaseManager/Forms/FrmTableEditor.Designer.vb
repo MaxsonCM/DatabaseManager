@@ -48,6 +48,8 @@ Partial Class FrmTableEditor
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.GridIndex = New System.Windows.Forms.DataGridView()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -56,6 +58,8 @@ Partial Class FrmTableEditor
         CType(Me.TableDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.TabPage3.SuspendLayout()
+        CType(Me.GridIndex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel2
@@ -71,6 +75,7 @@ Partial Class FrmTableEditor
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
@@ -257,6 +262,35 @@ Partial Class FrmTableEditor
         Me.BackgroundWorker1.WorkerReportsProgress = True
         Me.BackgroundWorker1.WorkerSupportsCancellation = True
         '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.GridIndex)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(605, 235)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "Indexs"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'GridIndex
+        '
+        Me.GridIndex.AllowUserToAddRows = False
+        Me.GridIndex.AllowUserToDeleteRows = False
+        Me.GridIndex.AllowUserToResizeRows = False
+        Me.GridIndex.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.GridIndex.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.GridIndex.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridIndex.Location = New System.Drawing.Point(3, 3)
+        Me.GridIndex.Name = "GridIndex"
+        Me.GridIndex.RowHeadersVisible = False
+        Me.GridIndex.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.GridIndex.ShowCellErrors = False
+        Me.GridIndex.ShowEditingIcon = False
+        Me.GridIndex.ShowRowErrors = False
+        Me.GridIndex.Size = New System.Drawing.Size(599, 229)
+        Me.GridIndex.TabIndex = 2
+        '
         'FrmTableEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -278,6 +312,8 @@ Partial Class FrmTableEditor
         Me.ToolStrip1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.TabPage3.ResumeLayout(False)
+        CType(Me.GridIndex, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -301,4 +337,6 @@ Partial Class FrmTableEditor
     Friend WithEvents Numeric_Scale As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Description As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
+    Friend WithEvents GridIndex As System.Windows.Forms.DataGridView
 End Class

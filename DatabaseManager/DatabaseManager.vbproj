@@ -130,10 +130,10 @@
     <Compile Include="Framework\clsComponentsLoad.vb" />
     <Compile Include="Framework\clsGlobal.vb" />
     <Compile Include="Framework\ENUM.vb" />
-    <Compile Include="Forms\FrmConsulta.Designer.vb">
-      <DependentUpon>FrmConsulta.vb</DependentUpon>
+    <Compile Include="Forms\FrmResult.Designer.vb">
+      <DependentUpon>FrmResult.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmConsulta.vb">
+    <Compile Include="Forms\FrmResult.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Framework\clsUTIL.vb" />
@@ -161,8 +161,8 @@
     <EmbeddedResource Include="Forms\FrmCommand.resx">
       <DependentUpon>FrmCommand.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmConsulta.resx">
-      <DependentUpon>FrmConsulta.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmResult.resx">
+      <DependentUpon>FrmResult.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmInfoDB.resx">
       <DependentUpon>FrmInfoDB.vb</DependentUpon>

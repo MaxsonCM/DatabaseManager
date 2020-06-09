@@ -6,6 +6,7 @@
 
         'Grid.DataSource = DB_AC.ListFieldsByDS(table).Tables(0)
         clsComponentsLoad.LoadSchemaTable(table, EstructureGrid)
+        GridIndex.DataSource = DB_AC.ListAllIndex(table)
         Call BackgroundWorker1.RunWorkerAsync()
         'DataGridView1.DataSource = DB_AC.ListIndex(table).Tables(0)
     End Sub
@@ -14,6 +15,8 @@
         Me.Text = "Table [" & table & "]"
 
         clsComponentsLoad.LoadSchemaTable(table, EstructureGrid)
+
+        GridIndex.DataSource = DB_AC.ListAllIndex(table)
 
         If Not BackgroundWorker1.IsBusy Then
             Call BackgroundWorker1.RunWorkerAsync()

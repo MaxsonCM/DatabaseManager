@@ -36,33 +36,83 @@ Public Class DB_AC
 
 #Region "Functions"
 
-    Public Shared Function Execute(ByVal my_command As String) As DataTable
+    Public Shared Sub CloseConnection(ByRef connection As OleDbConnection)
+        Try
+            connection.Close()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+    Public Shared Function SearchTable(ByVal table As String) As DataTable
         Dim cn As New OleDb.OleDbConnection
         Dim myCmd As New OleDb.OleDbCommand
         Dim dr As OleDb.OleDbDataReader
         Dim dt = New DataTable()
 
-        cn.ConnectionString = string_conection()
-        cn.Open()
+        Try
 
-        myCmd.Connection = cn
-        myCmd.CommandText = my_command
+            cn.ConnectionString = string_conection()
+            cn.Open()
 
-        If InStr(UCase(my_command), "SELECT ", CompareMethod.Text) > 0 Then
+            myCmd.CommandType = CommandType.TableDirect
+            myCmd.Connection = cn
+            myCmd.CommandText = table
+
             dr = myCmd.ExecuteReader()
             dr.Read()
+
             dt.Load(dr)
 
             dr.Close()
             cn.Close()
 
             Return dt
-        Else
-            myCmd.ExecuteNonQuery()
-        End If
 
-        cn.Close()
+        Catch ex As Exception
 
+            Call CloseConnection(cn)
+            Return Nothing
+        End Try
+    End Function
+
+    Public Shared Function Execute(ByVal my_command As String) As DataTable
+        Dim cn As New OleDb.OleDbConnection
+        Dim myCmd As New OleDb.OleDbCommand
+        Dim dr As OleDb.OleDbDataReader
+        Dim dt = New DataTable()
+
+        Try
+
+            cn.ConnectionString = string_conection()
+            cn.Open()
+
+            myCmd.CommandType = CommandType.Text
+            myCmd.Connection = cn
+            myCmd.CommandText = my_command
+
+            If InStr(UCase(my_command), "SELECT ", CompareMethod.Text) > 0 Then
+                dr = myCmd.ExecuteReader()
+                dr.Read()
+
+                dt.Load(dr)
+
+                dr.Close()
+                cn.Close()
+
+                Return dt
+            Else
+                myCmd.ExecuteNonQuery()
+            End If
+
+            cn.Close()
+
+        Catch ex As Exception
+
+            Call CloseConnection(cn)
+
+        End Try
         Return Nothing
     End Function
 
@@ -85,14 +135,14 @@ Public Class DB_AC
             dataAdapter.Fill(dataSet)
             dataAdapter.Dispose()
 
-            If FrmConsulta.IsHandleCreated Then
-                FrmConsulta.Focus()
+            If FrmResult.IsHandleCreated Then
+                FrmResult.Focus()
             Else
-                FrmConsulta.Show()
+                FrmResult.Show()
             End If
 
-            FrmConsulta.Grid.DataSource = dataSet
-            FrmConsulta.Grid.DataMember = dataSet.Tables(0).TableName
+            FrmResult.Grid.DataSource = dataSet
+            FrmResult.Grid.DataMember = dataSet.Tables(0).TableName
             dataSet.Dispose()
 
         Catch ex As Exception
@@ -139,14 +189,15 @@ Public Class DB_AC
             intFormat = objAccess.CurrentProject.FileFormat
 
             Select Case intFormat
-                Case 2 : Return "Microsoft Access 2"
-                Case 7 : Return "Microsoft Access 95"
-                Case 8 : Return "Microsoft Access 97"
-                Case 9 : Return "Microsoft Access 2000 (XP)"
-                Case 10 : Return "Microsoft Access 2002/2003"
-                Case 11 : Return "Microsoft Access 2003"
-                Case 12 : Return "Microsoft Access 2007/2010"
-                Case Else : Return intFormat & " Unknown"
+                Case 1 : Return intFormat & " - Microsoft Access 1"
+                Case 2 : Return intFormat & " - Microsoft Access 2"
+                Case 7 : Return intFormat & " - Microsoft Access 95"
+                Case 8 : Return intFormat & " - Microsoft Access 97"
+                Case 9 : Return intFormat & " - Microsoft Access 2000 (XP)"
+                Case 10 : Return intFormat & " - Microsoft Access 2002/2003"
+                Case 11 : Return intFormat & " - Microsoft Access 2003"
+                Case 12 : Return intFormat & " - Microsoft Access 2007/2016"
+                Case Else : Return intFormat & " - Unknown"
             End Select
 
             objAccess.Close()
@@ -298,7 +349,7 @@ Public Class DB_AC
         Return Nothing
     End Function
 
-    Public Shared Function ListIndex(ByVal table As String) As DataSet
+    Public Shared Function ListPrimaryKey(ByVal table As String) As DataSet
         Dim ds As New DataSet
 
 
@@ -312,10 +363,6 @@ Public Class DB_AC
                 'Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.DbInfoKeywords, {})
                 'Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.DbInfoLiterals, {})
                 'Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Indexes, {})
-
-
-
-                'Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, {Nothing, Nothing, Nothing, "TABLE"})
 
                 ds.Tables.Add(dt)
 
@@ -334,7 +381,29 @@ Public Class DB_AC
         Return Nothing
     End Function
 
+    Public Shared Function ListAllIndex(ByVal table As String) As DataSet
+        Dim ds As New DataSet
 
+        Try
+            Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
+                conn.Open()
+
+                Dim dt As DataTable = conn.GetOleDbSchemaTable(System.Data.OleDb.OleDbSchemaGuid.Indexes, {Nothing, Nothing, Nothing, Nothing, table})
+
+                ds.Tables.Add(dt)
+
+                dt.Dispose()
+
+                conn.Close()
+
+                Return ds
+            End Using
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        Return Nothing
+    End Function
 
 #End Region
 

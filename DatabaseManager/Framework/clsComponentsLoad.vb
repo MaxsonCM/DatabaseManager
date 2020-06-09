@@ -40,11 +40,13 @@
 
     Public Shared Function LoadGrid(ByVal table As String) As DataTable
         Dim dt As New DataTable
-        Dim command As String
+        'Dim command As String
 
         If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
-            command = "SELECT * FROM [" & table & "]"
-            dt = DB_AC.Execute(command)
+            'command = "SELECT * FROM [" & table & "]"
+            'dt = DB_AC.Execute(command)
+
+            dt = DB_AC.SearchTable(table)
         Else
             Return Nothing
         End If
@@ -98,6 +100,55 @@
         Return True
 
     End Function
+
+
+    Public Shared Function LoadSchemaIndexs(ByVal my_table As String, ByRef grid As DataGridView) As Boolean
+        Dim my_fields As New List(Of clsSchemaTable)
+        Dim field As New clsSchemaTable
+
+        Dim dt As DataTable
+        Dim dr As DataRow
+        Dim imageConverter = New ImageConverter()
+
+        dt = New DataTable()
+
+        dt = ConfigureDataTable()
+
+        If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
+            my_fields = DB_AC.ListFields(my_table)
+        ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
+            'exemple
+            'ds = BD_FB.ListTable()
+        Else
+
+        End If
+
+        For Each field In my_fields
+            dr = dt.NewRow()
+
+            If field.IS_PRIMARY_KEY Then
+                dr("Key") = imageConverter.ConvertTo(My.Resources.Key_16, System.Type.GetType("System.Byte[]"))
+            Else
+                dr("Key") = imageConverter.ConvertTo(My.Resources.blank_16, System.Type.GetType("System.Byte[]"))
+            End If
+
+            'dr("Key") = My.Resources.blank_16
+            dr("Position") = field.POSITION
+            dr("Column Name") = field.COLUMN_NAME
+            dr("Data Type") = field.DATA_TYPE
+            dr("Character Lenght") = field.CHARACTER_LENGHT
+            dr("Precision") = field.NUMERIC_PRECISION
+            dr("Scale") = field.NUMERIC_SCALE
+            dr("Description") = field.DESCRIPTION
+            dt.Rows.Add(dr)
+        Next
+
+        grid.DataSource = dt
+
+        Return True
+
+    End Function
+
 
     Private Shared Function ConfigureDataTable() As DataTable
         Dim dt As DataTable
