@@ -381,22 +381,36 @@ Public Class DB_AC
         Return Nothing
     End Function
 
-    Public Shared Function ListAllIndex(ByVal table As String) As DataSet
-        Dim ds As New DataSet
-
+    Public Shared Function ListAllIndex(ByVal table As String) As List(Of clsSchemaIndex)
+        Dim dt As DataTable
+        Dim dr As DataRow
+        Dim id As New clsSchemaIndex
+        Dim my_indexs As New List(Of clsSchemaIndex)
         Try
             Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
                 conn.Open()
 
-                Dim dt As DataTable = conn.GetOleDbSchemaTable(System.Data.OleDb.OleDbSchemaGuid.Indexes, {Nothing, Nothing, Nothing, Nothing, table})
+                dt = conn.GetOleDbSchemaTable(System.Data.OleDb.OleDbSchemaGuid.Indexes, {Nothing, Nothing, Nothing, Nothing, table})
 
-                ds.Tables.Add(dt)
+                For Each dr In dt.Rows
+                    If id.INDEX_NAME <> dr("INDEX_NAME") Then
+                        my_indexs.Add(id)
+                        id = New clsSchemaIndex
+                    End If
+
+                    id.INDEX_NAME = dr("INDEX_NAME")
+                    id.IS_PRIMARY_KEY = dr("PRIMARY_KEY")
+                    id.IS_UNIQUE = dr("UNIQUE")
+                    id.NOT_NULL = dr("NULLS")
+                    id.COLUMNS_NAME.Add(dr("COLUMN_NAME"))
+                Next
+                my_indexs.Add(id)
 
                 dt.Dispose()
 
                 conn.Close()
 
-                Return ds
+                Return my_indexs
             End Using
         Catch ex As Exception
             MsgBox(ex.Message)
