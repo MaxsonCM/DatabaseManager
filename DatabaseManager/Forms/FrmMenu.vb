@@ -121,4 +121,11 @@ Public Class FrmMenu
         FrmAbout.Show()
     End Sub
 
+    Private Sub ScriptyExecuteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ScriptyExecuteToolStripMenuItem.Click
+
+        Dim new_window As New FrmCommand
+        new_window.MdiParent = Me
+        new_window.Show()
+
+    End Sub
 End Class

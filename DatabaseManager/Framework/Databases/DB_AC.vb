@@ -116,39 +116,52 @@ Public Class DB_AC
         Return Nothing
     End Function
 
-    Public Shared Sub Execute2(ByVal my_command As String)
+    Public Shared Function Execute2(ByVal my_command As String) As String
         Dim dataSet As New DataSet()
         Dim dataAdapter As System.Data.OleDb.OleDbDataAdapter
-        Dim comando As System.Data.OleDb.OleDbCommand
-        Dim conexao As System.Data.OleDb.OleDbConnection
+        Dim command As System.Data.OleDb.OleDbCommand
+        Dim conn As System.Data.OleDb.OleDbConnection
+        Dim my_status As String = ""
 
         Try
-            conexao = New System.Data.OleDb.OleDbConnection
-            conexao.ConnectionString = string_conection()
-            conexao.Open()
+            conn = New System.Data.OleDb.OleDbConnection
+            conn.ConnectionString = string_conection()
+            conn.Open()
 
-            comando = New System.Data.OleDb.OleDbCommand
-            comando.Connection = conexao
-            comando.CommandText = my_command
+            command = New System.Data.OleDb.OleDbCommand
+            command.Connection = conn
+            command.CommandText = my_command
 
-            dataAdapter = New System.Data.OleDb.OleDbDataAdapter(comando)
-            dataAdapter.Fill(dataSet)
-            dataAdapter.Dispose()
+            If InStr(UCase(my_command), "SELECT ", CompareMethod.Text) > 0 Then
+                dataAdapter = New System.Data.OleDb.OleDbDataAdapter(command)
+                dataAdapter.Fill(dataSet)
 
-            If FrmResult.IsHandleCreated Then
-                FrmResult.Focus()
+                dataAdapter.Dispose()
+
+                If dataSet.Tables.Count > 0 Then
+                    If FrmResult.IsHandleCreated Then
+                        FrmResult.Focus()
+                    Else
+                        FrmResult.Show()
+                    End If
+
+                    FrmResult.Grid.DataSource = dataSet
+                    FrmResult.Grid.DataMember = dataSet.Tables(0).TableName
+                End If
+
+                dataSet.Dispose()
             Else
-                FrmResult.Show()
+                my_status = "Affected rows: " & command.ExecuteNonQuery()
             End If
 
-            FrmResult.Grid.DataSource = dataSet
-            FrmResult.Grid.DataMember = dataSet.Tables(0).TableName
-            dataSet.Dispose()
+            conn.Close()
 
+            Return my_status
         Catch ex As Exception
-            MsgBox(ex.Message)
+            Return ex.Message
         End Try
-    End Sub
+
+    End Function
 
     Public Shared Sub RepairDatabase()
         Try
