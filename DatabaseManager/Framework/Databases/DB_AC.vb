@@ -45,81 +45,77 @@ Public Class DB_AC
     End Sub
 
 
-    Public Shared Function SearchTable(ByVal table As String) As DataTable
-        Dim cn As New OleDb.OleDbConnection
+    Public Shared Function SearchTable(ByVal table As String) As DataSet
+        Dim conn As New OleDb.OleDbConnection
         Dim myCmd As New OleDb.OleDbCommand
-        Dim dr As OleDb.OleDbDataReader
-        Dim dt = New DataTable()
+        Dim dataAdapter As OleDb.OleDbDataAdapter
+        Dim ds As New DataSet()
 
         Try
 
-            cn.ConnectionString = string_conection()
-            cn.Open()
+            conn.ConnectionString = string_conection()
+            conn.Open()
 
-            myCmd.CommandType = CommandType.TableDirect
-            myCmd.Connection = cn
-            myCmd.CommandText = table
+            myCmd.CommandType = CommandType.Text
+            myCmd.Connection = conn
+            myCmd.CommandText = "SELECT * FROM [" & table & "]"
 
-            dr = myCmd.ExecuteReader()
-            dr.Read()
+            dataAdapter = New System.Data.OleDb.OleDbDataAdapter(myCmd)
+            dataAdapter.Fill(ds)
 
-            dt.Load(dr)
+            dataAdapter.Dispose()
+            conn.Close()
 
-            dr.Close()
-            cn.Close()
-
-            Return dt
+            Return ds
 
         Catch ex As Exception
 
-            Call CloseConnection(cn)
+            Call CloseConnection(conn)
             Return Nothing
         End Try
     End Function
 
-    Public Shared Function Execute(ByVal my_command As String) As DataTable
-        Dim cn As New OleDb.OleDbConnection
+    Public Shared Function Execute(ByVal my_command As String) As DataSet
+        Dim conn As New OleDb.OleDbConnection
         Dim myCmd As New OleDb.OleDbCommand
-        Dim dr As OleDb.OleDbDataReader
-        Dim dt = New DataTable()
+        Dim dataAdapter As OleDb.OleDbDataAdapter
+        Dim dataSet As New DataSet()
 
         Try
 
-            cn.ConnectionString = string_conection()
-            cn.Open()
+            conn.ConnectionString = string_conection()
+            conn.Open()
 
             myCmd.CommandType = CommandType.Text
-            myCmd.Connection = cn
+            myCmd.Connection = conn
             myCmd.CommandText = my_command
 
             If InStr(UCase(my_command), "SELECT ", CompareMethod.Text) > 0 Then
-                dr = myCmd.ExecuteReader()
-                dr.Read()
 
-                dt.Load(dr)
+                dataAdapter = New System.Data.OleDb.OleDbDataAdapter(myCmd)
+                dataAdapter.Fill(dataSet)
 
-                dr.Close()
-                cn.Close()
+                dataAdapter.Dispose()
+                conn.Close()
 
-                Return dt
+                Return dataSet
             Else
                 myCmd.ExecuteNonQuery()
             End If
 
-            cn.Close()
+            conn.Close()
 
         Catch ex As Exception
-
-            Call CloseConnection(cn)
-
+            Call CloseConnection(conn)
         End Try
+
         Return Nothing
     End Function
 
     Public Shared Function Execute2(ByVal my_command As String) As String
         Dim dataSet As New DataSet()
         Dim dataAdapter As System.Data.OleDb.OleDbDataAdapter
-        Dim command As System.Data.OleDb.OleDbCommand
+        Dim myCmd As System.Data.OleDb.OleDbCommand
         Dim conn As System.Data.OleDb.OleDbConnection
         Dim my_status As String = ""
 
@@ -128,17 +124,19 @@ Public Class DB_AC
             conn.ConnectionString = string_conection()
             conn.Open()
 
-            command = New System.Data.OleDb.OleDbCommand
-            command.Connection = conn
-            command.CommandText = my_command
+            myCmd = New System.Data.OleDb.OleDbCommand
+            myCmd.Connection = conn
+            myCmd.CommandText = my_command
 
             If InStr(UCase(my_command), "SELECT ", CompareMethod.Text) > 0 Then
-                dataAdapter = New System.Data.OleDb.OleDbDataAdapter(command)
+
+                dataAdapter = New System.Data.OleDb.OleDbDataAdapter(myCmd)
                 dataAdapter.Fill(dataSet)
 
                 dataAdapter.Dispose()
 
                 If dataSet.Tables.Count > 0 Then
+                    FrmResult.MdiParent = FrmMenu
                     If FrmResult.IsHandleCreated Then
                         FrmResult.Focus()
                     Else
@@ -149,9 +147,8 @@ Public Class DB_AC
                     FrmResult.Grid.DataMember = dataSet.Tables(0).TableName
                 End If
 
-                dataSet.Dispose()
             Else
-                my_status = "Affected rows: " & command.ExecuteNonQuery()
+                my_status = "Affected rows: " & myCmd.ExecuteNonQuery()
             End If
 
             conn.Close()

@@ -38,20 +38,16 @@
 
     End Function
 
-    Public Shared Function LoadGrid(ByVal table As String) As DataTable
-        Dim dt As New DataTable
-        'Dim command As String
+    Public Shared Function LoadGrid(ByVal table As String) As DataSet
+        Dim ds As New DataSet
 
         If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
-            'command = "SELECT * FROM [" & table & "]"
-            'dt = DB_AC.Execute(command)
-
-            dt = DB_AC.SearchTable(table)
+            ds = DB_AC.SearchTable(table)
         Else
             Return Nothing
         End If
 
-        Return dt
+        Return ds
     End Function
 
     Public Shared Function LoadSchemaTable(ByVal my_table As String, ByRef grid As DataGridView) As Boolean
