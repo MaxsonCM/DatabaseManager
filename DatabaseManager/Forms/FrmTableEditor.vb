@@ -5,9 +5,8 @@
     Private Sub FrmTableEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Table [" & table & "]"
 
-
         clsComponentsLoad.LoadSchemaTable(table, EstructureGrid)
-        GridIndex.DataSource = DB_AC.ListAllIndex(table)
+        clsComponentsLoad.LoadSchemaIndexs(table, TreeViewIndex)
         Call LoadRegisters()
     End Sub
 
@@ -15,8 +14,7 @@
         Me.Text = "Table [" & table & "]"
 
         clsComponentsLoad.LoadSchemaTable(table, EstructureGrid)
-
-        GridIndex.DataSource = DB_AC.ListAllIndex(table)
+        clsComponentsLoad.LoadSchemaIndexs(table, TreeViewIndex)
 
         Call LoadRegisters()
     End Sub
@@ -28,8 +26,7 @@
             Application.DoEvents()
             Call BackgroundWorker1.RunWorkerAsync()
 
-        Else
-            MsgBox("The last query is still in progress", MsgBoxStyle.Information)
+        Else : MsgBox("The last query is still in progress", MsgBoxStyle.Information)
         End If
 
     End Sub
@@ -55,4 +52,10 @@
 
         TableDataGrid.Visible = True
     End Sub
+
+    Private Sub FrmTableEditor_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        PictureLoad.Top = (TableDataGrid.Height - PictureLoad.Height) / 2
+        PictureLoad.Left = (TableDataGrid.Width - PictureLoad.Width) / 2
+    End Sub
+
 End Class

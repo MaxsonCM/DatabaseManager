@@ -3,8 +3,7 @@
     Private _IS_PRIMARY_KEY As Boolean
     Private _IS_UNIQUE As Boolean
     Private _NOT_NULL As Boolean
-    Private _COLUMNS_NAME As List(Of String)
-
+    Private _COLUMNS_NAME As String
 
     Public Property INDEX_NAME As String
         Get
@@ -42,11 +41,11 @@
         End Set
     End Property
 
-    Public Property COLUMNS_NAME() As List(Of String)
+    Public Property COLUMNS_NAME() As String
         Get
             Return _COLUMNS_NAME
         End Get
-        Set(ByVal value As List(Of String))
+        Set(ByVal value As String)
             _COLUMNS_NAME = value
         End Set
     End Property

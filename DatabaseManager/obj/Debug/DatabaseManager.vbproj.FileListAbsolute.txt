@@ -20,7 +20,13 @@ D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.ex
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.exe
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.pdb
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.xml
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Interop.Office.dll
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Interop.VBIDE.dll
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.vbproj.ResolveComReference.cache
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmAbout.resources
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmCommand.resources
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmResult.resources
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmInfoDB.resources
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmMenu.resources
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmTableEditor.resources
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.Resources.resources
@@ -28,9 +34,3 @@ D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.vbp
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Database Manager.exe
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Database Manager.xml
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Database Manager.pdb
-D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmAbout.resources
-D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmInfoDB.resources
-D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Interop.Office.dll
-D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Interop.VBIDE.dll
-D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.vbproj.ResolveComReference.cache
-D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmResult.resources

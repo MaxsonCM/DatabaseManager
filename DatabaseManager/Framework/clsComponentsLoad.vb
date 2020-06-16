@@ -97,18 +97,13 @@
 
     End Function
 
-    Public Shared Function LoadSchemaIndexs(ByVal table As String, ByRef grid As DataGridView) As Boolean
+    Public Shared Function LoadSchemaIndexs(ByVal table As String, ByRef my_tree As TreeView) As Boolean
         Dim my_indexs As New List(Of clsSchemaIndex)
         Dim index As New clsSchemaIndex
+        Dim nodo_root, nodo_new As TreeNode
+        Dim imageIdex As Integer
 
-        Dim dt As DataTable
-        Dim dr As DataRow
-        Dim imageConverter = New ImageConverter()
-
-        dt = New DataTable()
-
-        dt = ConfigureDataTable()
-
+        Dim last_index As String
         If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
             my_indexs = DB_AC.ListAllIndex(table)
         ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
@@ -117,25 +112,35 @@
 
         End If
 
-        For Each index In my_indexs
-            dr = dt.NewRow()
+        my_tree.Nodes.Clear()
 
-            If index.IS_PRIMARY_KEY Then
-                dr("Key") = imageConverter.ConvertTo(My.Resources.Key_16, System.Type.GetType("System.Byte[]"))
-            Else
-                dr("Key") = imageConverter.ConvertTo(My.Resources.blank_16, System.Type.GetType("System.Byte[]"))
+        my_tree.Nodes.Add("Indixes", "Indixes", 0)
+        last_index = ""
+        nodo_root = New TreeNode
+
+        For Each index In my_indexs
+            If last_index <> index.INDEX_NAME Then
+                If last_index <> "" Then my_tree.Nodes.Add(nodo_root)
+                nodo_root = New TreeNode
+                imageIdex = -1
+
+                If index.IS_PRIMARY_KEY Then
+                    imageIdex = 1
+                ElseIf index.IS_UNIQUE Then
+                    imageIdex = 0
+                End If
+
+                nodo_root.Nodes.Add(index.INDEX_NAME, index.INDEX_NAME, imageIdex)
             End If
 
-            dr("Position") = index.INDEX_NAME
-            dr("Column Name") = index.IS_PRIMARY_KEY
-            dr("Data Type") = index.IS_UNIQUE
-            dr("Character Lenght") = index.NOT_NULL
-            dr("Precision") = index.COLUMNS_NAME
+            nodo_new = New TreeNode
 
-            dt.Rows.Add(dr)
+            nodo_new.Nodes.Add(index.COLUMNS_NAME, index.COLUMNS_NAME, 0)
+            nodo_root.Nodes.Add(nodo_new)
+
+            last_index = index.INDEX_NAME
         Next
-
-        grid.DataSource = dt
+        my_tree.Nodes.Add(nodo_root)
 
         Return True
 

@@ -22,13 +22,14 @@ Partial Class FrmTableEditor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmTableEditor))
-        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.PanelDetails = New System.Windows.Forms.Panel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.EstructureGrid = New System.Windows.Forms.DataGridView()
@@ -40,58 +41,61 @@ Partial Class FrmTableEditor
         Me.Precision = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Numeric_Scale = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Description = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Splitter1 = New System.Windows.Forms.Splitter()
+        Me.PanelIndexes = New System.Windows.Forms.Panel()
+        Me.TreeViewIndex = New System.Windows.Forms.TreeView()
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.PictureLoad = New System.Windows.Forms.PictureBox()
         Me.TableDataGrid = New System.Windows.Forms.DataGridView()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.GridIndex = New System.Windows.Forms.DataGridView()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsbSalve = New System.Windows.Forms.ToolStripButton()
         Me.tsbRefresh = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.Panel2.SuspendLayout()
+        Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.PanelDetails.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.EstructureGrid, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelIndexes.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         CType(Me.PictureLoad, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TableDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage3.SuspendLayout()
-        CType(Me.GridIndex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Panel2
+        'PanelDetails
         '
-        Me.Panel2.Controls.Add(Me.TabControl1)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(0, 25)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(682, 384)
-        Me.Panel2.TabIndex = 1
+        Me.PanelDetails.Controls.Add(Me.TabControl1)
+        Me.PanelDetails.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelDetails.Location = New System.Drawing.Point(0, 25)
+        Me.PanelDetails.Name = "PanelDetails"
+        Me.PanelDetails.Size = New System.Drawing.Size(792, 400)
+        Me.PanelDetails.TabIndex = 1
         '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(682, 384)
+        Me.TabControl1.Size = New System.Drawing.Size(792, 400)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
         '
         Me.TabPage1.Controls.Add(Me.EstructureGrid)
+        Me.TabPage1.Controls.Add(Me.Splitter1)
+        Me.TabPage1.Controls.Add(Me.PanelIndexes)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(605, 235)
+        Me.TabPage1.Size = New System.Drawing.Size(784, 374)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Estructure"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -105,14 +109,14 @@ Partial Class FrmTableEditor
         Me.EstructureGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.EstructureGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.key, Me.Position, Me.Column_Name, Me.Data_Type, Me.Character_Lenght, Me.Precision, Me.Numeric_Scale, Me.Description})
         Me.EstructureGrid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.EstructureGrid.Location = New System.Drawing.Point(3, 3)
+        Me.EstructureGrid.Location = New System.Drawing.Point(149, 3)
         Me.EstructureGrid.Name = "EstructureGrid"
         Me.EstructureGrid.RowHeadersVisible = False
         Me.EstructureGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.EstructureGrid.ShowCellErrors = False
         Me.EstructureGrid.ShowEditingIcon = False
         Me.EstructureGrid.ShowRowErrors = False
-        Me.EstructureGrid.Size = New System.Drawing.Size(599, 229)
+        Me.EstructureGrid.Size = New System.Drawing.Size(632, 368)
         Me.EstructureGrid.TabIndex = 0
         '
         'key
@@ -127,8 +131,8 @@ Partial Class FrmTableEditor
         'Position
         '
         Me.Position.DataPropertyName = "Position"
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Position.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Position.DefaultCellStyle = DataGridViewCellStyle1
         Me.Position.HeaderText = "Position"
         Me.Position.MaxInputLength = 6
         Me.Position.Name = "Position"
@@ -150,8 +154,8 @@ Partial Class FrmTableEditor
         'Character_Lenght
         '
         Me.Character_Lenght.DataPropertyName = "Character Lenght"
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Character_Lenght.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Character_Lenght.DefaultCellStyle = DataGridViewCellStyle2
         Me.Character_Lenght.HeaderText = "Character Lenght"
         Me.Character_Lenght.MaxInputLength = 4
         Me.Character_Lenght.Name = "Character_Lenght"
@@ -160,8 +164,8 @@ Partial Class FrmTableEditor
         'Precision
         '
         Me.Precision.DataPropertyName = "Precision"
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Precision.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Precision.DefaultCellStyle = DataGridViewCellStyle3
         Me.Precision.HeaderText = "Precision"
         Me.Precision.MaxInputLength = 3
         Me.Precision.Name = "Precision"
@@ -170,8 +174,8 @@ Partial Class FrmTableEditor
         'Numeric_Scale
         '
         Me.Numeric_Scale.DataPropertyName = "Scale"
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Numeric_Scale.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Numeric_Scale.DefaultCellStyle = DataGridViewCellStyle4
         Me.Numeric_Scale.HeaderText = "Scale"
         Me.Numeric_Scale.MaxInputLength = 3
         Me.Numeric_Scale.Name = "Numeric_Scale"
@@ -180,10 +184,46 @@ Partial Class FrmTableEditor
         'Description
         '
         Me.Description.DataPropertyName = "Description"
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.Description.DefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.Description.DefaultCellStyle = DataGridViewCellStyle5
         Me.Description.HeaderText = "Description"
         Me.Description.Name = "Description"
+        '
+        'Splitter1
+        '
+        Me.Splitter1.Location = New System.Drawing.Point(146, 3)
+        Me.Splitter1.Name = "Splitter1"
+        Me.Splitter1.Size = New System.Drawing.Size(3, 368)
+        Me.Splitter1.TabIndex = 2
+        Me.Splitter1.TabStop = False
+        '
+        'PanelIndexes
+        '
+        Me.PanelIndexes.Controls.Add(Me.TreeViewIndex)
+        Me.PanelIndexes.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelIndexes.Location = New System.Drawing.Point(3, 3)
+        Me.PanelIndexes.Name = "PanelIndexes"
+        Me.PanelIndexes.Size = New System.Drawing.Size(143, 368)
+        Me.PanelIndexes.TabIndex = 1
+        '
+        'TreeViewIndex
+        '
+        Me.TreeViewIndex.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TreeViewIndex.FullRowSelect = True
+        Me.TreeViewIndex.ImageIndex = 0
+        Me.TreeViewIndex.ImageList = Me.ImageList1
+        Me.TreeViewIndex.Location = New System.Drawing.Point(0, 0)
+        Me.TreeViewIndex.Name = "TreeViewIndex"
+        Me.TreeViewIndex.SelectedImageIndex = 0
+        Me.TreeViewIndex.Size = New System.Drawing.Size(143, 368)
+        Me.TreeViewIndex.TabIndex = 3
+        '
+        'ImageList1
+        '
+        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList1.Images.SetKeyName(0, "blank_16.png")
+        Me.ImageList1.Images.SetKeyName(1, "Key_16.png")
         '
         'TabPage2
         '
@@ -192,7 +232,7 @@ Partial Class FrmTableEditor
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(674, 358)
+        Me.TabPage2.Size = New System.Drawing.Size(784, 374)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Registres"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -203,7 +243,7 @@ Partial Class FrmTableEditor
         Me.PictureLoad.Image = Global.DatabaseManager.My.Resources.Resources.Loading_32
         Me.PictureLoad.Location = New System.Drawing.Point(319, 159)
         Me.PictureLoad.Name = "PictureLoad"
-        Me.PictureLoad.Size = New System.Drawing.Size(32, 32)
+        Me.PictureLoad.Size = New System.Drawing.Size(33, 33)
         Me.PictureLoad.TabIndex = 2
         Me.PictureLoad.TabStop = False
         '
@@ -222,44 +262,15 @@ Partial Class FrmTableEditor
         Me.TableDataGrid.ShowCellErrors = False
         Me.TableDataGrid.ShowEditingIcon = False
         Me.TableDataGrid.ShowRowErrors = False
-        Me.TableDataGrid.Size = New System.Drawing.Size(668, 352)
+        Me.TableDataGrid.Size = New System.Drawing.Size(778, 368)
         Me.TableDataGrid.TabIndex = 1
-        '
-        'TabPage3
-        '
-        Me.TabPage3.Controls.Add(Me.GridIndex)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(605, 235)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "Indexs"
-        Me.TabPage3.UseVisualStyleBackColor = True
-        '
-        'GridIndex
-        '
-        Me.GridIndex.AllowUserToAddRows = False
-        Me.GridIndex.AllowUserToDeleteRows = False
-        Me.GridIndex.AllowUserToResizeRows = False
-        Me.GridIndex.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.GridIndex.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GridIndex.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridIndex.Location = New System.Drawing.Point(3, 3)
-        Me.GridIndex.Name = "GridIndex"
-        Me.GridIndex.RowHeadersVisible = False
-        Me.GridIndex.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GridIndex.ShowCellErrors = False
-        Me.GridIndex.ShowEditingIcon = False
-        Me.GridIndex.ShowRowErrors = False
-        Me.GridIndex.Size = New System.Drawing.Size(599, 229)
-        Me.GridIndex.TabIndex = 2
         '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbSalve, Me.tsbRefresh, Me.ToolStripButton1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(682, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(792, 25)
         Me.ToolStrip1.TabIndex = 8
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -296,7 +307,7 @@ Partial Class FrmTableEditor
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(682, 25)
+        Me.Panel1.Size = New System.Drawing.Size(792, 25)
         Me.Panel1.TabIndex = 0
         '
         'BackgroundWorker1
@@ -304,26 +315,30 @@ Partial Class FrmTableEditor
         Me.BackgroundWorker1.WorkerReportsProgress = True
         Me.BackgroundWorker1.WorkerSupportsCancellation = True
         '
+        'NotifyIcon1
+        '
+        Me.NotifyIcon1.Text = "NotifyIcon1"
+        Me.NotifyIcon1.Visible = True
+        '
         'FrmTableEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(682, 409)
-        Me.Controls.Add(Me.Panel2)
+        Me.ClientSize = New System.Drawing.Size(792, 425)
+        Me.Controls.Add(Me.PanelDetails)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "FrmTableEditor"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Table: "
-        Me.Panel2.ResumeLayout(False)
+        Me.PanelDetails.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         CType(Me.EstructureGrid, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelIndexes.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         CType(Me.PictureLoad, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TableDataGrid, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabPage3.ResumeLayout(False)
-        CType(Me.GridIndex, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
@@ -331,7 +346,7 @@ Partial Class FrmTableEditor
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents PanelDetails As System.Windows.Forms.Panel
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents EstructureGrid As System.Windows.Forms.DataGridView
@@ -351,7 +366,10 @@ Partial Class FrmTableEditor
     Friend WithEvents Numeric_Scale As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Description As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
-    Friend WithEvents GridIndex As System.Windows.Forms.DataGridView
     Friend WithEvents PictureLoad As System.Windows.Forms.PictureBox
+    Friend WithEvents Splitter1 As System.Windows.Forms.Splitter
+    Friend WithEvents PanelIndexes As System.Windows.Forms.Panel
+    Friend WithEvents TreeViewIndex As System.Windows.Forms.TreeView
+    Friend WithEvents ImageList1 As System.Windows.Forms.ImageList
+    Friend WithEvents NotifyIcon1 As System.Windows.Forms.NotifyIcon
 End Class

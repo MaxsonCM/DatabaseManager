@@ -403,18 +403,14 @@ Public Class DB_AC
                 dt = conn.GetOleDbSchemaTable(System.Data.OleDb.OleDbSchemaGuid.Indexes, {Nothing, Nothing, Nothing, Nothing, table})
 
                 For Each dr In dt.Rows
-                    If id.INDEX_NAME <> dr("INDEX_NAME") Then
-                        my_indexs.Add(id)
-                        id = New clsSchemaIndex
-                    End If
-
+                    id = New clsSchemaIndex
                     id.INDEX_NAME = dr("INDEX_NAME")
                     id.IS_PRIMARY_KEY = dr("PRIMARY_KEY")
                     id.IS_UNIQUE = dr("UNIQUE")
                     id.NOT_NULL = dr("NULLS")
-                    id.COLUMNS_NAME.Add(dr("COLUMN_NAME"))
+                    id.COLUMNS_NAME = (dr("COLUMN_NAME"))
+                    my_indexs.Add(id)
                 Next
-                my_indexs.Add(id)
 
                 dt.Dispose()
 
