@@ -208,6 +208,10 @@
     <None Include="Resources\blank_16.png" />
     <None Include="Resources\Loading_32.png" />
     <None Include="Resources\Loading_32.gif" />
+    <None Include="Resources\U_16.png" />
+    <None Include="Resources\I_16.png" />
+    <None Include="Resources\P_16.png" />
+    <None Include="Resources\F_16.png" />
     <Content Include="Sql_runner.ico" />
   </ItemGroup>
   <ItemGroup>

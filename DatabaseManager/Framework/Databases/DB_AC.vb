@@ -407,7 +407,9 @@ Public Class DB_AC
                     id.INDEX_NAME = dr("INDEX_NAME")
                     id.IS_PRIMARY_KEY = dr("PRIMARY_KEY")
                     id.IS_UNIQUE = dr("UNIQUE")
+                    id.IS_FOREIGN_KEY = False
                     id.NOT_NULL = dr("NULLS")
+
                     id.COLUMNS_NAME = (dr("COLUMN_NAME"))
                     my_indexs.Add(id)
                 Next

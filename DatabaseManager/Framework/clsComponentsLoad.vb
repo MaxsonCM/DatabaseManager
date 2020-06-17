@@ -100,7 +100,7 @@
     Public Shared Function LoadSchemaIndexs(ByVal table As String, ByRef my_tree As TreeView) As Boolean
         Dim my_indexs As New List(Of clsSchemaIndex)
         Dim index As New clsSchemaIndex
-        Dim nodo_root, nodo_new As TreeNode
+        Dim nodo_root, nodo_index, nodo_field As TreeNode
         Dim imageIdex As Integer
 
         Dim last_index As String
@@ -114,39 +114,47 @@
 
         my_tree.Nodes.Clear()
 
-        my_tree.Nodes.Add("Indixes", "Indixes", 0)
         last_index = ""
+
         nodo_root = New TreeNode
+        nodo_index = New TreeNode
+        nodo_field = New TreeNode
+
+        nodo_root = my_tree.Nodes.Add("Indixes", "Indixes", 1, 1)
 
         For Each index In my_indexs
             If last_index <> index.INDEX_NAME Then
-                If last_index <> "" Then my_tree.Nodes.Add(nodo_root)
-                nodo_root = New TreeNode
+                If last_index <> "" Then
+                    nodo_index = New TreeNode
+                    nodo_field = New TreeNode
+                End If
+                
                 imageIdex = -1
 
                 If index.IS_PRIMARY_KEY Then
-                    imageIdex = 1
+                    imageIdex = 5
+                ElseIf index.IS_FOREIGN_KEY Then
+                    imageIdex = 4
                 ElseIf index.IS_UNIQUE Then
-                    imageIdex = 0
+                    imageIdex = 2
+                Else
+                    imageIdex = 3
                 End If
 
-                nodo_root.Nodes.Add(index.INDEX_NAME, index.INDEX_NAME, imageIdex)
+                nodo_index = nodo_root.Nodes.Add(index.INDEX_NAME, index.INDEX_NAME, imageIdex, imageIdex)
             End If
 
-            nodo_new = New TreeNode
-
-            nodo_new.Nodes.Add(index.COLUMNS_NAME, index.COLUMNS_NAME, 0)
-            nodo_root.Nodes.Add(nodo_new)
+            nodo_field = nodo_index.Nodes.Add(index.COLUMNS_NAME, index.COLUMNS_NAME)
 
             last_index = index.INDEX_NAME
         Next
-        my_tree.Nodes.Add(nodo_root)
+
+
+        my_tree.ExpandAll()
 
         Return True
 
     End Function
-
-    'Public Shared Function 
 
     Private Shared Function ConfigureDataTable() As DataTable
         Dim dt As DataTable

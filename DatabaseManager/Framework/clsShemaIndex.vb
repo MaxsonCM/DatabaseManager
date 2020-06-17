@@ -2,6 +2,7 @@
     Private _INDEX_NAME As String
     Private _IS_PRIMARY_KEY As Boolean
     Private _IS_UNIQUE As Boolean
+    Private _IS_FOREIGN_KEY As Boolean
     Private _NOT_NULL As Boolean
     Private _COLUMNS_NAME As String
 
@@ -20,6 +21,15 @@
         End Get
         Set(ByVal value As Boolean)
             _IS_PRIMARY_KEY = value
+        End Set
+    End Property
+
+    Public Property IS_FOREIGN_KEY As Boolean
+        Get
+            Return _IS_FOREIGN_KEY
+        End Get
+        Set(ByVal value As Boolean)
+            _IS_FOREIGN_KEY = value
         End Set
     End Property
 
