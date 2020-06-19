@@ -16,8 +16,8 @@ D:\PROJETOS\VS2013\DatabaseManager\SQL_Execute\bin\Debug\Database Manager.exe.co
 D:\PROJETOS\VS2013\DatabaseManager\SQL_Execute\obj\Debug\Database Manager.exe
 D:\PROJETOS\VS2013\DatabaseManager\SQL_Execute\obj\Debug\Database Manager.xml
 D:\PROJETOS\VS2013\DatabaseManager\SQL_Execute\obj\Debug\Database Manager.pdb
-D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.exe.config
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.exe
+D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.exe.config
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.pdb
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.xml
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Interop.Office.dll

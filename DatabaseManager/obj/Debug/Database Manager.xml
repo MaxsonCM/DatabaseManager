@@ -54,6 +54,10 @@ DatabaseManager
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 </summary>
+</member><member name="P:DatabaseManager.My.Resources.Resources._16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:DatabaseManager.My.Resources.Resources.blank_16">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.

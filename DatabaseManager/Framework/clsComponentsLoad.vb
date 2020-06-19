@@ -144,7 +144,7 @@
                 nodo_index = nodo_root.Nodes.Add(index.INDEX_NAME, index.INDEX_NAME, imageIdex, imageIdex)
             End If
 
-            nodo_field = nodo_index.Nodes.Add(index.COLUMNS_NAME, index.COLUMNS_NAME)
+            nodo_field = nodo_index.Nodes.Add(index.COLUMNS_NAME, index.COLUMNS_NAME, 6, 6)
 
             last_index = index.INDEX_NAME
         Next
