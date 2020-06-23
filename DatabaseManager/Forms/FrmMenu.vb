@@ -68,8 +68,10 @@ Public Class FrmMenu
         lblVersionDB.Visible = False
         lblCaptionLabel.Visible = False
 
+        TrvEstructure.Nodes.Clear()
+
         If File.Exists(clsGlobal.localDataBase) Then
-            Call clsComponentsLoad.LoadListTable(ListTables)
+            Call clsComponentsLoad.LoadListTable_Proc(TrvEstructure)
         End If
     End Sub
     
@@ -79,7 +81,7 @@ Public Class FrmMenu
 
         If File.Exists(clsGlobal.localDataBase) Then
 
-            If clsComponentsLoad.LoadListTable(ListTables) Then
+            If clsComponentsLoad.LoadListTable_Proc(TrvEstructure) Then
 
                 lblVersionDB.Text = clsComponentsLoad.GetVersionDB
                 If lblVersionDB.Text <> "error" Then
@@ -89,30 +91,6 @@ Public Class FrmMenu
             End If
         Else
             MsgBox("Database not found!")
-        End If
-    End Sub
-
-    Private Sub ListTables_DoubleClick(sender As Object, e As EventArgs) Handles ListTables.DoubleClick
-        Dim table As String
-
-        If ListTables.SelectedIndex > -1 Then
-            table = ListTables.Items.Item(ListTables.SelectedIndex)
-            Dim frmCollection As New FormCollection()
-            frmCollection = Application.OpenForms()
-
-            Dim new_window As New FrmTableEditor
-
-            For Each new_window In frmCollection.OfType(Of FrmTableEditor)()
-                If new_window.table = table Then
-                    new_window.BringToFront()
-                    Exit Sub
-                End If
-            Next
-
-            new_window = New FrmTableEditor
-            new_window.table = table
-            new_window.MdiParent = Me
-            new_window.Show()
         End If
     End Sub
 
@@ -127,5 +105,41 @@ Public Class FrmMenu
         new_window.MdiParent = Me
         new_window.Show()
 
+    End Sub
+
+    Private Sub TrvEstructure_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles TrvEstructure.AfterSelect
+        Dim node_root, node_child As String
+
+        If IsNothing(e.Node.Parent) Then Exit Sub
+
+        Try
+
+            node_root = e.Node.Parent.Text
+            node_child = e.Node.Text
+
+            If LCase(node_root) = "tables" Then
+                Dim frmCollection As New FormCollection()
+                frmCollection = Application.OpenForms()
+
+                Dim new_window As New FrmTableEditor
+
+                For Each new_window In frmCollection.OfType(Of FrmTableEditor)()
+                    If new_window.table = node_child Then
+                        new_window.BringToFront()
+                        Exit Sub
+                    End If
+                Next
+
+                new_window = New FrmTableEditor
+                new_window.table = node_child
+                new_window.MdiParent = Me
+                new_window.Show()
+            ElseIf LCase(node_root) = "procedures" Then
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class

@@ -25,6 +25,10 @@ Partial Class FrmMenu
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMenu))
+        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("users", 1, 1)
+        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Tables", 1, 1, New System.Windows.Forms.TreeNode() {TreeNode1})
+        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("CallFunction", 2, 2)
+        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Procedures", 2, 2, New System.Windows.Forms.TreeNode() {TreeNode3})
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -62,12 +66,13 @@ Partial Class FrmMenu
         Me.lblVersionDB = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.TableLayoutPanel_Tables = New System.Windows.Forms.TableLayoutPanel()
+        Me.TrvEstructure = New System.Windows.Forms.TreeView()
+        Me.ImageListTreeView = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsbNew = New System.Windows.Forms.ToolStripButton()
         Me.tsbOpen = New System.Windows.Forms.ToolStripButton()
         Me.tsbSalve = New System.Windows.Forms.ToolStripButton()
         Me.tsbRefresh = New System.Windows.Forms.ToolStripButton()
-        Me.ListTables = New System.Windows.Forms.ListBox()
         Me.Splitter1 = New System.Windows.Forms.Splitter()
         Me.MenuStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
@@ -330,8 +335,8 @@ Partial Class FrmMenu
         '
         Me.TableLayoutPanel_Tables.ColumnCount = 1
         Me.TableLayoutPanel_Tables.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanel_Tables.Controls.Add(Me.TrvEstructure, 0, 1)
         Me.TableLayoutPanel_Tables.Controls.Add(Me.ToolStrip1, 0, 0)
-        Me.TableLayoutPanel_Tables.Controls.Add(Me.ListTables, 0, 1)
         Me.TableLayoutPanel_Tables.Dock = System.Windows.Forms.DockStyle.Left
         Me.TableLayoutPanel_Tables.Location = New System.Drawing.Point(0, 24)
         Me.TableLayoutPanel_Tables.Name = "TableLayoutPanel_Tables"
@@ -340,6 +345,43 @@ Partial Class FrmMenu
         Me.TableLayoutPanel_Tables.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanel_Tables.Size = New System.Drawing.Size(146, 407)
         Me.TableLayoutPanel_Tables.TabIndex = 9
+        '
+        'TrvEstructure
+        '
+        Me.TrvEstructure.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TrvEstructure.ImageIndex = 0
+        Me.TrvEstructure.ImageList = Me.ImageListTreeView
+        Me.TrvEstructure.Location = New System.Drawing.Point(3, 28)
+        Me.TrvEstructure.Name = "TrvEstructure"
+        TreeNode1.ImageIndex = 1
+        TreeNode1.Name = "users"
+        TreeNode1.SelectedImageIndex = 1
+        TreeNode1.Text = "users"
+        TreeNode2.ImageIndex = 1
+        TreeNode2.Name = "Tables"
+        TreeNode2.SelectedImageIndex = 1
+        TreeNode2.Text = "Tables"
+        TreeNode3.ImageIndex = 2
+        TreeNode3.Name = "CallFunction"
+        TreeNode3.SelectedImageIndex = 2
+        TreeNode3.Text = "CallFunction"
+        TreeNode4.ImageIndex = 2
+        TreeNode4.Name = "Procedures"
+        TreeNode4.SelectedImageIndex = 2
+        TreeNode4.Text = "Procedures"
+        Me.TrvEstructure.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode4})
+        Me.TrvEstructure.SelectedImageIndex = 0
+        Me.TrvEstructure.Size = New System.Drawing.Size(140, 376)
+        Me.TrvEstructure.TabIndex = 12
+        '
+        'ImageListTreeView
+        '
+        Me.ImageListTreeView.ImageStream = CType(resources.GetObject("ImageListTreeView.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageListTreeView.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageListTreeView.Images.SetKeyName(0, "blank_16.png")
+        Me.ImageListTreeView.Images.SetKeyName(1, "table_16.png")
+        Me.ImageListTreeView.Images.SetKeyName(2, "gears_16.png")
+        Me.ImageListTreeView.Images.SetKeyName(3, "_16.png")
         '
         'ToolStrip1
         '
@@ -385,18 +427,6 @@ Partial Class FrmMenu
         Me.tsbRefresh.Name = "tsbRefresh"
         Me.tsbRefresh.Size = New System.Drawing.Size(23, 22)
         Me.tsbRefresh.Text = "Refresh List"
-        '
-        'ListTables
-        '
-        Me.ListTables.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.ListTables.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ListTables.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ListTables.FormattingEnabled = True
-        Me.ListTables.ItemHeight = 16
-        Me.ListTables.Location = New System.Drawing.Point(3, 28)
-        Me.ListTables.Name = "ListTables"
-        Me.ListTables.Size = New System.Drawing.Size(140, 376)
-        Me.ListTables.TabIndex = 8
         '
         'Splitter1
         '
@@ -467,7 +497,6 @@ Partial Class FrmMenu
     Friend WithEvents StatusBarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolsMenu As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TableLayoutPanel_Tables As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents ListTables As System.Windows.Forms.ListBox
     Friend WithEvents Splitter1 As System.Windows.Forms.Splitter
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents tsbNew As System.Windows.Forms.ToolStripButton
@@ -475,5 +504,7 @@ Partial Class FrmMenu
     Friend WithEvents tsbSalve As System.Windows.Forms.ToolStripButton
     Friend WithEvents tsbRefresh As System.Windows.Forms.ToolStripButton
     Friend WithEvents lblVersionDB As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents TrvEstructure As System.Windows.Forms.TreeView
+    Friend WithEvents ImageListTreeView As System.Windows.Forms.ImageList
 
 End Class

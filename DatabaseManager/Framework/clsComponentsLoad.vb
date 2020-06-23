@@ -38,6 +38,51 @@
 
     End Function
 
+    Public Shared Function LoadListTable_Proc(ByRef my_tree As TreeView) As Boolean
+        Dim myTablesList, myProcList As New List(Of String)
+        Dim nodo_root As TreeNode
+        Dim item As String
+
+        Try
+
+            my_tree.Nodes.Clear()
+
+            If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
+                myTablesList = DB_AC.ListTable()
+                myProcList = DB_AC.ListProcedures()
+            ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
+                'myList = BD_FB.ListTable()
+                Return False
+            Else
+                Return False
+            End If
+
+            nodo_root = New TreeNode
+
+            If myTablesList.Count > 0 Then
+                nodo_root = my_tree.Nodes.Add("Tables", "Tables", 1, 1)
+                For Each item In myTablesList
+                    nodo_root.Nodes.Add(item, item, 3, 3)
+                Next
+            End If
+
+            If myProcList.Count > 0 Then
+                nodo_root = my_tree.Nodes.Add("Procedures", "Procedures", 2, 2)
+                For Each item In myProcList
+                    nodo_root.Nodes.Add(item, item, 3, 3)
+                Next
+            End If
+
+
+            my_tree.ExpandAll()
+
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+
+    End Function
+
     Public Shared Function LoadGrid(ByVal table As String) As DataSet
         Dim ds As New DataSet
 

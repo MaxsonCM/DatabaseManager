@@ -362,7 +362,6 @@ Public Class DB_AC
     Public Shared Function ListPrimaryKey(ByVal table As String) As DataSet
         Dim ds As New DataSet
 
-
         Try
 
             Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
@@ -381,6 +380,38 @@ Public Class DB_AC
                 conn.Close()
 
                 Return ds
+            End Using
+
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        Return Nothing
+    End Function
+
+    Public Shared Function ListProcedures() As List(Of String)
+        Dim list As New List(Of String)
+        Dim ds As New DataSet
+        Try
+
+            Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
+
+                conn.Open()
+
+                Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Procedures, Nothing)
+
+                ds.Tables.Add(dt)
+
+                For Each row In dt.Rows
+                    list.Add(row("PROCEDURE_NAME"))
+                Next
+
+                dt.Dispose()
+
+                conn.Close()
+
+                Return list
             End Using
 
 
