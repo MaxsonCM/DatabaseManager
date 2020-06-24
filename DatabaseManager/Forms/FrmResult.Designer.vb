@@ -40,14 +40,14 @@ Partial Class FrmResult
         Me.Grid.Name = "Grid"
         Me.Grid.ReadOnly = True
         Me.Grid.RowHeadersVisible = False
-        Me.Grid.Size = New System.Drawing.Size(836, 379)
+        Me.Grid.Size = New System.Drawing.Size(596, 233)
         Me.Grid.TabIndex = 0
         '
         'FrmResult
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(860, 404)
+        Me.ClientSize = New System.Drawing.Size(620, 258)
         Me.Controls.Add(Me.Grid)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FrmResult"

@@ -203,7 +203,7 @@ Public Class DB_AC
                 Case 2 : Return intFormat & " - Microsoft Access 2"
                 Case 7 : Return intFormat & " - Microsoft Access 95"
                 Case 8 : Return intFormat & " - Microsoft Access 97"
-                Case 9 : Return intFormat & " - Microsoft Access 2000 (XP)"
+                Case 9 : Return intFormat & " - Microsoft Access XP/2000"
                 Case 10 : Return intFormat & " - Microsoft Access 2002/2003"
                 Case 11 : Return intFormat & " - Microsoft Access 2003"
                 Case 12 : Return intFormat & " - Microsoft Access 2007/2016"
@@ -368,11 +368,7 @@ Public Class DB_AC
 
                 conn.Open()
                 Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Primary_Keys, {Nothing, Nothing, table})
-                'Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Procedures, {})
-                'Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.DbInfoKeywords, {})
-                'Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.DbInfoLiterals, {})
-                'Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Indexes, {})
-
+                
                 ds.Tables.Add(dt)
 
                 dt.Dispose()
@@ -408,19 +404,51 @@ Public Class DB_AC
                 Next
 
                 dt.Dispose()
-
                 conn.Close()
 
-                Return list
             End Using
-
 
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
 
-        Return Nothing
+        Return list
     End Function
+
+    Public Shared Function ListViews() As List(Of String)
+        Dim my_views As New List(Of String)
+        
+        Try
+            Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
+                conn.Open()
+
+                Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Views, {})
+
+                conn.Close()
+
+                For Each row In dt.Rows
+                    my_views.Add(row("TABLE_NAME"))
+                Next
+
+                dt.Dispose()
+
+            End Using
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        Return my_views
+    End Function
+
+    Public Shared Function ListModules() As List(Of String)
+        Dim my_list As New List(Of String)
+
+        'SELECT ModuleName FROM MSysNavPaneObjectIDs WHERE Type = 32775
+
+        Return my_list
+    End Function
+
 
     Public Shared Function ListAllIndex(ByVal table As String) As List(Of clsSchemaIndex)
         Dim dt As DataTable
@@ -458,6 +486,32 @@ Public Class DB_AC
         Return Nothing
     End Function
 
+    Public Shared Sub GetSchema()
+
+        Try
+            Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
+                conn.Open()
+
+                Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Procedures, {})
+
+                conn.Close()
+
+                FrmResult.MdiParent = FrmMenu
+                If FrmResult.IsHandleCreated Then
+                    FrmResult.Focus()
+                Else
+                    FrmResult.Show()
+                End If
+
+                FrmResult.Grid.DataSource = dt
+            End Using
+
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
 #End Region
 
 End Class

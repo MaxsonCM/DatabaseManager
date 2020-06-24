@@ -35,12 +35,12 @@ Partial Class FrmAbout
         Me.LogoPictureBox = New System.Windows.Forms.PictureBox()
         Me.LabelProductName = New System.Windows.Forms.Label()
         Me.LabelVersion = New System.Windows.Forms.Label()
-        Me.LabelCopyright = New System.Windows.Forms.Label()
-        Me.LabelCompanyName = New System.Windows.Forms.Label()
         Me.TextBoxDescription = New System.Windows.Forms.TextBox()
+        Me.LabelCompanyName = New System.Windows.Forms.Label()
+        Me.LabelCopyright = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.OKButton = New System.Windows.Forms.Button()
         Me.LinkLabelProject = New System.Windows.Forms.LinkLabel()
+        Me.OKButton = New System.Windows.Forms.Button()
         Me.TableLayoutPanel.SuspendLayout()
         CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -112,30 +112,6 @@ Partial Class FrmAbout
         Me.LabelVersion.Text = "Version"
         Me.LabelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'LabelCopyright
-        '
-        Me.LabelCopyright.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelCopyright.Location = New System.Drawing.Point(136, 50)
-        Me.LabelCopyright.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
-        Me.LabelCopyright.MaximumSize = New System.Drawing.Size(0, 17)
-        Me.LabelCopyright.Name = "LabelCopyright"
-        Me.LabelCopyright.Size = New System.Drawing.Size(257, 17)
-        Me.LabelCopyright.TabIndex = 0
-        Me.LabelCopyright.Text = "Copyright"
-        Me.LabelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'LabelCompanyName
-        '
-        Me.LabelCompanyName.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelCompanyName.Location = New System.Drawing.Point(136, 75)
-        Me.LabelCompanyName.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
-        Me.LabelCompanyName.MaximumSize = New System.Drawing.Size(0, 17)
-        Me.LabelCompanyName.Name = "LabelCompanyName"
-        Me.LabelCompanyName.Size = New System.Drawing.Size(257, 17)
-        Me.LabelCompanyName.TabIndex = 0
-        Me.LabelCompanyName.Text = "Company Name"
-        Me.LabelCompanyName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'TextBoxDescription
         '
         Me.TextBoxDescription.Dock = System.Windows.Forms.DockStyle.Fill
@@ -150,6 +126,30 @@ Partial Class FrmAbout
         Me.TextBoxDescription.TabStop = False
         Me.TextBoxDescription.Text = resources.GetString("TextBoxDescription.Text")
         '
+        'LabelCompanyName
+        '
+        Me.LabelCompanyName.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelCompanyName.Location = New System.Drawing.Point(136, 75)
+        Me.LabelCompanyName.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
+        Me.LabelCompanyName.MaximumSize = New System.Drawing.Size(0, 17)
+        Me.LabelCompanyName.Name = "LabelCompanyName"
+        Me.LabelCompanyName.Size = New System.Drawing.Size(257, 17)
+        Me.LabelCompanyName.TabIndex = 0
+        Me.LabelCompanyName.Text = "Company Name"
+        Me.LabelCompanyName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'LabelCopyright
+        '
+        Me.LabelCopyright.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelCopyright.Location = New System.Drawing.Point(136, 50)
+        Me.LabelCopyright.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
+        Me.LabelCopyright.MaximumSize = New System.Drawing.Size(0, 17)
+        Me.LabelCopyright.Name = "LabelCopyright"
+        Me.LabelCopyright.Size = New System.Drawing.Size(257, 17)
+        Me.LabelCopyright.TabIndex = 0
+        Me.LabelCopyright.Text = "Copyright"
+        Me.LabelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.LinkLabelProject)
@@ -161,16 +161,6 @@ Partial Class FrmAbout
         Me.Panel1.Size = New System.Drawing.Size(266, 29)
         Me.Panel1.TabIndex = 1
         '
-        'OKButton
-        '
-        Me.OKButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.OKButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.OKButton.Location = New System.Drawing.Point(188, 3)
-        Me.OKButton.Name = "OKButton"
-        Me.OKButton.Size = New System.Drawing.Size(75, 23)
-        Me.OKButton.TabIndex = 1
-        Me.OKButton.Text = "&OK"
-        '
         'LinkLabelProject
         '
         Me.LinkLabelProject.AutoSize = True
@@ -180,6 +170,16 @@ Partial Class FrmAbout
         Me.LinkLabelProject.TabIndex = 2
         Me.LinkLabelProject.TabStop = True
         Me.LinkLabelProject.Text = "Project link"
+        '
+        'OKButton
+        '
+        Me.OKButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OKButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.OKButton.Location = New System.Drawing.Point(188, 3)
+        Me.OKButton.Name = "OKButton"
+        Me.OKButton.Size = New System.Drawing.Size(75, 23)
+        Me.OKButton.TabIndex = 1
+        Me.OKButton.Text = "&OK"
         '
         'FrmAbout
         '

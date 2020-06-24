@@ -29,6 +29,8 @@ Partial Class FrmMenu
         Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Tables", 1, 1, New System.Windows.Forms.TreeNode() {TreeNode1})
         Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("CallFunction", 2, 2)
         Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Procedures", 2, 2, New System.Windows.Forms.TreeNode() {TreeNode3})
+        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("search")
+        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Views", New System.Windows.Forms.TreeNode() {TreeNode5})
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -86,7 +88,7 @@ Partial Class FrmMenu
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.MdiWindowListItem = Me.WindowsMenu
         Me.MenuStrip.Name = "MenuStrip"
-        Me.MenuStrip.Size = New System.Drawing.Size(993, 24)
+        Me.MenuStrip.Size = New System.Drawing.Size(953, 24)
         Me.MenuStrip.TabIndex = 5
         Me.MenuStrip.Text = "MenuStrip"
         '
@@ -313,9 +315,9 @@ Partial Class FrmMenu
         'StatusStrip
         '
         Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblCaptionLabel, Me.lblVersionDB})
-        Me.StatusStrip.Location = New System.Drawing.Point(0, 431)
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 523)
         Me.StatusStrip.Name = "StatusStrip"
-        Me.StatusStrip.Size = New System.Drawing.Size(993, 22)
+        Me.StatusStrip.Size = New System.Drawing.Size(953, 22)
         Me.StatusStrip.TabIndex = 7
         Me.StatusStrip.Text = "StatusStrip"
         '
@@ -343,7 +345,7 @@ Partial Class FrmMenu
         Me.TableLayoutPanel_Tables.RowCount = 2
         Me.TableLayoutPanel_Tables.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel_Tables.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel_Tables.Size = New System.Drawing.Size(146, 407)
+        Me.TableLayoutPanel_Tables.Size = New System.Drawing.Size(146, 499)
         Me.TableLayoutPanel_Tables.TabIndex = 9
         '
         'TrvEstructure
@@ -369,9 +371,17 @@ Partial Class FrmMenu
         TreeNode4.Name = "Procedures"
         TreeNode4.SelectedImageIndex = 2
         TreeNode4.Text = "Procedures"
-        Me.TrvEstructure.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode4})
+        TreeNode5.ImageKey = "_16.png"
+        TreeNode5.Name = "search"
+        TreeNode5.SelectedImageIndex = 3
+        TreeNode5.Text = "search"
+        TreeNode6.ImageKey = "window_16.png"
+        TreeNode6.Name = "Views"
+        TreeNode6.SelectedImageIndex = 4
+        TreeNode6.Text = "Views"
+        Me.TrvEstructure.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode4, TreeNode6})
         Me.TrvEstructure.SelectedImageIndex = 0
-        Me.TrvEstructure.Size = New System.Drawing.Size(140, 376)
+        Me.TrvEstructure.Size = New System.Drawing.Size(140, 468)
         Me.TrvEstructure.TabIndex = 12
         '
         'ImageListTreeView
@@ -382,6 +392,7 @@ Partial Class FrmMenu
         Me.ImageListTreeView.Images.SetKeyName(1, "table_16.png")
         Me.ImageListTreeView.Images.SetKeyName(2, "gears_16.png")
         Me.ImageListTreeView.Images.SetKeyName(3, "_16.png")
+        Me.ImageListTreeView.Images.SetKeyName(4, "window_16.png")
         '
         'ToolStrip1
         '
@@ -432,7 +443,7 @@ Partial Class FrmMenu
         '
         Me.Splitter1.Location = New System.Drawing.Point(146, 24)
         Me.Splitter1.Name = "Splitter1"
-        Me.Splitter1.Size = New System.Drawing.Size(3, 407)
+        Me.Splitter1.Size = New System.Drawing.Size(3, 499)
         Me.Splitter1.TabIndex = 10
         Me.Splitter1.TabStop = False
         '
@@ -440,7 +451,7 @@ Partial Class FrmMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(993, 453)
+        Me.ClientSize = New System.Drawing.Size(953, 545)
         Me.Controls.Add(Me.Splitter1)
         Me.Controls.Add(Me.TableLayoutPanel_Tables)
         Me.Controls.Add(Me.MenuStrip)

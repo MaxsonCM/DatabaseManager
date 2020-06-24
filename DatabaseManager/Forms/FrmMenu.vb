@@ -90,7 +90,7 @@ Public Class FrmMenu
                 End If
             End If
         Else
-            MsgBox("Database not found!")
+            'MsgBox("Database not found!")
         End If
     End Sub
 
