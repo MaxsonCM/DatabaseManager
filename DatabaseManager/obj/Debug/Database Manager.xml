@@ -82,7 +82,7 @@ DatabaseManager
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.Loading_32">
+</member><member name="P:DatabaseManager.My.Resources.Resources.Loading_64">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>

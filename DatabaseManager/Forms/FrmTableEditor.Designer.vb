@@ -56,8 +56,8 @@ Partial Class FrmTableEditor
         Me.TreeViewIndex = New System.Windows.Forms.TreeView()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.TabPageData = New System.Windows.Forms.TabPage()
-        Me.TableDataGrid = New System.Windows.Forms.DataGridView()
         Me.PictureLoad = New System.Windows.Forms.PictureBox()
+        Me.TableDataGrid = New System.Windows.Forms.DataGridView()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsbSalve = New System.Windows.Forms.ToolStripButton()
         Me.tsbRefresh = New System.Windows.Forms.ToolStripButton()
@@ -70,8 +70,8 @@ Partial Class FrmTableEditor
         CType(Me.EstructureGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelIndexes.SuspendLayout()
         Me.TabPageData.SuspendLayout()
-        CType(Me.TableDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureLoad, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TableDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.PanelButton.SuspendLayout()
         Me.SuspendLayout()
@@ -294,6 +294,17 @@ Partial Class FrmTableEditor
         Me.TabPageData.Text = "Registres"
         Me.TabPageData.UseVisualStyleBackColor = True
         '
+        'PictureLoad
+        '
+        Me.PictureLoad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PictureLoad.Image = Global.DatabaseManager.My.Resources.Resources.Loading_64
+        Me.PictureLoad.Location = New System.Drawing.Point(350, 162)
+        Me.PictureLoad.Name = "PictureLoad"
+        Me.PictureLoad.Size = New System.Drawing.Size(64, 64)
+        Me.PictureLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.PictureLoad.TabIndex = 2
+        Me.PictureLoad.TabStop = False
+        '
         'TableDataGrid
         '
         Me.TableDataGrid.AllowUserToAddRows = False
@@ -311,16 +322,6 @@ Partial Class FrmTableEditor
         Me.TableDataGrid.ShowRowErrors = False
         Me.TableDataGrid.Size = New System.Drawing.Size(778, 368)
         Me.TableDataGrid.TabIndex = 1
-        '
-        'PictureLoad
-        '
-        Me.PictureLoad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureLoad.Image = Global.DatabaseManager.My.Resources.Resources.Loading_32
-        Me.PictureLoad.Location = New System.Drawing.Point(319, 159)
-        Me.PictureLoad.Name = "PictureLoad"
-        Me.PictureLoad.Size = New System.Drawing.Size(33, 33)
-        Me.PictureLoad.TabIndex = 2
-        Me.PictureLoad.TabStop = False
         '
         'ToolStrip1
         '
@@ -386,8 +387,9 @@ Partial Class FrmTableEditor
         CType(Me.EstructureGrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelIndexes.ResumeLayout(False)
         Me.TabPageData.ResumeLayout(False)
-        CType(Me.TableDataGrid, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPageData.PerformLayout()
         CType(Me.PictureLoad, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TableDataGrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.PanelButton.ResumeLayout(False)

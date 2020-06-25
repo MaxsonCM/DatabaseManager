@@ -20,4 +20,4 @@ That was the language where I had work most time of my career. And I can make th
 * Manipulate indexes
 
 [Icons Sources]: http://www.iconarchive.com/
- 
+[Gif Load]: https://icons8.com/preloaders/
