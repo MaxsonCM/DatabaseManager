@@ -25,12 +25,12 @@ Partial Class FrmMenu
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMenu))
-        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("users", 1, 1)
-        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Tables", 1, 1, New System.Windows.Forms.TreeNode() {TreeNode1})
-        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("CallFunction", 2, 2)
-        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Procedures", 2, 2, New System.Windows.Forms.TreeNode() {TreeNode3})
-        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("search")
-        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Views", New System.Windows.Forms.TreeNode() {TreeNode5})
+        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("users", 1, 1)
+        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Tables", 1, 1, New System.Windows.Forms.TreeNode() {TreeNode7})
+        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("CallFunction", 2, 2)
+        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Procedures", 2, 2, New System.Windows.Forms.TreeNode() {TreeNode9})
+        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("search")
+        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Views", New System.Windows.Forms.TreeNode() {TreeNode11})
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -59,8 +59,6 @@ Partial Class FrmMenu
         Me.CloseAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ArrangeIconsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpMenu = New System.Windows.Forms.ToolStripMenuItem()
-        Me.IndexToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SearchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
@@ -280,26 +278,10 @@ Partial Class FrmMenu
         '
         'HelpMenu
         '
-        Me.HelpMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IndexToolStripMenuItem, Me.SearchToolStripMenuItem, Me.ToolStripSeparator8, Me.AboutToolStripMenuItem})
+        Me.HelpMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSeparator8, Me.AboutToolStripMenuItem})
         Me.HelpMenu.Name = "HelpMenu"
         Me.HelpMenu.Size = New System.Drawing.Size(44, 20)
         Me.HelpMenu.Text = "&Help"
-        '
-        'IndexToolStripMenuItem
-        '
-        Me.IndexToolStripMenuItem.Image = CType(resources.GetObject("IndexToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.IndexToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black
-        Me.IndexToolStripMenuItem.Name = "IndexToolStripMenuItem"
-        Me.IndexToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
-        Me.IndexToolStripMenuItem.Text = "&Index"
-        '
-        'SearchToolStripMenuItem
-        '
-        Me.SearchToolStripMenuItem.Image = CType(resources.GetObject("SearchToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.SearchToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black
-        Me.SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
-        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
-        Me.SearchToolStripMenuItem.Text = "&Search"
         '
         'ToolStripSeparator8
         '
@@ -355,31 +337,31 @@ Partial Class FrmMenu
         Me.TrvEstructure.ImageList = Me.ImageListTreeView
         Me.TrvEstructure.Location = New System.Drawing.Point(3, 28)
         Me.TrvEstructure.Name = "TrvEstructure"
-        TreeNode1.ImageIndex = 1
-        TreeNode1.Name = "users"
-        TreeNode1.SelectedImageIndex = 1
-        TreeNode1.Text = "users"
-        TreeNode2.ImageIndex = 1
-        TreeNode2.Name = "Tables"
-        TreeNode2.SelectedImageIndex = 1
-        TreeNode2.Text = "Tables"
-        TreeNode3.ImageIndex = 2
-        TreeNode3.Name = "CallFunction"
-        TreeNode3.SelectedImageIndex = 2
-        TreeNode3.Text = "CallFunction"
-        TreeNode4.ImageIndex = 2
-        TreeNode4.Name = "Procedures"
-        TreeNode4.SelectedImageIndex = 2
-        TreeNode4.Text = "Procedures"
-        TreeNode5.ImageKey = "_16.png"
-        TreeNode5.Name = "search"
-        TreeNode5.SelectedImageIndex = 3
-        TreeNode5.Text = "search"
-        TreeNode6.ImageKey = "window_16.png"
-        TreeNode6.Name = "Views"
-        TreeNode6.SelectedImageIndex = 4
-        TreeNode6.Text = "Views"
-        Me.TrvEstructure.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode4, TreeNode6})
+        TreeNode7.ImageIndex = 1
+        TreeNode7.Name = "users"
+        TreeNode7.SelectedImageIndex = 1
+        TreeNode7.Text = "users"
+        TreeNode8.ImageIndex = 1
+        TreeNode8.Name = "Tables"
+        TreeNode8.SelectedImageIndex = 1
+        TreeNode8.Text = "Tables"
+        TreeNode9.ImageIndex = 2
+        TreeNode9.Name = "CallFunction"
+        TreeNode9.SelectedImageIndex = 2
+        TreeNode9.Text = "CallFunction"
+        TreeNode10.ImageIndex = 2
+        TreeNode10.Name = "Procedures"
+        TreeNode10.SelectedImageIndex = 2
+        TreeNode10.Text = "Procedures"
+        TreeNode11.ImageKey = "_16.png"
+        TreeNode11.Name = "search"
+        TreeNode11.SelectedImageIndex = 3
+        TreeNode11.Text = "search"
+        TreeNode12.ImageKey = "window_16.png"
+        TreeNode12.Name = "Views"
+        TreeNode12.SelectedImageIndex = 4
+        TreeNode12.Text = "Views"
+        Me.TrvEstructure.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode8, TreeNode10, TreeNode12})
         Me.TrvEstructure.SelectedImageIndex = 0
         Me.TrvEstructure.Size = New System.Drawing.Size(140, 468)
         Me.TrvEstructure.TabIndex = 12
@@ -391,8 +373,7 @@ Partial Class FrmMenu
         Me.ImageListTreeView.Images.SetKeyName(0, "blank_16.png")
         Me.ImageListTreeView.Images.SetKeyName(1, "table_16.png")
         Me.ImageListTreeView.Images.SetKeyName(2, "gears_16.png")
-        Me.ImageListTreeView.Images.SetKeyName(3, "_16.png")
-        Me.ImageListTreeView.Images.SetKeyName(4, "window_16.png")
+        Me.ImageListTreeView.Images.SetKeyName(3, "window_16.png")
         '
         'ToolStrip1
         '
@@ -473,8 +454,6 @@ Partial Class FrmMenu
 
     End Sub
     Friend WithEvents HelpMenu As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents IndexToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents SearchToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator8 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ArrangeIconsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem

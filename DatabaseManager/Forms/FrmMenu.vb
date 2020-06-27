@@ -2,6 +2,7 @@
 Imports System.IO
 
 Public Class FrmMenu
+    Private node_root, node_child As String
 
     Private Sub ShowNewForm(ByVal sender As Object, ByVal e As EventArgs) Handles NewToolStripMenuItem.Click
         Dim new_form As New FrmCommand
@@ -11,9 +12,10 @@ Public Class FrmMenu
 
     Private Sub OpenFile(ByVal sender As Object, ByVal e As EventArgs) Handles OpenToolStripMenuItem.Click
         
-        FrmInfoDB.ShowDialog()
-
-        Call tsbRefresh_Click(sender, e)
+        If FrmInfoDB.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            Call CloseAllToolStripMenuItem_Click(sender, e)
+            Call tsbRefresh_Click(sender, e)
+        End If
 
     End Sub
 
@@ -23,6 +25,7 @@ Public Class FrmMenu
 
     Private Sub ExitToolsStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ExitToolStripMenuItem.Click
         Me.Close()
+        End
     End Sub
 
     Private Sub CutToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CutToolStripMenuItem.Click
@@ -90,7 +93,7 @@ Public Class FrmMenu
                 End If
             End If
         Else
-            'MsgBox("Database not found!")
+            MsgBox("Database not found!")
         End If
     End Sub
 
@@ -108,14 +111,26 @@ Public Class FrmMenu
     End Sub
 
     Private Sub TrvEstructure_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles TrvEstructure.AfterSelect
-        Dim node_root, node_child As String
-
         If IsNothing(e.Node.Parent) Then Exit Sub
+
+        node_root = ""
+        node_child = ""
+
+        Try
+            node_root = e.Node.Parent.Text
+            node_child = e.Node.Text
+        Catch ex As Exception
+
+        End Try
+        
+    End Sub
+
+    Private Sub TrvEstructure_DoubleClick(sender As Object, e As EventArgs) Handles TrvEstructure.DoubleClick
+
+        If node_root = "" Or node_child = "" Then Exit Sub
 
         Try
 
-            node_root = e.Node.Parent.Text
-            node_child = e.Node.Text
 
             If LCase(node_root) = "tables" Then
                 Dim frmCollection As New FormCollection()

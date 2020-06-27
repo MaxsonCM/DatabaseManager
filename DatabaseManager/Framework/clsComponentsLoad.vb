@@ -39,7 +39,7 @@
     End Function
 
     Public Shared Function LoadListTable_Proc(ByRef my_tree As TreeView) As Boolean
-        Dim myTablesList, myProcList, myViewsList As New List(Of String)
+        Dim myTablesList, myProcsList, myViewsList As New List(Of String)
         Dim nodo_root As TreeNode
         Dim item As String
 
@@ -49,7 +49,7 @@
 
             If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
                 myTablesList = DB_AC.ListTable()
-                myProcList = DB_AC.ListProcedures()
+                myProcsList = DB_AC.ListProcedures()
                 myViewsList = DB_AC.ListViews()
             ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
                 'myList = BD_FB.ListTable()
@@ -63,19 +63,19 @@
             If myTablesList.Count > 0 Then
                 nodo_root = my_tree.Nodes.Add("Tables", "Tables", 1, 1)
                 For Each item In myTablesList
-                    nodo_root.Nodes.Add(item, item, 3, 3)
+                    nodo_root.Nodes.Add(item, item, 1, 1)
                 Next
             End If
 
-            If myProcList.Count > 0 Then
+            If myProcsList.Count > 0 Then
                 nodo_root = my_tree.Nodes.Add("Procedures", "Procedures", 2, 2)
-                For Each item In myProcList
-                    nodo_root.Nodes.Add(item, item, 3, 3)
+                For Each item In myProcsList
+                    nodo_root.Nodes.Add(item, item, 2, 2)
                 Next
             End If
 
             If myViewsList.Count > 0 Then
-                nodo_root = my_tree.Nodes.Add("Views", "Views", 4, 4)
+                nodo_root = my_tree.Nodes.Add("Views", "Views", 3, 3)
                 For Each item In myViewsList
                     nodo_root.Nodes.Add(item, item, 3, 3)
                 Next
