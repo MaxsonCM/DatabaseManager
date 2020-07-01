@@ -4,7 +4,7 @@ Imports System.IO
 Public Class FrmMenu
     Private node_root, node_child As String
 
-    Private Sub ShowNewForm(ByVal sender As Object, ByVal e As EventArgs) Handles NewToolStripMenuItem.Click
+    Private Sub ShowNewForm(ByVal sender As Object, ByVal e As EventArgs)
         Dim new_form As New FrmCommand
         new_form.MdiParent = Me
         new_form.Show()
@@ -28,15 +28,15 @@ Public Class FrmMenu
         End
     End Sub
 
-    Private Sub CutToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CutToolStripMenuItem.Click
+    Private Sub CutToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
         ' Use My.Computer.Clipboard to insert the selected text or images into the clipboard
     End Sub
 
-    Private Sub CopyToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CopyToolStripMenuItem.Click
+    Private Sub CopyToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
         ' Use My.Computer.Clipboard to insert the selected text or images into the clipboard
     End Sub
 
-    Private Sub PasteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles PasteToolStripMenuItem.Click
+    Private Sub PasteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
         'Use My.Computer.Clipboard.GetText() or My.Computer.Clipboard.GetData to retrieve information from the clipboard.
     End Sub
 
@@ -156,5 +156,30 @@ Public Class FrmMenu
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+    End Sub
+
+    Private Sub TrvEstructure_MouseClick(sender As Object, e As MouseEventArgs) Handles TrvEstructure.MouseClick
+        Dim item As ToolStripItem
+
+        If e.Button = Windows.Forms.MouseButtons.Right Then
+            For Each item In TrvContextMenuStrip.Items
+                If LCase(node_root) = "tables" Then
+                    If InStr(LCase(item.Text), "table") > 0 Then
+                        item.Visible = True
+                    Else
+                        item.Visible = False
+                    End If
+                ElseIf LCase(node_root) = "procedures" Then
+                    If InStr(LCase(item.Text), "procedure") > 0 Then
+                        item.Visible = True
+                    Else
+                        item.Visible = False
+                    End If
+                Else
+                    item.Visible = False
+                End If
+            Next
+
+        End If
     End Sub
 End Class

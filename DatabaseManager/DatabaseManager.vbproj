@@ -213,6 +213,10 @@
     <None Include="Resources\_16.png" />
     <None Include="Resources\window_16.png" />
     <None Include="Resources\Loading_64.gif" />
+    <None Include="Resources\table_add_16.png" />
+    <None Include="Resources\table_remove_16.png" />
+    <None Include="Resources\minus_16.png" />
+    <None Include="Resources\plus_16.png" />
     <Content Include="Sql_runner.ico" />
   </ItemGroup>
   <ItemGroup>
