@@ -28,18 +28,6 @@ Public Class FrmMenu
         End
     End Sub
 
-    Private Sub CutToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
-        ' Use My.Computer.Clipboard to insert the selected text or images into the clipboard
-    End Sub
-
-    Private Sub CopyToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
-        ' Use My.Computer.Clipboard to insert the selected text or images into the clipboard
-    End Sub
-
-    Private Sub PasteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
-        'Use My.Computer.Clipboard.GetText() or My.Computer.Clipboard.GetData to retrieve information from the clipboard.
-    End Sub
-
     Private Sub StatusBarToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles StatusBarToolStripMenuItem.Click
         Me.StatusStrip.Visible = Me.StatusBarToolStripMenuItem.Checked
     End Sub
@@ -181,5 +169,17 @@ Public Class FrmMenu
             Next
 
         End If
+    End Sub
+
+    Private Sub DeleteTableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteTableToolStripMenuItem.Click
+
+        Dim new_window As FrmCommand
+        new_window = New FrmCommand
+        new_window.txtCommand.Text = clsComponentsLoad.ScriptDropTable(node_child)
+
+        If new_window.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            Call tsbRefresh_Click(sender, e)
+        End If
+
     End Sub
 End Class

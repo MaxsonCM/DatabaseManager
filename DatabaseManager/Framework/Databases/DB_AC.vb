@@ -112,12 +112,13 @@ Public Class DB_AC
         Return Nothing
     End Function
 
-    Public Shared Function Execute2(ByVal my_command As String) As String
+    Public Shared Function Script_execute(ByVal my_command As String, Optional ByRef my_status As String = "") As Boolean
         Dim dataSet As New DataSet()
         Dim dataAdapter As System.Data.OleDb.OleDbDataAdapter
         Dim myCmd As System.Data.OleDb.OleDbCommand
         Dim conn As System.Data.OleDb.OleDbConnection
-        Dim my_status As String = ""
+
+        my_status = ""
 
         Try
             conn = New System.Data.OleDb.OleDbConnection
@@ -153,9 +154,10 @@ Public Class DB_AC
 
             conn.Close()
 
-            Return my_status
+            Return True
         Catch ex As Exception
             Return ex.Message
+            Return False
         End Try
 
     End Function
@@ -512,6 +514,14 @@ Public Class DB_AC
         End Try
 
     End Sub
+#End Region
+
+#Region "Scripts"
+
+    Public Shared Function GetScriptDropTable(ByVal table As String) As String
+        Return "DROP TABLE [" & table & "]"
+    End Function
+
 #End Region
 
 End Class

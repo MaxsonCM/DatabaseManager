@@ -57,19 +57,19 @@ Partial Class FrmMenu
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.TableLayoutPanel_Tables = New System.Windows.Forms.TableLayoutPanel()
         Me.TrvEstructure = New System.Windows.Forms.TreeView()
+        Me.TrvContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DeleteTableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteProcedureToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageListTreeView = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsbOpen = New System.Windows.Forms.ToolStripButton()
         Me.tsbRefresh = New System.Windows.Forms.ToolStripButton()
         Me.Splitter1 = New System.Windows.Forms.Splitter()
-        Me.TrvContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.DeleteTableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DeleteProcedureToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.TableLayoutPanel_Tables.SuspendLayout()
-        Me.ToolStrip1.SuspendLayout()
         Me.TrvContextMenuStrip.SuspendLayout()
+        Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip
@@ -284,6 +284,26 @@ Partial Class FrmMenu
         Me.TrvEstructure.Size = New System.Drawing.Size(140, 468)
         Me.TrvEstructure.TabIndex = 12
         '
+        'TrvContextMenuStrip
+        '
+        Me.TrvContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteTableToolStripMenuItem, Me.DeleteProcedureToolStripMenuItem})
+        Me.TrvContextMenuStrip.Name = "TrvContextMenuStrip"
+        Me.TrvContextMenuStrip.Size = New System.Drawing.Size(165, 70)
+        '
+        'DeleteTableToolStripMenuItem
+        '
+        Me.DeleteTableToolStripMenuItem.Image = Global.DatabaseManager.My.Resources.Resources.minus_16
+        Me.DeleteTableToolStripMenuItem.Name = "DeleteTableToolStripMenuItem"
+        Me.DeleteTableToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.DeleteTableToolStripMenuItem.Text = "Delete Table"
+        '
+        'DeleteProcedureToolStripMenuItem
+        '
+        Me.DeleteProcedureToolStripMenuItem.Image = Global.DatabaseManager.My.Resources.Resources.minus_16
+        Me.DeleteProcedureToolStripMenuItem.Name = "DeleteProcedureToolStripMenuItem"
+        Me.DeleteProcedureToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.DeleteProcedureToolStripMenuItem.Text = "Delete Procedure"
+        '
         'ImageListTreeView
         '
         Me.ImageListTreeView.ImageStream = CType(resources.GetObject("ImageListTreeView.ImageStream"), System.Windows.Forms.ImageListStreamer)
@@ -328,26 +348,6 @@ Partial Class FrmMenu
         Me.Splitter1.TabIndex = 10
         Me.Splitter1.TabStop = False
         '
-        'TrvContextMenuStrip
-        '
-        Me.TrvContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteTableToolStripMenuItem, Me.DeleteProcedureToolStripMenuItem})
-        Me.TrvContextMenuStrip.Name = "TrvContextMenuStrip"
-        Me.TrvContextMenuStrip.Size = New System.Drawing.Size(165, 48)
-        '
-        'DeleteTableToolStripMenuItem
-        '
-        Me.DeleteTableToolStripMenuItem.Image = Global.DatabaseManager.My.Resources.Resources.minus_16
-        Me.DeleteTableToolStripMenuItem.Name = "DeleteTableToolStripMenuItem"
-        Me.DeleteTableToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
-        Me.DeleteTableToolStripMenuItem.Text = "Delete Table"
-        '
-        'DeleteProcedureToolStripMenuItem
-        '
-        Me.DeleteProcedureToolStripMenuItem.Image = Global.DatabaseManager.My.Resources.Resources.minus_16
-        Me.DeleteProcedureToolStripMenuItem.Name = "DeleteProcedureToolStripMenuItem"
-        Me.DeleteProcedureToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
-        Me.DeleteProcedureToolStripMenuItem.Text = "Delete Procedure"
-        '
         'FrmMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -367,9 +367,9 @@ Partial Class FrmMenu
         Me.StatusStrip.PerformLayout()
         Me.TableLayoutPanel_Tables.ResumeLayout(False)
         Me.TableLayoutPanel_Tables.PerformLayout()
+        Me.TrvContextMenuStrip.ResumeLayout(False)
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
-        Me.TrvContextMenuStrip.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

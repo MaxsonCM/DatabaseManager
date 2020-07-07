@@ -22,13 +22,26 @@ Public Class FrmCommand
             If Trim(txtCommand.Text) = "" Then Exit Sub
 
             If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
-                txtStatus.Text = DB_AC.Execute2(txtCommand.Text)
+
+                If DB_AC.Script_execute(txtCommand.Text, txtStatus.Text) Then
+                    Me.DialogResult = Windows.Forms.DialogResult.OK
+
+                    If Me.Modal = True Then
+                        Me.Close()
+                        Me.Dispose()
+                        Exit Sub
+                    End If
+                End If
             Else
                 MsgBox("Execution has not been implemented for the current database", vbInformation, "Attention")
             End If
+
         Catch ex As Exception
             txtStatus.Text = ex.Message
         End Try
+
+        Me.DialogResult = Windows.Forms.DialogResult.None
+
     End Sub
 
 End Class

@@ -234,4 +234,11 @@
         Return dt
     End Function
 
+    Shared Function ScriptDropTable(ByVal table As String) As String
+        If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
+            Return DB_AC.GetScriptDropTable(table)
+        End If
+        Return ""
+    End Function
+
 End Class
