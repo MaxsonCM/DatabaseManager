@@ -6,6 +6,15 @@
     Private _NOT_NULL As Boolean
     Private _COLUMNS_NAME As String
 
+    Public Sub New()
+        _INDEX_NAME = ""
+        _IS_PRIMARY_KEY = False
+        _IS_UNIQUE = False
+        _IS_FOREIGN_KEY = False
+        _NOT_NULL = False
+        _COLUMNS_NAME = ""
+    End Sub
+
     Public Property INDEX_NAME As String
         Get
             Return _INDEX_NAME

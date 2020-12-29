@@ -11,6 +11,21 @@
     Dim _NUMERIC_SCALE As Long
     Dim _DESCRIPTION As String
 
+
+    Public Sub New()
+        _POSITION = -1
+        _COLUMN_NAME = ""
+        _DEFAULT_VALUE = ""
+        _IS_NULLABLE = True
+        _IS_PRIMARY_KEY = False
+        _DATA_TYPE_CODE = -1
+        _DATA_TYPE = ""
+        _CHARACTER_LENGHT = -1
+        _NUMERIC_PRECISION = -1
+        _NUMERIC_SCALE = -1
+        _DESCRIPTION = ""
+    End Sub
+
     Public Property POSITION As Integer
         Get
             Return _POSITION

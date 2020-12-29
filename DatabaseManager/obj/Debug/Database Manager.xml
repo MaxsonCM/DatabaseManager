@@ -6,7 +6,13 @@ DatabaseManager
 </name>
 </assembly>
 <members>
-<member name="T:DatabaseManager.TYPE_FOLDER">
+<member name="M:DatabaseManager.DB_FB.Version">
+	<summary>
+ Function test
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="T:DatabaseManager.TYPE_FOLDER">
 	<summary>
  LIST OF GENERAL USE ENUMERATORS
  </summary>

@@ -107,7 +107,7 @@ Public Class ccoFolderButton
     End Property
 
     Private Function GetFilter() As String
-        Dim resultado As String = "All Files|*.*"""
+        Dim resultado As String = "All Files|*.*"
 
         Select Case _type_filter
             Case TYPE_FILTER_FILE.ACCESS : resultado = "Files MDB e ACCDB |*.MDB;*.ACCDB|All Files|*.*"

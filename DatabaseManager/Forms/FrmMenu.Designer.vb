@@ -65,7 +65,6 @@ Partial Class FrmMenu
         Me.tsbOpen = New System.Windows.Forms.ToolStripButton()
         Me.tsbRefresh = New System.Windows.Forms.ToolStripButton()
         Me.Splitter1 = New System.Windows.Forms.Splitter()
-        Me.CcoTreeView1 = New DatabaseManager.ccoTreeView()
         Me.MenuStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.TableLayoutPanel_Tables.SuspendLayout()
@@ -349,17 +348,6 @@ Partial Class FrmMenu
         Me.Splitter1.TabIndex = 10
         Me.Splitter1.TabStop = False
         '
-        'CcoTreeView1
-        '
-        Me.CcoTreeView1.ImageIndex = 0
-        Me.CcoTreeView1.ImageList = Me.ImageListTreeView
-        Me.CcoTreeView1.Location = New System.Drawing.Point(193, 86)
-        Me.CcoTreeView1.Name = "CcoTreeView1"
-        Me.CcoTreeView1.SelectedImageIndex = 0
-        Me.CcoTreeView1.SelectedNodes = CType(resources.GetObject("CcoTreeView1.SelectedNodes"), System.Collections.ArrayList)
-        Me.CcoTreeView1.Size = New System.Drawing.Size(145, 396)
-        Me.CcoTreeView1.TabIndex = 12
-        '
         'FrmMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -369,7 +357,6 @@ Partial Class FrmMenu
         Me.Controls.Add(Me.TableLayoutPanel_Tables)
         Me.Controls.Add(Me.MenuStrip)
         Me.Controls.Add(Me.StatusStrip)
-        Me.Controls.Add(Me.CcoTreeView1)
         Me.IsMdiContainer = True
         Me.MainMenuStrip = Me.MenuStrip
         Me.Name = "FrmMenu"
@@ -421,6 +408,5 @@ Partial Class FrmMenu
     Friend WithEvents TrvContextMenuStrip As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents DeleteTableToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DeleteProcedureToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents CcoTreeView1 As DatabaseManager.ccoTreeView
 
 End Class

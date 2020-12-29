@@ -22,17 +22,20 @@
     Private Sub LoadRegisters()
 
         If Not BackgroundWorker1.IsBusy Then
+
             TableDataGrid.Visible = False
             Application.DoEvents()
             Call BackgroundWorker1.RunWorkerAsync()
 
-        Else : MsgBox("The last query is still in progress", MsgBoxStyle.Information)
+        Else
+            MsgBox("The last query is still in progress", MsgBoxStyle.Information)
         End If
 
     End Sub
 
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
+
             ds = clsComponentsLoad.LoadGrid(table)
 
         Catch ex As Exception
@@ -43,6 +46,7 @@
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         Try
+
             TableDataGrid.DataSource = ds.Tables(0)
             TableDataGrid.ClearSelection()
 

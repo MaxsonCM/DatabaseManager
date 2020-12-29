@@ -74,13 +74,13 @@ Public Class FrmMenu
 
             If clsComponentsLoad.LoadListTable_Proc(TrvEstructure) Then
 
-                clsComponentsLoad.LoadListTable_Proc(CcoTreeView1)
-
                 lblVersionDB.Text = clsComponentsLoad.GetVersionDB
                 If lblVersionDB.Text <> "error" Then
                     lblVersionDB.Visible = True
                     lblCaptionLabel.Visible = True
                 End If
+            Else
+                MsgBox("Database not found!")
             End If
         Else
             MsgBox("Database not found!")

@@ -25,72 +25,63 @@ Partial Class FrmInfoDB
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmInfoDB))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtSource = New System.Windows.Forms.TextBox()
+        Me.txtDatabase = New System.Windows.Forms.TextBox()
         Me.txtPassword = New System.Windows.Forms.TextBox()
-        Me.CcoBotaoPasta1 = New DatabaseManager.ccoFolderButton()
         Me.btnOk = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
+        Me.TxtUser = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TxtPort = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TxtDataSource = New System.Windows.Forms.TextBox()
+        Me.CcoBotaoPasta1 = New DatabaseManager.ccoFolderButton()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(8, 40)
+        Me.Label1.Location = New System.Drawing.Point(12, 48)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(41, 13)
+        Me.Label1.Size = New System.Drawing.Size(53, 13)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Source"
+        Me.Label1.Text = "Database"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(8, 79)
+        Me.Label2.Location = New System.Drawing.Point(12, 100)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(53, 13)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Password"
         '
-        'txtSource
+        'txtDatabase
         '
-        Me.txtSource.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.txtDatabase.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtSource.Location = New System.Drawing.Point(71, 37)
-        Me.txtSource.Name = "txtSource"
-        Me.txtSource.Size = New System.Drawing.Size(259, 20)
-        Me.txtSource.TabIndex = 2
+        Me.txtDatabase.Location = New System.Drawing.Point(85, 45)
+        Me.txtDatabase.Name = "txtDatabase"
+        Me.txtDatabase.Size = New System.Drawing.Size(298, 20)
+        Me.txtDatabase.TabIndex = 1
         '
         'txtPassword
         '
         Me.txtPassword.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtPassword.Location = New System.Drawing.Point(71, 76)
+        Me.txtPassword.Location = New System.Drawing.Point(85, 97)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtPassword.Size = New System.Drawing.Size(259, 20)
-        Me.txtPassword.TabIndex = 3
-        '
-        'CcoBotaoPasta1
-        '
-        Me.CcoBotaoPasta1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CcoBotaoPasta1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CcoBotaoPasta1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.CcoBotaoPasta1.Image = CType(resources.GetObject("CcoBotaoPasta1.Image"), System.Drawing.Image)
-        Me.CcoBotaoPasta1.Location = New System.Drawing.Point(336, 36)
-        Me.CcoBotaoPasta1.Name = "CcoBotaoPasta1"
-        Me.CcoBotaoPasta1.PUAuxControl = Me.txtSource
-        Me.CcoBotaoPasta1.PUDataType = DatabaseManager.TYPE_FOLDER.FOLDER_FILE
-        Me.CcoBotaoPasta1.PUFilterType = DatabaseManager.TYPE_FILTER_FILE.ACCESS
-        Me.CcoBotaoPasta1.Size = New System.Drawing.Size(26, 21)
-        Me.CcoBotaoPasta1.TabIndex = 4
-        Me.CcoBotaoPasta1.UseVisualStyleBackColor = True
+        Me.txtPassword.Size = New System.Drawing.Size(298, 20)
+        Me.txtPassword.TabIndex = 4
         '
         'btnOk
         '
         Me.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnOk.Location = New System.Drawing.Point(46, 117)
+        Me.btnOk.Location = New System.Drawing.Point(48, 167)
         Me.btnOk.Name = "btnOk"
         Me.btnOk.Size = New System.Drawing.Size(75, 23)
-        Me.btnOk.TabIndex = 5
+        Me.btnOk.TabIndex = 6
         Me.btnOk.Text = "&Open"
         Me.btnOk.UseVisualStyleBackColor = True
         '
@@ -98,27 +89,103 @@ Partial Class FrmInfoDB
         '
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCancel.Location = New System.Drawing.Point(255, 117)
+        Me.btnCancel.Location = New System.Drawing.Point(308, 167)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
-        Me.btnCancel.TabIndex = 5
+        Me.btnCancel.TabIndex = 7
         Me.btnCancel.Text = "&Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
+        '
+        'TxtUser
+        '
+        Me.TxtUser.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtUser.Location = New System.Drawing.Point(85, 71)
+        Me.TxtUser.Name = "TxtUser"
+        Me.TxtUser.Size = New System.Drawing.Size(298, 20)
+        Me.TxtUser.TabIndex = 3
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(12, 74)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(29, 13)
+        Me.Label3.TabIndex = 6
+        Me.Label3.Text = "User"
+        '
+        'TxtPort
+        '
+        Me.TxtPort.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtPort.Location = New System.Drawing.Point(85, 123)
+        Me.TxtPort.Name = "TxtPort"
+        Me.TxtPort.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.TxtPort.Size = New System.Drawing.Size(298, 20)
+        Me.TxtPort.TabIndex = 5
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(12, 126)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(26, 13)
+        Me.Label4.TabIndex = 8
+        Me.Label4.Text = "Port"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(12, 22)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(67, 13)
+        Me.Label5.TabIndex = 10
+        Me.Label5.Text = "Data Source"
+        '
+        'TxtDataSource
+        '
+        Me.TxtDataSource.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtDataSource.Location = New System.Drawing.Point(85, 19)
+        Me.TxtDataSource.Name = "TxtDataSource"
+        Me.TxtDataSource.Size = New System.Drawing.Size(298, 20)
+        Me.TxtDataSource.TabIndex = 0
+        '
+        'CcoBotaoPasta1
+        '
+        Me.CcoBotaoPasta1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CcoBotaoPasta1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CcoBotaoPasta1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.CcoBotaoPasta1.Image = CType(resources.GetObject("CcoBotaoPasta1.Image"), System.Drawing.Image)
+        Me.CcoBotaoPasta1.Location = New System.Drawing.Point(389, 45)
+        Me.CcoBotaoPasta1.Name = "CcoBotaoPasta1"
+        Me.CcoBotaoPasta1.PUAuxControl = Me.txtDatabase
+        Me.CcoBotaoPasta1.PUDataType = DatabaseManager.TYPE_FOLDER.FOLDER_FILE
+        Me.CcoBotaoPasta1.PUFilterType = DatabaseManager.TYPE_FILTER_FILE.ALL
+        Me.CcoBotaoPasta1.Size = New System.Drawing.Size(26, 21)
+        Me.CcoBotaoPasta1.TabIndex = 2
+        Me.CcoBotaoPasta1.UseVisualStyleBackColor = True
         '
         'FrmInfoDB
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(370, 152)
+        Me.ClientSize = New System.Drawing.Size(419, 202)
+        Me.Controls.Add(Me.TxtDataSource)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.TxtPort)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.TxtUser)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnOk)
         Me.Controls.Add(Me.CcoBotaoPasta1)
         Me.Controls.Add(Me.txtPassword)
-        Me.Controls.Add(Me.txtSource)
+        Me.Controls.Add(Me.txtDatabase)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.MaximumSize = New System.Drawing.Size(640, 190)
-        Me.MinimumSize = New System.Drawing.Size(320, 190)
+        Me.MaximumSize = New System.Drawing.Size(580, 240)
+        Me.MinimumSize = New System.Drawing.Size(320, 240)
         Me.Name = "FrmInfoDB"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Configure your databse"
@@ -128,9 +195,15 @@ Partial Class FrmInfoDB
     End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents txtSource As System.Windows.Forms.TextBox
+    Friend WithEvents txtDatabase As System.Windows.Forms.TextBox
     Friend WithEvents txtPassword As System.Windows.Forms.TextBox
     Friend WithEvents CcoBotaoPasta1 As DatabaseManager.ccoFolderButton
     Friend WithEvents btnOk As System.Windows.Forms.Button
     Friend WithEvents btnCancel As System.Windows.Forms.Button
+    Friend WithEvents TxtUser As System.Windows.Forms.TextBox
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents TxtPort As System.Windows.Forms.TextBox
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents TxtDataSource As System.Windows.Forms.TextBox
 End Class

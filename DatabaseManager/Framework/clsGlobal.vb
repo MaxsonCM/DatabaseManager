@@ -1,7 +1,10 @@
 ﻿
 Public Class clsGlobal
     Private Shared _local_database As String
+    Public Shared sourceDataBase As String
     Public Shared passDataBase As String
+    Public Shared userDataBase As String
+    Public Shared portDataBase As String
     Private Shared _type_database As DATABASE_TYPE = DATABASE_TYPE.NONE
 
     Public Shared Property localDataBase() As String

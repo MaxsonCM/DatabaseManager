@@ -4,7 +4,7 @@
         If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
             Return DB_AC.Version
         ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
-            Return "Version: Unknown"
+            Return DB_FB.GetDialectVersion
         Else
             Return "Version: Unknown"
         End If
@@ -21,9 +21,10 @@
             If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
                 myList = DB_AC.ListTable()
             ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
-                'myList = BD_FB.ListTable()
+                myList = DB_FB.ListTable()
                 Return False
             Else
+                MsgBox("Database functions not implemented !")
                 Return False
             End If
 
@@ -52,9 +53,11 @@
                 myProcsList = DB_AC.ListProcedures()
                 myViewsList = DB_AC.ListViews()
             ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
-                'myList = BD_FB.ListTable()
-                Return False
+                myTablesList = DB_FB.ListTable()
+                myProcsList = DB_FB.ListProcedures()
+                myViewsList = DB_FB.ListViews()
             Else
+                MsgBox("Database functions not implemented !")
                 Return False
             End If
 
@@ -95,7 +98,10 @@
 
         If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
             ds = DB_AC.SearchTable(table)
+        ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
+            ds = DB_FB.SearchTable(table)
         Else
+            MsgBox("Database functions not implemented !")
             Return Nothing
         End If
 
@@ -117,33 +123,36 @@
         If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
             my_fields = DB_AC.ListFields(my_table)
         ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
-            'exemple
-            'ds = BD_FB.ListTable()
+            my_fields = DB_FB.ListFields(my_table)
         Else
-
+            MsgBox("Database functions not implemented !")
         End If
 
-        For Each field In my_fields
-            dr = dt.NewRow()
+        If Not IsNothing(my_fields) Then
 
-            If field.IS_PRIMARY_KEY Then
-                dr("Key") = imageConverter.ConvertTo(My.Resources.Key_16, System.Type.GetType("System.Byte[]"))
-            Else
-                dr("Key") = imageConverter.ConvertTo(My.Resources.blank_16, System.Type.GetType("System.Byte[]"))
-            End If
+            For Each field In my_fields
+                dr = dt.NewRow()
 
-            'dr("Key") = My.Resources.blank_16
-            dr("Position") = field.POSITION
-            dr("Column Name") = field.COLUMN_NAME
-            dr("Data Type") = field.DATA_TYPE
-            dr("Character Lenght") = field.CHARACTER_LENGHT
-            dr("Precision") = field.NUMERIC_PRECISION
-            dr("Scale") = field.NUMERIC_SCALE
-            dr("Description") = field.DESCRIPTION
-            dt.Rows.Add(dr)
-        Next
+                If field.IS_PRIMARY_KEY Then
+                    dr("Key") = imageConverter.ConvertTo(My.Resources.Key_16, System.Type.GetType("System.Byte[]"))
+                Else
+                    dr("Key") = imageConverter.ConvertTo(My.Resources.blank_16, System.Type.GetType("System.Byte[]"))
+                End If
 
-        grid.DataSource = dt
+                'dr("Key") = My.Resources.blank_16
+                dr("Position") = field.POSITION
+                dr("Column Name") = field.COLUMN_NAME
+                dr("Data Type") = field.DATA_TYPE
+                dr("Character Lenght") = field.CHARACTER_LENGHT
+                dr("Precision") = field.NUMERIC_PRECISION
+                dr("Scale") = field.NUMERIC_SCALE
+                dr("Description") = field.DESCRIPTION
+                dt.Rows.Add(dr)
+            Next
+
+            grid.DataSource = dt
+
+        End If
 
         Return True
 
@@ -159,9 +168,9 @@
         If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
             my_indexs = DB_AC.ListAllIndex(table)
         ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
-
+            my_indexs = DB_FB.ListAllIndex(table)
         Else
-
+            MsgBox("Database functions not implemented !")
         End If
 
         my_tree.Nodes.Clear()
@@ -237,6 +246,8 @@
     Shared Function ScriptDropTable(ByVal table As String) As String
         If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
             Return DB_AC.GetScriptDropTable(table)
+        Else
+            MsgBox("Database functions not implemented !")
         End If
         Return ""
     End Function
