@@ -74,6 +74,8 @@ Public Class FrmMenu
 
             If clsComponentsLoad.LoadListTable_Proc(TrvEstructure) Then
 
+                clsComponentsLoad.LoadListTable_Proc(CcoTreeView1)
+
                 lblVersionDB.Text = clsComponentsLoad.GetVersionDB
                 If lblVersionDB.Text <> "error" Then
                     lblVersionDB.Visible = True
@@ -177,9 +179,17 @@ Public Class FrmMenu
         new_window = New FrmCommand
         new_window.txtCommand.Text = clsComponentsLoad.ScriptDropTable(node_child)
 
+        Dim x As New TreeNode
+        'For Each x In TrvEstructure.SelectedNode
+        '    If x.IsSelected Then
+
+        '    End If
+        'Next
+
         If new_window.ShowDialog() = Windows.Forms.DialogResult.OK Then
             Call tsbRefresh_Click(sender, e)
         End If
 
     End Sub
+
 End Class

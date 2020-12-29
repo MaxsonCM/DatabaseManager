@@ -26,4 +26,5 @@
     Private Sub LinkLabelProject_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabelProject.LinkClicked
         Process.Start("https://github.com/MaxsonCM/DatabaseManager")
     End Sub
+
 End Class

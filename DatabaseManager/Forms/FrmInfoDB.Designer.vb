@@ -27,7 +27,7 @@ Partial Class FrmInfoDB
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtSource = New System.Windows.Forms.TextBox()
         Me.txtPassword = New System.Windows.Forms.TextBox()
-        Me.CcoBotaoPasta1 = New DatabaseManager.ccoBotaoPasta()
+        Me.CcoBotaoPasta1 = New DatabaseManager.ccoFolderButton()
         Me.btnOk = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.SuspendLayout()
@@ -130,7 +130,7 @@ Partial Class FrmInfoDB
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents txtSource As System.Windows.Forms.TextBox
     Friend WithEvents txtPassword As System.Windows.Forms.TextBox
-    Friend WithEvents CcoBotaoPasta1 As DatabaseManager.ccoBotaoPasta
+    Friend WithEvents CcoBotaoPasta1 As DatabaseManager.ccoFolderButton
     Friend WithEvents btnOk As System.Windows.Forms.Button
     Friend WithEvents btnCancel As System.Windows.Forms.Button
 End Class

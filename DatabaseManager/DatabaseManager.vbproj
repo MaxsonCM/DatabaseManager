@@ -120,8 +120,11 @@
     </Compile>
     <Compile Include="Framework\clsSchemaTable.vb" />
     <Compile Include="Framework\clsShemaIndex.vb" />
+    <Compile Include="Framework\Components\ccoTreeView.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Framework\Databases\DB_AC.vb" />
-    <Compile Include="Framework\Components\ccoBotaoPasta.vb">
+    <Compile Include="Framework\Components\ccoFolderButton.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\FrmCommand.vb">

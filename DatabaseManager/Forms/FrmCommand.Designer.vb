@@ -29,7 +29,7 @@ Partial Class FrmCommand
         Me.txtStatus = New System.Windows.Forms.TextBox()
         Me.Splitter1 = New System.Windows.Forms.Splitter()
         Me.PanelStatus = New System.Windows.Forms.Panel()
-        Me.btnArquivo = New DatabaseManager.ccoBotaoPasta()
+        Me.btnArquivo = New DatabaseManager.ccoFolderButton()
         Me.PanelCommand.SuspendLayout()
         Me.PanelStatus.SuspendLayout()
         Me.SuspendLayout()
@@ -142,7 +142,7 @@ Partial Class FrmCommand
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents btnArquivo As DatabaseManager.ccoBotaoPasta
+    Friend WithEvents btnArquivo As DatabaseManager.ccoFolderButton
     Friend WithEvents txtCommand As System.Windows.Forms.TextBox
     Friend WithEvents btnExecute As System.Windows.Forms.Button
     Friend WithEvents PanelCommand As System.Windows.Forms.Panel

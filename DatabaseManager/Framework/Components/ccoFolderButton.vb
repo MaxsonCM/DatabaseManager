@@ -1,6 +1,6 @@
 ﻿Imports System.IO
 
-Public Class ccoBotaoPasta
+Public Class ccoFolderButton
     Inherits System.Windows.Forms.Button
     Private _aux_control As TextBox
     Private _type_folder As TYPE_FOLDER
