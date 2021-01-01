@@ -519,7 +519,11 @@ Public Class DB_AC
 #Region "Scripts"
 
     Public Shared Function GetScriptDropTable(ByVal table As String) As String
-        Return "DROP TABLE [" & table & "]"
+        Return "DROP TABLE [" & table & "];"
+    End Function
+
+    Public Shared Function GetScriptDropProcedure(ByVal procedure As String) As String
+        Return "DROP PROCEDURE [" & procedure & "];"
     End Function
 
 #End Region

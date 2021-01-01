@@ -229,8 +229,7 @@ Public Class DB_FB
     Public Shared Function ListFieldsByDS(ByVal table As String) As DataSet
         Dim query As String
 
-        query = "SELECT "
-        query += " R.RDB$RELATION_NAME AS TABLE_NAME"
+        query = "SELECT R.RDB$RELATION_NAME AS TABLE_NAME"
         query += ", R.RDB$FIELD_POSITION AS ORDINAL_POSITION"
         query += ", R.RDB$FIELD_NAME AS COLUMN_NAME"
         query += ", R.RDB$NULL_FLAG AS IS_NULLABLE"
@@ -241,21 +240,21 @@ Public Class DB_FB
         query += ", F.RDB$FIELD_SCALE AS NUMERIC_SCALE"
         query += ", F.RDB$FIELD_PRECISION AS NUMERIC_PRECISION"
         query += ", F.RDB$FIELD_SUB_TYPE AS SUB_TYPE"
+        query += ", F.RDB$SEGMENT_LENGTH AS SEGMENT_LENGTH"
 
-        query += " FROM "
-        query += " RDB$RELATION_FIELDS R"
+        query += " FROM RDB$RELATION_FIELDS R"
         query += " JOIN RDB$FIELDS F"
         query += " ON F.RDB$FIELD_NAME = R.RDB$FIELD_SOURCE"
         query += " JOIN RDB$RELATIONS RL"
         query += " ON RL.RDB$RELATION_NAME = R.RDB$RELATION_NAME"
-        query += " WHERE "
-        query += " COALESCE(R.RDB$SYSTEM_FLAG, 0) = 0"
+
+        query += " WHERE COALESCE(R.RDB$SYSTEM_FLAG, 0) = 0"
         query += " AND COALESCE(RL.RDB$SYSTEM_FLAG, 0) = 0"
         query += " AND RL.RDB$VIEW_BLR Is NULL"
         query += " AND R.RDB$RELATION_NAME ='" & table & "'"
-        query += " ORDER BY"
-        query += " R.RDB$FIELD_POSITION,"
-        query += " R.RDB$RELATION_NAME"
+
+        query += " ORDER BY R.RDB$FIELD_POSITION"
+        query += ", R.RDB$RELATION_NAME"
 
         Try
             
@@ -282,7 +281,7 @@ Public Class DB_FB
                 field = New clsSchemaTable
 
                 If Not IsDBNull(item("ORDINAL_POSITION")) Then field.POSITION = item("ORDINAL_POSITION")
-                If Not IsDBNull(item("COLUMN_NAME")) Then field.COLUMN_NAME = item("COLUMN_NAME")
+                If Not IsDBNull(item("COLUMN_NAME")) Then field.COLUMN_NAME = item("COLUMN_NAME").ToString.Trim
                 If Not IsDBNull(item("DATA_TYPE")) Then field.DATA_TYPE_CODE = item("DATA_TYPE")
                 Select Case item("DATA_TYPE")
                     Case 7 : field.DATA_TYPE = "SMALLINT"
@@ -314,9 +313,9 @@ Public Class DB_FB
                 If Not IsDBNull(item("CHARACTER_MAXIMUM_LENGTH")) Then field.CHARACTER_LENGHT = item("CHARACTER_MAXIMUM_LENGTH")
 
                 field.DEFAULT_VALUE = ""
-                If Not IsDBNull(item("COLUMN_DEFAULT")) Then field.DEFAULT_VALUE = item("COLUMN_DEFAULT")
+                If Not IsDBNull(item("COLUMN_DEFAULT")) Then field.DEFAULT_VALUE = item("COLUMN_DEFAULT").ToString.Trim
                 field.DESCRIPTION = ""
-                If Not IsDBNull(item("DESCRIPTION")) Then field.DESCRIPTION = item("DESCRIPTION")
+                If Not IsDBNull(item("DESCRIPTION")) Then field.DESCRIPTION = item("DESCRIPTION").ToString.Trim
                 If Not IsDBNull(item("IS_NULLABLE")) Then field.IS_NULLABLE = item("IS_NULLABLE")
 
                 field.IS_PRIMARY_KEY = False
@@ -329,6 +328,7 @@ Public Class DB_FB
 
                 If Not IsDBNull(item("NUMERIC_PRECISION")) Then field.NUMERIC_PRECISION = item("NUMERIC_PRECISION")
                 If Not IsDBNull(item("NUMERIC_SCALE")) Then field.NUMERIC_SCALE = item("NUMERIC_SCALE")
+                If Not IsDBNull(item("SEGMENT_LENGTH")) Then field.SEGMENT_LENGTH = item("SEGMENT_LENGTH")
 
                 list_fields.Add(field)
             Next
@@ -509,7 +509,11 @@ Public Class DB_FB
 #Region "Scripts"
 
     Public Shared Function GetScriptDropTable(ByVal table As String) As String
-        Return "DROP TABLE [" & table & "]"
+        Return "DROP TABLE """ & table & """"
+    End Function
+
+    Public Shared Function GetScriptDropProcedure(ByVal procedure As String) As String
+        Return "DROP PROCEDURE """ & procedure & """;"
     End Function
 
 #End Region

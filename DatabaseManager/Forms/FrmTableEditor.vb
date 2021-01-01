@@ -4,14 +4,17 @@
 
     Private Sub FrmTableEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Table [" & table & "]"
+        TstTableName.Text = table
 
         clsComponentsLoad.LoadSchemaTable(table, EstructureGrid)
         clsComponentsLoad.LoadSchemaIndexs(table, TreeViewIndex)
+
         Call LoadRegisters()
     End Sub
 
     Private Sub tsbRefresh_Click(sender As Object, e As EventArgs) Handles tsbRefresh.Click
         Me.Text = "Table [" & table & "]"
+        TstTableName.Text = table
 
         clsComponentsLoad.LoadSchemaTable(table, EstructureGrid)
         clsComponentsLoad.LoadSchemaIndexs(table, TreeViewIndex)

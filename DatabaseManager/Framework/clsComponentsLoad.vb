@@ -24,7 +24,7 @@
                 myList = DB_FB.ListTable()
                 Return False
             Else
-                MsgBox("Database functions not implemented !")
+                MsgBox("The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!")
                 Return False
             End If
 
@@ -57,7 +57,7 @@
                 myProcsList = DB_FB.ListProcedures()
                 myViewsList = DB_FB.ListViews()
             Else
-                MsgBox("Database functions not implemented !")
+                MsgBox("The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!")
                 Return False
             End If
 
@@ -101,7 +101,7 @@
         ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
             ds = DB_FB.SearchTable(table)
         Else
-            MsgBox("Database functions not implemented !")
+            MsgBox("The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!")
             Return Nothing
         End If
 
@@ -125,7 +125,7 @@
         ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
             my_fields = DB_FB.ListFields(my_table)
         Else
-            MsgBox("Database functions not implemented !")
+            MsgBox("The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!")
         End If
 
         If Not IsNothing(my_fields) Then
@@ -147,6 +147,7 @@
                 dr("Precision") = field.NUMERIC_PRECISION
                 dr("Scale") = field.NUMERIC_SCALE
                 dr("Description") = field.DESCRIPTION
+                dr("Segment Length") = field.SEGMENT_LENGTH
                 dt.Rows.Add(dr)
             Next
 
@@ -170,7 +171,7 @@
         ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
             my_indexs = DB_FB.ListAllIndex(table)
         Else
-            MsgBox("Database functions not implemented !")
+            MsgBox("The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!")
         End If
 
         my_tree.Nodes.Clear()
@@ -189,7 +190,7 @@
                     nodo_index = New TreeNode
                     nodo_field = New TreeNode
                 End If
-                
+
                 imageIdex = -1
 
                 If index.IS_PRIMARY_KEY Then
@@ -239,17 +240,51 @@
         dt.Columns.Add(dc)
         dc = New DataColumn("Description", Type.GetType("System.String"))
         dt.Columns.Add(dc)
+        dc = New DataColumn("Segment Length", Type.GetType("System.Int32"))
+        dt.Columns.Add(dc)
 
         Return dt
     End Function
 
     Shared Function ScriptDropTable(ByVal table As String) As String
+
         If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
             Return DB_AC.GetScriptDropTable(table)
+        ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
+            Return DB_FB.GetScriptDropTable(table)
         Else
-            MsgBox("Database functions not implemented !")
+            MsgBox("The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!")
         End If
+
         Return ""
+    End Function
+
+    Shared Function ScriptDropProcedure(ByVal procedure As String) As String
+
+        If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
+            Return DB_AC.GetScriptDropProcedure(procedure)
+        ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
+            Return DB_FB.GetScriptDropProcedure(procedure)
+        Else
+            MsgBox("The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!")
+        End If
+
+        Return ""
+    End Function
+
+    Shared Function Script_execute(ByVal my_command As String, Optional ByRef my_status As String = "") As Boolean
+
+        If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
+            Return DB_AC.Script_execute(my_command, my_status)
+        ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
+            Return DB_FB.Script_execute(my_command, my_status)
+        Else
+            MsgBox("The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!")
+            my_status = "The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!"
+            Return False
+        End If
+
+        Return True
     End Function
 
 End Class

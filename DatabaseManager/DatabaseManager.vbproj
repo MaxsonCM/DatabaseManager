@@ -122,6 +122,7 @@
     <Compile Include="Forms\FrmTableEditor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Framework\clsResultCommand.vb" />
     <Compile Include="Framework\clsSchemaTable.vb" />
     <Compile Include="Framework\clsShemaIndex.vb" />
     <Compile Include="Framework\Components\ccoTreeView.vb">

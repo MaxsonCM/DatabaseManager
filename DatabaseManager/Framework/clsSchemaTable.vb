@@ -10,7 +10,7 @@
     Dim _NUMERIC_PRECISION As Long
     Dim _NUMERIC_SCALE As Long
     Dim _DESCRIPTION As String
-
+    Dim _SEGMENT_LENGTH As Long
 
     Public Sub New()
         _POSITION = -1
@@ -18,12 +18,13 @@
         _DEFAULT_VALUE = ""
         _IS_NULLABLE = True
         _IS_PRIMARY_KEY = False
-        _DATA_TYPE_CODE = -1
+        _DATA_TYPE_CODE = Nothing
         _DATA_TYPE = ""
-        _CHARACTER_LENGHT = -1
-        _NUMERIC_PRECISION = -1
-        _NUMERIC_SCALE = -1
+        _CHARACTER_LENGHT = Nothing
+        _NUMERIC_PRECISION = Nothing
+        _NUMERIC_SCALE = Nothing
         _DESCRIPTION = ""
+        _SEGMENT_LENGTH = Nothing
     End Sub
 
     Public Property POSITION As Integer
@@ -124,4 +125,14 @@
             _DESCRIPTION = value
         End Set
     End Property
+
+    Public Property SEGMENT_LENGTH() As Long
+        Get
+            Return _SEGMENT_LENGTH
+        End Get
+        Set(ByVal value As Long)
+            _SEGMENT_LENGTH = value
+        End Set
+    End Property
+
 End Class

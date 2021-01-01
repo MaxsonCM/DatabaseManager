@@ -32,4 +32,3 @@ D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.Frm
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmTableEditor.resources
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.Resources.resources
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.vbproj.GenerateResource.Cache
-D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\FirebirdSql.Data.FirebirdClient.dll

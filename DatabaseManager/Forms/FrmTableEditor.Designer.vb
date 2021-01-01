@@ -23,11 +23,6 @@ Partial Class FrmTableEditor
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("id", 6, 6)
         Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("PrimaryKey", 5, 5, New System.Windows.Forms.TreeNode() {TreeNode1})
         Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("id_name", 6, 6)
@@ -39,18 +34,15 @@ Partial Class FrmTableEditor
         Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Index", 3, 3, New System.Windows.Forms.TreeNode() {TreeNode8})
         Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Indexes", 1, 1, New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode4, TreeNode7, TreeNode9})
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmTableEditor))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.PanelDetails = New System.Windows.Forms.Panel()
         Me.TabControlPrincipal = New System.Windows.Forms.TabControl()
         Me.TabPageEstructure = New System.Windows.Forms.TabPage()
         Me.EstructureGrid = New System.Windows.Forms.DataGridView()
-        Me.key = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.Position = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column_Name = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Data_Type = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Character_Lenght = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Precision = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Numeric_Scale = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Description = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SplitterEstructure = New System.Windows.Forms.Splitter()
         Me.PanelIndexes = New System.Windows.Forms.Panel()
         Me.TreeViewIndex = New System.Windows.Forms.TreeView()
@@ -64,6 +56,18 @@ Partial Class FrmTableEditor
         Me.PanelButton = New System.Windows.Forms.Panel()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.key = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.Position = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column_Name = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Data_Type = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Character_Lenght = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Precision = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Numeric_Scale = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Description = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SEGMENT_LENGTH = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TstTableName = New System.Windows.Forms.ToolStripTextBox()
+        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripLabelSeparator = New System.Windows.Forms.ToolStripLabel()
         Me.PanelDetails.SuspendLayout()
         Me.TabControlPrincipal.SuspendLayout()
         Me.TabPageEstructure.SuspendLayout()
@@ -82,7 +86,7 @@ Partial Class FrmTableEditor
         Me.PanelDetails.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelDetails.Location = New System.Drawing.Point(0, 25)
         Me.PanelDetails.Name = "PanelDetails"
-        Me.PanelDetails.Size = New System.Drawing.Size(792, 400)
+        Me.PanelDetails.Size = New System.Drawing.Size(734, 487)
         Me.PanelDetails.TabIndex = 1
         '
         'TabControlPrincipal
@@ -93,7 +97,7 @@ Partial Class FrmTableEditor
         Me.TabControlPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.TabControlPrincipal.Name = "TabControlPrincipal"
         Me.TabControlPrincipal.SelectedIndex = 0
-        Me.TabControlPrincipal.Size = New System.Drawing.Size(792, 400)
+        Me.TabControlPrincipal.Size = New System.Drawing.Size(734, 487)
         Me.TabControlPrincipal.TabIndex = 0
         '
         'TabPageEstructure
@@ -104,7 +108,7 @@ Partial Class FrmTableEditor
         Me.TabPageEstructure.Location = New System.Drawing.Point(4, 22)
         Me.TabPageEstructure.Name = "TabPageEstructure"
         Me.TabPageEstructure.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageEstructure.Size = New System.Drawing.Size(784, 374)
+        Me.TabPageEstructure.Size = New System.Drawing.Size(726, 461)
         Me.TabPageEstructure.TabIndex = 0
         Me.TabPageEstructure.Text = "Estructure"
         Me.TabPageEstructure.UseVisualStyleBackColor = True
@@ -116,7 +120,7 @@ Partial Class FrmTableEditor
         Me.EstructureGrid.AllowUserToResizeRows = False
         Me.EstructureGrid.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.EstructureGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.EstructureGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.key, Me.Position, Me.Column_Name, Me.Data_Type, Me.Character_Lenght, Me.Precision, Me.Numeric_Scale, Me.Description})
+        Me.EstructureGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.key, Me.Position, Me.Column_Name, Me.Data_Type, Me.Character_Lenght, Me.Precision, Me.Numeric_Scale, Me.Description, Me.SEGMENT_LENGTH})
         Me.EstructureGrid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.EstructureGrid.Location = New System.Drawing.Point(150, 3)
         Me.EstructureGrid.Name = "EstructureGrid"
@@ -125,8 +129,179 @@ Partial Class FrmTableEditor
         Me.EstructureGrid.ShowCellErrors = False
         Me.EstructureGrid.ShowEditingIcon = False
         Me.EstructureGrid.ShowRowErrors = False
-        Me.EstructureGrid.Size = New System.Drawing.Size(631, 368)
+        Me.EstructureGrid.Size = New System.Drawing.Size(573, 455)
         Me.EstructureGrid.TabIndex = 0
+        '
+        'SplitterEstructure
+        '
+        Me.SplitterEstructure.Location = New System.Drawing.Point(146, 3)
+        Me.SplitterEstructure.Name = "SplitterEstructure"
+        Me.SplitterEstructure.Size = New System.Drawing.Size(4, 455)
+        Me.SplitterEstructure.TabIndex = 2
+        Me.SplitterEstructure.TabStop = False
+        '
+        'PanelIndexes
+        '
+        Me.PanelIndexes.Controls.Add(Me.TreeViewIndex)
+        Me.PanelIndexes.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelIndexes.Location = New System.Drawing.Point(3, 3)
+        Me.PanelIndexes.Name = "PanelIndexes"
+        Me.PanelIndexes.Size = New System.Drawing.Size(143, 455)
+        Me.PanelIndexes.TabIndex = 1
+        '
+        'TreeViewIndex
+        '
+        Me.TreeViewIndex.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TreeViewIndex.FullRowSelect = True
+        Me.TreeViewIndex.ImageIndex = 0
+        Me.TreeViewIndex.ImageList = Me.ImageList1
+        Me.TreeViewIndex.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.TreeViewIndex.Location = New System.Drawing.Point(0, 0)
+        Me.TreeViewIndex.Name = "TreeViewIndex"
+        TreeNode1.ImageIndex = 6
+        TreeNode1.Name = "id"
+        TreeNode1.SelectedImageIndex = 6
+        TreeNode1.Text = "id"
+        TreeNode2.ImageIndex = 5
+        TreeNode2.Name = "PrimaryKey"
+        TreeNode2.SelectedImageIndex = 5
+        TreeNode2.Text = "PrimaryKey"
+        TreeNode3.ImageIndex = 6
+        TreeNode3.Name = "id_name"
+        TreeNode3.SelectedImageIndex = 6
+        TreeNode3.Text = "id_name"
+        TreeNode4.ImageIndex = 4
+        TreeNode4.Name = "ForenigKey"
+        TreeNode4.SelectedImageIndex = 4
+        TreeNode4.Text = "ForenigKey"
+        TreeNode5.ImageIndex = 6
+        TreeNode5.Name = "Name"
+        TreeNode5.SelectedImageIndex = 6
+        TreeNode5.Text = "Name"
+        TreeNode6.ImageIndex = 6
+        TreeNode6.Name = "Birthday"
+        TreeNode6.SelectedImageIndex = 6
+        TreeNode6.Text = "Birthday"
+        TreeNode7.ImageIndex = 2
+        TreeNode7.Name = "UniqueKey"
+        TreeNode7.SelectedImageIndex = 2
+        TreeNode7.Text = "UniqueKey"
+        TreeNode8.ImageIndex = 6
+        TreeNode8.Name = "Name"
+        TreeNode8.SelectedImageIndex = 6
+        TreeNode8.Text = "Name"
+        TreeNode9.ImageIndex = 3
+        TreeNode9.Name = "Index"
+        TreeNode9.SelectedImageIndex = 3
+        TreeNode9.Text = "Index"
+        TreeNode10.ImageIndex = 1
+        TreeNode10.Name = "Indexes"
+        TreeNode10.SelectedImageIndex = 1
+        TreeNode10.Text = "Indexes"
+        Me.TreeViewIndex.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode10})
+        Me.TreeViewIndex.SelectedImageIndex = 0
+        Me.TreeViewIndex.Size = New System.Drawing.Size(143, 455)
+        Me.TreeViewIndex.StateImageList = Me.ImageList1
+        Me.TreeViewIndex.TabIndex = 3
+        '
+        'ImageList1
+        '
+        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList1.Images.SetKeyName(0, "blank_16.png")
+        Me.ImageList1.Images.SetKeyName(1, "Key_16.png")
+        Me.ImageList1.Images.SetKeyName(2, "U_16.png")
+        Me.ImageList1.Images.SetKeyName(3, "I_16.png")
+        Me.ImageList1.Images.SetKeyName(4, "F_16.png")
+        Me.ImageList1.Images.SetKeyName(5, "P_16.png")
+        Me.ImageList1.Images.SetKeyName(6, "_16.png")
+        '
+        'TabPageData
+        '
+        Me.TabPageData.Controls.Add(Me.TableDataGrid)
+        Me.TabPageData.Controls.Add(Me.PictureLoad)
+        Me.TabPageData.Location = New System.Drawing.Point(4, 22)
+        Me.TabPageData.Name = "TabPageData"
+        Me.TabPageData.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPageData.Size = New System.Drawing.Size(784, 374)
+        Me.TabPageData.TabIndex = 1
+        Me.TabPageData.Text = "Registres"
+        Me.TabPageData.UseVisualStyleBackColor = True
+        '
+        'TableDataGrid
+        '
+        Me.TableDataGrid.AllowUserToAddRows = False
+        Me.TableDataGrid.AllowUserToDeleteRows = False
+        Me.TableDataGrid.AllowUserToResizeRows = False
+        Me.TableDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TableDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.TableDataGrid.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableDataGrid.Location = New System.Drawing.Point(3, 3)
+        Me.TableDataGrid.Name = "TableDataGrid"
+        Me.TableDataGrid.RowHeadersVisible = False
+        Me.TableDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.TableDataGrid.ShowCellErrors = False
+        Me.TableDataGrid.ShowEditingIcon = False
+        Me.TableDataGrid.ShowRowErrors = False
+        Me.TableDataGrid.Size = New System.Drawing.Size(778, 368)
+        Me.TableDataGrid.TabIndex = 1
+        '
+        'PictureLoad
+        '
+        Me.PictureLoad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PictureLoad.Image = Global.DatabaseManager.My.Resources.Resources.Loading_64
+        Me.PictureLoad.Location = New System.Drawing.Point(350, 162)
+        Me.PictureLoad.Name = "PictureLoad"
+        Me.PictureLoad.Size = New System.Drawing.Size(64, 64)
+        Me.PictureLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.PictureLoad.TabIndex = 2
+        Me.PictureLoad.TabStop = False
+        '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbSalve, Me.tsbRefresh, Me.ToolStripLabelSeparator, Me.ToolStripLabel1, Me.TstTableName})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(734, 25)
+        Me.ToolStrip1.TabIndex = 8
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'tsbSalve
+        '
+        Me.tsbSalve.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbSalve.Image = CType(resources.GetObject("tsbSalve.Image"), System.Drawing.Image)
+        Me.tsbSalve.ImageTransparentColor = System.Drawing.Color.Black
+        Me.tsbSalve.Name = "tsbSalve"
+        Me.tsbSalve.Size = New System.Drawing.Size(23, 22)
+        Me.tsbSalve.Text = "Save"
+        '
+        'tsbRefresh
+        '
+        Me.tsbRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbRefresh.Image = Global.DatabaseManager.My.Resources.Resources.Refresh_16
+        Me.tsbRefresh.ImageTransparentColor = System.Drawing.Color.Black
+        Me.tsbRefresh.Name = "tsbRefresh"
+        Me.tsbRefresh.Size = New System.Drawing.Size(23, 22)
+        Me.tsbRefresh.Text = "Refresh data"
+        '
+        'PanelButton
+        '
+        Me.PanelButton.Controls.Add(Me.ToolStrip1)
+        Me.PanelButton.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelButton.Location = New System.Drawing.Point(0, 0)
+        Me.PanelButton.Name = "PanelButton"
+        Me.PanelButton.Size = New System.Drawing.Size(734, 25)
+        Me.PanelButton.TabIndex = 0
+        '
+        'BackgroundWorker1
+        '
+        Me.BackgroundWorker1.WorkerReportsProgress = True
+        Me.BackgroundWorker1.WorkerSupportsCancellation = True
+        '
+        'NotifyIcon1
+        '
+        Me.NotifyIcon1.Text = "NotifyIcon1"
+        Me.NotifyIcon1.Visible = True
         '
         'key
         '
@@ -198,183 +373,36 @@ Partial Class FrmTableEditor
         Me.Description.HeaderText = "Description"
         Me.Description.Name = "Description"
         '
-        'SplitterEstructure
+        'SEGMENT_LENGTH
         '
-        Me.SplitterEstructure.Location = New System.Drawing.Point(146, 3)
-        Me.SplitterEstructure.Name = "SplitterEstructure"
-        Me.SplitterEstructure.Size = New System.Drawing.Size(4, 368)
-        Me.SplitterEstructure.TabIndex = 2
-        Me.SplitterEstructure.TabStop = False
+        Me.SEGMENT_LENGTH.DataPropertyName = "SEGMENT_LENGTH"
+        Me.SEGMENT_LENGTH.HeaderText = "Segment Length"
+        Me.SEGMENT_LENGTH.Name = "SEGMENT_LENGTH"
+        Me.SEGMENT_LENGTH.Width = 110
         '
-        'PanelIndexes
+        'TstTableName
         '
-        Me.PanelIndexes.Controls.Add(Me.TreeViewIndex)
-        Me.PanelIndexes.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelIndexes.Location = New System.Drawing.Point(3, 3)
-        Me.PanelIndexes.Name = "PanelIndexes"
-        Me.PanelIndexes.Size = New System.Drawing.Size(143, 368)
-        Me.PanelIndexes.TabIndex = 1
+        Me.TstTableName.Name = "TstTableName"
+        Me.TstTableName.Size = New System.Drawing.Size(200, 25)
         '
-        'TreeViewIndex
+        'ToolStripLabel1
         '
-        Me.TreeViewIndex.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TreeViewIndex.FullRowSelect = True
-        Me.TreeViewIndex.ImageIndex = 0
-        Me.TreeViewIndex.ImageList = Me.ImageList1
-        Me.TreeViewIndex.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.TreeViewIndex.Location = New System.Drawing.Point(0, 0)
-        Me.TreeViewIndex.Name = "TreeViewIndex"
-        TreeNode1.ImageIndex = 6
-        TreeNode1.Name = "id"
-        TreeNode1.SelectedImageIndex = 6
-        TreeNode1.Text = "id"
-        TreeNode2.ImageIndex = 5
-        TreeNode2.Name = "PrimaryKey"
-        TreeNode2.SelectedImageIndex = 5
-        TreeNode2.Text = "PrimaryKey"
-        TreeNode3.ImageIndex = 6
-        TreeNode3.Name = "id_name"
-        TreeNode3.SelectedImageIndex = 6
-        TreeNode3.Text = "id_name"
-        TreeNode4.ImageIndex = 4
-        TreeNode4.Name = "ForenigKey"
-        TreeNode4.SelectedImageIndex = 4
-        TreeNode4.Text = "ForenigKey"
-        TreeNode5.ImageIndex = 6
-        TreeNode5.Name = "Name"
-        TreeNode5.SelectedImageIndex = 6
-        TreeNode5.Text = "Name"
-        TreeNode6.ImageIndex = 6
-        TreeNode6.Name = "Birthday"
-        TreeNode6.SelectedImageIndex = 6
-        TreeNode6.Text = "Birthday"
-        TreeNode7.ImageIndex = 2
-        TreeNode7.Name = "UniqueKey"
-        TreeNode7.SelectedImageIndex = 2
-        TreeNode7.Text = "UniqueKey"
-        TreeNode8.ImageIndex = 6
-        TreeNode8.Name = "Name"
-        TreeNode8.SelectedImageIndex = 6
-        TreeNode8.Text = "Name"
-        TreeNode9.ImageIndex = 3
-        TreeNode9.Name = "Index"
-        TreeNode9.SelectedImageIndex = 3
-        TreeNode9.Text = "Index"
-        TreeNode10.ImageIndex = 1
-        TreeNode10.Name = "Indexes"
-        TreeNode10.SelectedImageIndex = 1
-        TreeNode10.Text = "Indexes"
-        Me.TreeViewIndex.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode10})
-        Me.TreeViewIndex.SelectedImageIndex = 0
-        Me.TreeViewIndex.Size = New System.Drawing.Size(143, 368)
-        Me.TreeViewIndex.StateImageList = Me.ImageList1
-        Me.TreeViewIndex.TabIndex = 3
+        Me.ToolStripLabel1.Name = "ToolStripLabel1"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(74, 22)
+        Me.ToolStripLabel1.Text = "Table Name:"
         '
-        'ImageList1
+        'ToolStripLabelSeparator
         '
-        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
-        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
-        Me.ImageList1.Images.SetKeyName(0, "blank_16.png")
-        Me.ImageList1.Images.SetKeyName(1, "Key_16.png")
-        Me.ImageList1.Images.SetKeyName(2, "U_16.png")
-        Me.ImageList1.Images.SetKeyName(3, "I_16.png")
-        Me.ImageList1.Images.SetKeyName(4, "F_16.png")
-        Me.ImageList1.Images.SetKeyName(5, "P_16.png")
-        Me.ImageList1.Images.SetKeyName(6, "_16.png")
-        '
-        'TabPageData
-        '
-        Me.TabPageData.Controls.Add(Me.TableDataGrid)
-        Me.TabPageData.Controls.Add(Me.PictureLoad)
-        Me.TabPageData.Location = New System.Drawing.Point(4, 22)
-        Me.TabPageData.Name = "TabPageData"
-        Me.TabPageData.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageData.Size = New System.Drawing.Size(784, 374)
-        Me.TabPageData.TabIndex = 1
-        Me.TabPageData.Text = "Registres"
-        Me.TabPageData.UseVisualStyleBackColor = True
-        '
-        'TableDataGrid
-        '
-        Me.TableDataGrid.AllowUserToAddRows = False
-        Me.TableDataGrid.AllowUserToDeleteRows = False
-        Me.TableDataGrid.AllowUserToResizeRows = False
-        Me.TableDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TableDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.TableDataGrid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableDataGrid.Location = New System.Drawing.Point(3, 3)
-        Me.TableDataGrid.Name = "TableDataGrid"
-        Me.TableDataGrid.RowHeadersVisible = False
-        Me.TableDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.TableDataGrid.ShowCellErrors = False
-        Me.TableDataGrid.ShowEditingIcon = False
-        Me.TableDataGrid.ShowRowErrors = False
-        Me.TableDataGrid.Size = New System.Drawing.Size(778, 368)
-        Me.TableDataGrid.TabIndex = 1
-        '
-        'PictureLoad
-        '
-        Me.PictureLoad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureLoad.Image = Global.DatabaseManager.My.Resources.Resources.Loading_64
-        Me.PictureLoad.Location = New System.Drawing.Point(350, 162)
-        Me.PictureLoad.Name = "PictureLoad"
-        Me.PictureLoad.Size = New System.Drawing.Size(64, 64)
-        Me.PictureLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
-        Me.PictureLoad.TabIndex = 2
-        Me.PictureLoad.TabStop = False
-        '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbSalve, Me.tsbRefresh})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(792, 25)
-        Me.ToolStrip1.TabIndex = 8
-        Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'tsbSalve
-        '
-        Me.tsbSalve.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbSalve.Image = CType(resources.GetObject("tsbSalve.Image"), System.Drawing.Image)
-        Me.tsbSalve.ImageTransparentColor = System.Drawing.Color.Black
-        Me.tsbSalve.Name = "tsbSalve"
-        Me.tsbSalve.Size = New System.Drawing.Size(23, 22)
-        Me.tsbSalve.Text = "Save"
-        '
-        'tsbRefresh
-        '
-        Me.tsbRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbRefresh.Image = Global.DatabaseManager.My.Resources.Resources.Refresh_16
-        Me.tsbRefresh.ImageTransparentColor = System.Drawing.Color.Black
-        Me.tsbRefresh.Name = "tsbRefresh"
-        Me.tsbRefresh.Size = New System.Drawing.Size(23, 22)
-        Me.tsbRefresh.Text = "Refresh data"
-        '
-        'PanelButton
-        '
-        Me.PanelButton.Controls.Add(Me.ToolStrip1)
-        Me.PanelButton.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelButton.Location = New System.Drawing.Point(0, 0)
-        Me.PanelButton.Name = "PanelButton"
-        Me.PanelButton.Size = New System.Drawing.Size(792, 25)
-        Me.PanelButton.TabIndex = 0
-        '
-        'BackgroundWorker1
-        '
-        Me.BackgroundWorker1.WorkerReportsProgress = True
-        Me.BackgroundWorker1.WorkerSupportsCancellation = True
-        '
-        'NotifyIcon1
-        '
-        Me.NotifyIcon1.Text = "NotifyIcon1"
-        Me.NotifyIcon1.Visible = True
+        Me.ToolStripLabelSeparator.AutoSize = False
+        Me.ToolStripLabelSeparator.Name = "ToolStripLabelSeparator"
+        Me.ToolStripLabelSeparator.Size = New System.Drawing.Size(100, 22)
         '
         'FrmTableEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(792, 425)
+        Me.ClientSize = New System.Drawing.Size(734, 512)
         Me.Controls.Add(Me.PanelDetails)
         Me.Controls.Add(Me.PanelButton)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -407,6 +435,13 @@ Partial Class FrmTableEditor
     Friend WithEvents tsbRefresh As System.Windows.Forms.ToolStripButton
     Friend WithEvents PanelButton As System.Windows.Forms.Panel
     Friend WithEvents TableDataGrid As System.Windows.Forms.DataGridView
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents PictureLoad As System.Windows.Forms.PictureBox
+    Friend WithEvents SplitterEstructure As System.Windows.Forms.Splitter
+    Friend WithEvents PanelIndexes As System.Windows.Forms.Panel
+    Friend WithEvents TreeViewIndex As System.Windows.Forms.TreeView
+    Friend WithEvents ImageList1 As System.Windows.Forms.ImageList
+    Friend WithEvents NotifyIcon1 As System.Windows.Forms.NotifyIcon
     Friend WithEvents key As System.Windows.Forms.DataGridViewImageColumn
     Friend WithEvents Position As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column_Name As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -415,11 +450,8 @@ Partial Class FrmTableEditor
     Friend WithEvents Precision As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Numeric_Scale As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Description As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents PictureLoad As System.Windows.Forms.PictureBox
-    Friend WithEvents SplitterEstructure As System.Windows.Forms.Splitter
-    Friend WithEvents PanelIndexes As System.Windows.Forms.Panel
-    Friend WithEvents TreeViewIndex As System.Windows.Forms.TreeView
-    Friend WithEvents ImageList1 As System.Windows.Forms.ImageList
-    Friend WithEvents NotifyIcon1 As System.Windows.Forms.NotifyIcon
+    Friend WithEvents SEGMENT_LENGTH As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ToolStripLabelSeparator As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents ToolStripLabel1 As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents TstTableName As System.Windows.Forms.ToolStripTextBox
 End Class

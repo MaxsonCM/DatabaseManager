@@ -29,8 +29,8 @@ Partial Class FrmMenu
         Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Tables", 1, 1, New System.Windows.Forms.TreeNode() {TreeNode1})
         Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("CallFunction", 2, 2)
         Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Procedures", 2, 2, New System.Windows.Forms.TreeNode() {TreeNode3})
-        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("search")
-        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Views", New System.Windows.Forms.TreeNode() {TreeNode5})
+        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("search", 3, 3)
+        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Views", 3, 3, New System.Windows.Forms.TreeNode() {TreeNode5})
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -78,7 +78,7 @@ Partial Class FrmMenu
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.MdiWindowListItem = Me.WindowsMenu
         Me.MenuStrip.Name = "MenuStrip"
-        Me.MenuStrip.Size = New System.Drawing.Size(953, 24)
+        Me.MenuStrip.Size = New System.Drawing.Size(784, 24)
         Me.MenuStrip.TabIndex = 5
         Me.MenuStrip.Text = "MenuStrip"
         '
@@ -214,17 +214,17 @@ Partial Class FrmMenu
         'StatusStrip
         '
         Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblCaptionLabel, Me.lblVersionDB})
-        Me.StatusStrip.Location = New System.Drawing.Point(0, 523)
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 540)
         Me.StatusStrip.Name = "StatusStrip"
-        Me.StatusStrip.Size = New System.Drawing.Size(953, 22)
+        Me.StatusStrip.Size = New System.Drawing.Size(784, 22)
         Me.StatusStrip.TabIndex = 7
         Me.StatusStrip.Text = "StatusStrip"
         '
         'lblCaptionLabel
         '
         Me.lblCaptionLabel.Name = "lblCaptionLabel"
-        Me.lblCaptionLabel.Size = New System.Drawing.Size(70, 17)
-        Me.lblCaptionLabel.Text = "DB Version: "
+        Me.lblCaptionLabel.Size = New System.Drawing.Size(55, 17)
+        Me.lblCaptionLabel.Text = "DB Info.: "
         '
         'lblVersionDB
         '
@@ -244,11 +244,12 @@ Partial Class FrmMenu
         Me.TableLayoutPanel_Tables.RowCount = 2
         Me.TableLayoutPanel_Tables.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel_Tables.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel_Tables.Size = New System.Drawing.Size(146, 499)
+        Me.TableLayoutPanel_Tables.Size = New System.Drawing.Size(146, 516)
         Me.TableLayoutPanel_Tables.TabIndex = 9
         '
         'TrvEstructure
         '
+        Me.TrvEstructure.CheckBoxes = True
         Me.TrvEstructure.ContextMenuStrip = Me.TrvContextMenuStrip
         Me.TrvEstructure.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TrvEstructure.ImageIndex = 0
@@ -271,17 +272,17 @@ Partial Class FrmMenu
         TreeNode4.Name = "Procedures"
         TreeNode4.SelectedImageIndex = 2
         TreeNode4.Text = "Procedures"
-        TreeNode5.ImageKey = "_16.png"
+        TreeNode5.ImageIndex = 3
         TreeNode5.Name = "search"
         TreeNode5.SelectedImageIndex = 3
         TreeNode5.Text = "search"
-        TreeNode6.ImageKey = "window_16.png"
+        TreeNode6.ImageIndex = 3
         TreeNode6.Name = "Views"
-        TreeNode6.SelectedImageIndex = 4
+        TreeNode6.SelectedImageIndex = 3
         TreeNode6.Text = "Views"
         Me.TrvEstructure.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode4, TreeNode6})
         Me.TrvEstructure.SelectedImageIndex = 0
-        Me.TrvEstructure.Size = New System.Drawing.Size(140, 468)
+        Me.TrvEstructure.Size = New System.Drawing.Size(140, 485)
         Me.TrvEstructure.TabIndex = 12
         '
         'TrvContextMenuStrip
@@ -344,7 +345,7 @@ Partial Class FrmMenu
         '
         Me.Splitter1.Location = New System.Drawing.Point(146, 24)
         Me.Splitter1.Name = "Splitter1"
-        Me.Splitter1.Size = New System.Drawing.Size(3, 499)
+        Me.Splitter1.Size = New System.Drawing.Size(3, 516)
         Me.Splitter1.TabIndex = 10
         Me.Splitter1.TabStop = False
         '
@@ -352,11 +353,12 @@ Partial Class FrmMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(953, 545)
+        Me.ClientSize = New System.Drawing.Size(784, 562)
         Me.Controls.Add(Me.Splitter1)
         Me.Controls.Add(Me.TableLayoutPanel_Tables)
         Me.Controls.Add(Me.MenuStrip)
         Me.Controls.Add(Me.StatusStrip)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.IsMdiContainer = True
         Me.MainMenuStrip = Me.MenuStrip
         Me.Name = "FrmMenu"

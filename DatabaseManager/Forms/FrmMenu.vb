@@ -100,6 +100,18 @@ Public Class FrmMenu
 
     End Sub
 
+#Region "TreeView"
+
+    Private Sub TrvEstructure_AfterCheck(sender As Object, e As TreeViewEventArgs) Handles TrvEstructure.AfterCheck
+        If e.Action <> TreeViewAction.Unknown Then
+            If e.Node.Nodes.Count > 0 Then
+                ' Calls the CheckAllChildNodes method, passing in the current 
+                ' Checked value of the TreeNode whose checked state changed. 
+                CheckChildNodes(e.Node, e.Node.Checked)
+            End If
+        End If
+    End Sub
+
     Private Sub TrvEstructure_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles TrvEstructure.AfterSelect
         If IsNothing(e.Node.Parent) Then Exit Sub
 
@@ -112,7 +124,7 @@ Public Class FrmMenu
         Catch ex As Exception
 
         End Try
-        
+
     End Sub
 
     Private Sub TrvEstructure_DoubleClick(sender As Object, e As EventArgs) Handles TrvEstructure.DoubleClick
@@ -148,6 +160,91 @@ Public Class FrmMenu
         End Try
     End Sub
 
+    Private Sub TrvEstructure_KeyDown(sender As Object, e As KeyEventArgs) Handles TrvEstructure.KeyDown
+        Dim listTables, listProcs, listCommands As New List(Of String)
+        Dim listResults As New List(Of clsResultCommand)
+
+        Dim root_item, sub_item As TreeNode
+        Dim note As String = ""
+        Dim result As New clsResultCommand
+
+        listTables.Clear()
+        listProcs.Clear()
+        listCommands.Clear()
+        listResults.Clear()
+
+        If e.KeyCode = Keys.Delete Then
+            For Each root_item In TrvEstructure.Nodes
+                If LCase(root_item.Text) = "tables" Then
+                    For Each sub_item In root_item.Nodes
+                        If sub_item.Checked Then
+                            listTables.Add(sub_item.Text)
+                        End If
+                    Next
+                ElseIf LCase(root_item.Text) = "procedures" Then
+                    For Each sub_item In root_item.Nodes
+                        If sub_item.Checked Then
+                            listProcs.Add(sub_item.Text)
+                        End If
+                    Next
+                End If
+            Next
+        End If
+
+        If listTables.Count > 0 Then
+            If listTables.Count = 1 Then
+                note += "Delete the table [" & listTables(0).ToString & "]"
+            Else
+                note += "There are " & listTables.Count & " tables to delete!"
+            End If
+        End If
+
+        If listProcs.Count > 0 Then
+            If listProcs.Count = 1 Then
+                note += "Delete the procedure [" & listProcs(0).ToString & "] !"
+            Else
+                note += "There are " & listProcs.Count & " procedures to delete!"
+            End If
+        End If
+
+        If note.Length > 0 Then
+            note = "Proceed with deleting the items listed below?" & vbCrLf & vbCrLf & note
+            If MsgBox(note, vbQuestion + vbYesNo, "Warning") = MsgBoxResult.Yes Then
+                For Each item In listTables
+                    listCommands.Add(clsComponentsLoad.ScriptDropTable(item))
+                Next
+                For Each item In listProcs
+                    listCommands.Add(clsComponentsLoad.ScriptDropProcedure(item))
+                Next
+
+                For Each item In listCommands
+                    result = New clsResultCommand
+
+                    result.COMMAND = item
+                    result.HAS_ERRO = Not clsComponentsLoad.Script_execute(item, result.RESULT)
+                    
+                    listResults.Add(result)
+                Next
+
+                note = ""
+                For Each item In listResults
+
+                    'improve the display of executions in a new window
+                    If item.HAS_ERRO Then
+                        note += vbCrLf & "There ir an error executing the command {" & item.COMMAND & "}"
+                    End If
+
+                Next
+
+                If note.Length > 0 Then
+                    MsgBox(note, vbCritical, "Warning")
+                End If
+
+            End If
+        End If
+
+    End Sub
+
     Private Sub TrvEstructure_MouseClick(sender As Object, e As MouseEventArgs) Handles TrvEstructure.MouseClick
         Dim item As ToolStripItem
 
@@ -172,6 +269,15 @@ Public Class FrmMenu
 
         End If
     End Sub
+
+    Private Sub CheckChildNodes(ByVal parent As TreeNode, checked As Boolean)
+        For Each child As TreeNode In parent.Nodes
+            child.Checked = checked
+            If child.Nodes.Count > 0 Then CheckChildNodes(child, checked)
+        Next
+    End Sub
+
+#End Region
 
     Private Sub DeleteTableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteTableToolStripMenuItem.Click
 
