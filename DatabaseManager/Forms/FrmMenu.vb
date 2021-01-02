@@ -298,4 +298,22 @@ Public Class FrmMenu
 
     End Sub
 
+    Private Sub DeleteProcedureToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteProcedureToolStripMenuItem.Click
+
+        Dim new_window As FrmCommand
+        new_window = New FrmCommand
+        new_window.txtCommand.Text = clsComponentsLoad.ScriptDropProcedure(node_child)
+
+        Dim x As New TreeNode
+        'For Each x In TrvEstructure.SelectedNode
+        '    If x.IsSelected Then
+
+        '    End If
+        'Next
+
+        If new_window.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            Call tsbRefresh_Click(sender, e)
+        End If
+
+    End Sub
 End Class

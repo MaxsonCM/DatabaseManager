@@ -25,12 +25,12 @@ Partial Class FrmMenu
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMenu))
-        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("users", 1, 1)
-        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Tables", 1, 1, New System.Windows.Forms.TreeNode() {TreeNode1})
-        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("CallFunction", 2, 2)
-        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Procedures", 2, 2, New System.Windows.Forms.TreeNode() {TreeNode3})
-        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("search", 3, 3)
-        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Views", 3, 3, New System.Windows.Forms.TreeNode() {TreeNode5})
+        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("users", 1, 1)
+        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Tables", 1, 1, New System.Windows.Forms.TreeNode() {TreeNode7})
+        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("CallFunction", 2, 2)
+        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Procedures", 2, 2, New System.Windows.Forms.TreeNode() {TreeNode9})
+        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("search", 3, 3)
+        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Views", 3, 3, New System.Windows.Forms.TreeNode() {TreeNode11})
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -244,7 +244,7 @@ Partial Class FrmMenu
         Me.TableLayoutPanel_Tables.RowCount = 2
         Me.TableLayoutPanel_Tables.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel_Tables.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel_Tables.Size = New System.Drawing.Size(146, 516)
+        Me.TableLayoutPanel_Tables.Size = New System.Drawing.Size(133, 516)
         Me.TableLayoutPanel_Tables.TabIndex = 9
         '
         'TrvEstructure
@@ -256,33 +256,33 @@ Partial Class FrmMenu
         Me.TrvEstructure.ImageList = Me.ImageListTreeView
         Me.TrvEstructure.Location = New System.Drawing.Point(3, 28)
         Me.TrvEstructure.Name = "TrvEstructure"
-        TreeNode1.ImageIndex = 1
-        TreeNode1.Name = "users"
-        TreeNode1.SelectedImageIndex = 1
-        TreeNode1.Text = "users"
-        TreeNode2.ImageIndex = 1
-        TreeNode2.Name = "Tables"
-        TreeNode2.SelectedImageIndex = 1
-        TreeNode2.Text = "Tables"
-        TreeNode3.ImageIndex = 2
-        TreeNode3.Name = "CallFunction"
-        TreeNode3.SelectedImageIndex = 2
-        TreeNode3.Text = "CallFunction"
-        TreeNode4.ImageIndex = 2
-        TreeNode4.Name = "Procedures"
-        TreeNode4.SelectedImageIndex = 2
-        TreeNode4.Text = "Procedures"
-        TreeNode5.ImageIndex = 3
-        TreeNode5.Name = "search"
-        TreeNode5.SelectedImageIndex = 3
-        TreeNode5.Text = "search"
-        TreeNode6.ImageIndex = 3
-        TreeNode6.Name = "Views"
-        TreeNode6.SelectedImageIndex = 3
-        TreeNode6.Text = "Views"
-        Me.TrvEstructure.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode4, TreeNode6})
+        TreeNode7.ImageIndex = 1
+        TreeNode7.Name = "users"
+        TreeNode7.SelectedImageIndex = 1
+        TreeNode7.Text = "users"
+        TreeNode8.ImageIndex = 1
+        TreeNode8.Name = "Tables"
+        TreeNode8.SelectedImageIndex = 1
+        TreeNode8.Text = "Tables"
+        TreeNode9.ImageIndex = 2
+        TreeNode9.Name = "CallFunction"
+        TreeNode9.SelectedImageIndex = 2
+        TreeNode9.Text = "CallFunction"
+        TreeNode10.ImageIndex = 2
+        TreeNode10.Name = "Procedures"
+        TreeNode10.SelectedImageIndex = 2
+        TreeNode10.Text = "Procedures"
+        TreeNode11.ImageIndex = 3
+        TreeNode11.Name = "search"
+        TreeNode11.SelectedImageIndex = 3
+        TreeNode11.Text = "search"
+        TreeNode12.ImageIndex = 3
+        TreeNode12.Name = "Views"
+        TreeNode12.SelectedImageIndex = 3
+        TreeNode12.Text = "Views"
+        Me.TrvEstructure.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode8, TreeNode10, TreeNode12})
         Me.TrvEstructure.SelectedImageIndex = 0
-        Me.TrvEstructure.Size = New System.Drawing.Size(140, 485)
+        Me.TrvEstructure.Size = New System.Drawing.Size(127, 485)
         Me.TrvEstructure.TabIndex = 12
         '
         'TrvContextMenuStrip
@@ -319,7 +319,7 @@ Partial Class FrmMenu
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbOpen, Me.tsbRefresh})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(146, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(133, 25)
         Me.ToolStrip1.TabIndex = 13
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -343,7 +343,7 @@ Partial Class FrmMenu
         '
         'Splitter1
         '
-        Me.Splitter1.Location = New System.Drawing.Point(146, 24)
+        Me.Splitter1.Location = New System.Drawing.Point(133, 24)
         Me.Splitter1.Name = "Splitter1"
         Me.Splitter1.Size = New System.Drawing.Size(3, 516)
         Me.Splitter1.TabIndex = 10
@@ -361,6 +361,7 @@ Partial Class FrmMenu
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.IsMdiContainer = True
         Me.MainMenuStrip = Me.MenuStrip
+        Me.MinimumSize = New System.Drawing.Size(800, 600)
         Me.Name = "FrmMenu"
         Me.Text = "Database Manager"
         Me.MenuStrip.ResumeLayout(False)

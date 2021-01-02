@@ -20,18 +20,20 @@ Public Class clsGlobal
                 _type_database = DATABASE_TYPE.ACCESS
             ElseIf extension = "FDB" Or extension = "GDB" Then
                 _type_database = DATABASE_TYPE.FIREBIRD
-            Else
-                _type_database = DATABASE_TYPE.NONE
-                MsgBox("Unknown database", MsgBoxStyle.Exclamation)
+            ElseIf _type_database = DATABASE_TYPE.NONE Then
+                MsgBox("Unknown database !", MsgBoxStyle.Exclamation)
             End If
 
         End Set
     End Property
 
-    Public Shared ReadOnly Property type_database() As DATABASE_TYPE
+    Public Shared Property type_database() As DATABASE_TYPE
         Get
             Return _type_database
         End Get
+        Set(ByVal Value As DATABASE_TYPE)
+            _type_database = Value
+        End Set
     End Property
 
 

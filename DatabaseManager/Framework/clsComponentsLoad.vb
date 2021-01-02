@@ -4,7 +4,7 @@
         If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
             Return DB_AC.Version
         ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
-            Return DB_FB.GetDialectVersion
+            Return DB_FB.GetDialectVersion + " - " + DB_FB.Version
         Else
             Return "Version: Unknown"
         End If

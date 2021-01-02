@@ -27,9 +27,9 @@ Partial Class FrmCommand
         Me.btnExecute = New System.Windows.Forms.Button()
         Me.PanelCommand = New System.Windows.Forms.Panel()
         Me.txtStatus = New System.Windows.Forms.TextBox()
-        Me.Splitter1 = New System.Windows.Forms.Splitter()
         Me.PanelStatus = New System.Windows.Forms.Panel()
         Me.btnArquivo = New DatabaseManager.ccoFolderButton()
+        Me.Splitter1 = New System.Windows.Forms.Splitter()
         Me.PanelCommand.SuspendLayout()
         Me.PanelStatus.SuspendLayout()
         Me.SuspendLayout()
@@ -44,7 +44,7 @@ Partial Class FrmCommand
         Me.txtCommand.Location = New System.Drawing.Point(5, 4)
         Me.txtCommand.Multiline = True
         Me.txtCommand.Name = "txtCommand"
-        Me.txtCommand.Size = New System.Drawing.Size(376, 176)
+        Me.txtCommand.Size = New System.Drawing.Size(554, 119)
         Me.txtCommand.TabIndex = 3
         '
         'btnExecute
@@ -54,9 +54,9 @@ Partial Class FrmCommand
         Me.btnExecute.BackColor = System.Drawing.Color.Transparent
         Me.btnExecute.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnExecute.Image = Global.DatabaseManager.My.Resources.Resources.Play_32
-        Me.btnExecute.Location = New System.Drawing.Point(386, 4)
+        Me.btnExecute.Location = New System.Drawing.Point(564, 4)
         Me.btnExecute.Name = "btnExecute"
-        Me.btnExecute.Size = New System.Drawing.Size(27, 176)
+        Me.btnExecute.Size = New System.Drawing.Size(27, 119)
         Me.btnExecute.TabIndex = 4
         Me.btnExecute.UseVisualStyleBackColor = False
         '
@@ -64,10 +64,10 @@ Partial Class FrmCommand
         '
         Me.PanelCommand.Controls.Add(Me.txtCommand)
         Me.PanelCommand.Controls.Add(Me.btnExecute)
-        Me.PanelCommand.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelCommand.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelCommand.Location = New System.Drawing.Point(0, 0)
         Me.PanelCommand.Name = "PanelCommand"
-        Me.PanelCommand.Size = New System.Drawing.Size(416, 185)
+        Me.PanelCommand.Size = New System.Drawing.Size(594, 128)
         Me.PanelCommand.TabIndex = 8
         '
         'txtStatus
@@ -82,27 +82,16 @@ Partial Class FrmCommand
         Me.txtStatus.Multiline = True
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.ReadOnly = True
-        Me.txtStatus.Size = New System.Drawing.Size(406, 48)
+        Me.txtStatus.Size = New System.Drawing.Size(584, 42)
         Me.txtStatus.TabIndex = 9
-        '
-        'Splitter1
-        '
-        Me.Splitter1.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Splitter1.Cursor = System.Windows.Forms.Cursors.HSplit
-        Me.Splitter1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Splitter1.Location = New System.Drawing.Point(0, 185)
-        Me.Splitter1.Name = "Splitter1"
-        Me.Splitter1.Size = New System.Drawing.Size(416, 3)
-        Me.Splitter1.TabIndex = 10
-        Me.Splitter1.TabStop = False
         '
         'PanelStatus
         '
         Me.PanelStatus.Controls.Add(Me.txtStatus)
-        Me.PanelStatus.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelStatus.Location = New System.Drawing.Point(0, 188)
+        Me.PanelStatus.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelStatus.Location = New System.Drawing.Point(0, 128)
         Me.PanelStatus.Name = "PanelStatus"
-        Me.PanelStatus.Size = New System.Drawing.Size(416, 60)
+        Me.PanelStatus.Size = New System.Drawing.Size(594, 54)
         Me.PanelStatus.TabIndex = 11
         '
         'btnArquivo
@@ -120,15 +109,24 @@ Partial Class FrmCommand
         Me.btnArquivo.TabIndex = 2
         Me.btnArquivo.UseVisualStyleBackColor = True
         '
+        'Splitter1
+        '
+        Me.Splitter1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Splitter1.Location = New System.Drawing.Point(0, 125)
+        Me.Splitter1.Name = "Splitter1"
+        Me.Splitter1.Size = New System.Drawing.Size(594, 3)
+        Me.Splitter1.TabIndex = 12
+        Me.Splitter1.TabStop = False
+        '
         'FrmCommand
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(416, 248)
-        Me.Controls.Add(Me.PanelStatus)
+        Me.ClientSize = New System.Drawing.Size(594, 182)
         Me.Controls.Add(Me.Splitter1)
         Me.Controls.Add(Me.PanelCommand)
+        Me.Controls.Add(Me.PanelStatus)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimumSize = New System.Drawing.Size(280, 220)
@@ -147,7 +145,7 @@ Partial Class FrmCommand
     Friend WithEvents btnExecute As System.Windows.Forms.Button
     Friend WithEvents PanelCommand As System.Windows.Forms.Panel
     Friend WithEvents txtStatus As System.Windows.Forms.TextBox
-    Friend WithEvents Splitter1 As System.Windows.Forms.Splitter
     Friend WithEvents PanelStatus As System.Windows.Forms.Panel
+    Friend WithEvents Splitter1 As System.Windows.Forms.Splitter
 
 End Class

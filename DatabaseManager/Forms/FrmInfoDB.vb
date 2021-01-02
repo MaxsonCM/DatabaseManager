@@ -35,10 +35,24 @@
             TxtUser.Text = "SYSDBA"
             txtPassword.Text = "masterkey"
             TxtDataSource.Text = "localhost"
+            clsGlobal.type_database = DATABASE_TYPE.FIREBIRD
+        ElseIf InStr(txtDatabase.Text.ToUpper, ".MDB", CompareMethod.Text) > 0 Or InStr(txtDatabase.Text.ToUpper, ".ACCDB", CompareMethod.Text) > 0 Then
+            TxtPort.Text = ""
+            TxtDataSource.Text = ""
+            clsGlobal.type_database = DATABASE_TYPE.ACCESS
+        Else
+            clsGlobal.type_database = DATABASE_TYPE.NONE
         End If
+
+        CmbDatabaseType.SelectedIndex = clsGlobal.type_database
     End Sub
 
     Private Sub CcoBotaoPasta1_Click(sender As Object, e As EventArgs) Handles CcoBotaoPasta1.Click
         Call txtDatabase_LostFocus(sender, e)
+    End Sub
+
+    Private Sub FrmInfoDB_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        CmbDatabaseType.DataSource = System.Enum.GetValues(GetType(DATABASE_TYPE))
+        CmbDatabaseType.TabIndex = 0
     End Sub
 End Class

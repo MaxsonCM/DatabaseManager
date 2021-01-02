@@ -152,12 +152,29 @@ Public Class DB_FB
 
 #Region "Get the structure of the database"
 
-    ''' <summary>
-    ''' Function test
-    ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function Version() As String
+        Dim myData As New DataSet
+        Dim query As String = ""
+
+        query = "SELECT RDB$GET_CONTEXT('SYSTEM', 'ENGINE_VERSION') AS engine_version,"
+        query += " RDB$GET_CONTEXT('SYSTEM', 'NETWORK_PROTOCOL') AS protocol,"
+        query += " RDB$GET_CONTEXT('SYSTEM', 'CLIENT_ADDRESS') AS address"
+        query += " FROM RDB$DATABASE;"
+
+        Try
+            myData = Execute(query)
+
+            If Not IsNothing(myData) Then
+                query = "Engine version " + myData.Tables(0).Rows(0).Item("engine_version").ToString
+                query += " - Network protocol " + myData.Tables(0).Rows(0).Item("protocol").ToString
+                query += " - Client " + myData.Tables(0).Rows(0).Item("address").ToString
+                Return query
+            End If
+
+        Catch ex As Exception
+            MsgBox("An error occurred while trying to identify the ENGINE version" & vbCrLf & ex.Message)
+        End Try
+
         Return ""
     End Function
 
@@ -180,7 +197,7 @@ Public Class DB_FB
             End If
 
         Catch ex As Exception
-
+            MsgBox("An error occurred while trying to identify the DIALECT used" & vbCrLf & ex.Message)
         End Try
 
         Return ""
@@ -257,7 +274,7 @@ Public Class DB_FB
         query += ", R.RDB$RELATION_NAME"
 
         Try
-            
+
             Return Execute(query)
 
         Catch ex As Exception
@@ -404,7 +421,7 @@ Public Class DB_FB
 
         Try
 
-            myData = Execute("select rdb$relation_name as View_name from rdb$relations where rdb$view_blr is not null and (rdb$system_flag is null or rdb$system_flag = 0);")
+            myData = Execute("SELECT DISTINCT RDB$VIEW_NAME View_name FROM RDB$VIEW_RELATIONS;")
 
             If Not IsNothing(myData) Then
 
@@ -421,10 +438,78 @@ Public Class DB_FB
         Return my_views
     End Function
 
-    Public Shared Function ListModules() As List(Of String)
+    Public Shared Function ListGenerators() As List(Of String)
         Dim my_list As New List(Of String)
+        Dim myData As New DataSet
 
-        my_list.Clear()
+        Try
+
+            myData = Execute("SELECT RDB$GENERATOR_NAME GENERATOR_NAME FROM RDB$GENERATORS WHERE RDB$SYSTEM_FLAG=0;")
+
+            If Not IsNothing(myData) Then
+
+                For Each row In myData.Tables(0).Rows
+                    my_list.Add(row("GENERATOR_NAME").ToString.Trim)
+                Next
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        Return my_list
+    End Function
+
+    Public Shared Function ListTriggres(Optional ByVal table As String = "") As List(Of String)
+        Dim query As String = ""
+        Dim my_list As New List(Of String)
+        Dim myData As New DataSet
+
+        query = "SELECT * FROM RDB$TRIGGERS WHERE RDB$SYSTEM_FLAG = 0 "
+        If table.Trim.Length > 0 Then query += "AND UPPER(RDB$RELATION_NAME)='" & table.ToUpper.Trim & "'"
+
+        Try
+
+            myData = Execute(query)
+
+            If Not IsNothing(myData) Then
+
+                For Each row In myData.Tables(0).Rows
+                    my_list.Add(row("RDB$TRIGGER_NAME").ToString.Trim)
+                Next
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        Return my_list
+    End Function
+
+    Public Shared Function ListFunctions() As List(Of String)
+        Dim query As String = ""
+        Dim my_list As New List(Of String)
+        Dim myData As New DataSet
+
+        query = "SELECT * FROM RDB$FUNCTIONS WHERE RDB$SYSTEM_FLAG = 0;"
+
+        Try
+
+            myData = Execute(query)
+
+            If Not IsNothing(myData) Then
+
+                For Each row In myData.Tables(0).Rows
+                    my_list.Add(row("RDB$FUNCTION_NAME").ToString.Trim)
+                Next
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
 
         Return my_list
     End Function
@@ -435,25 +520,50 @@ Public Class DB_FB
         Dim id As New clsSchemaIndex
         Dim my_indexs As New List(Of clsSchemaIndex)
 
-        query = "SELECT REL_CONS.RDB$CONSTRAINT_NAME CONSTRAINT_NAME"
+        'OLD VERSION
+        'query = "SELECT DISTINCT REL_CONS.RDB$CONSTRAINT_NAME CONSTRAINT_NAME"
+        'query += ", REL_CONS.RDB$CONSTRAINT_TYPE CONSTRAINT_TYPE"
+        'query += ", REL_CONS.RDB$RELATION_NAME TABLE_NAME"
+        'query += ", ISEG.RDB$FIELD_NAME COLUMN_NAME"
+        'query += ", R.RDB$NULL_FLAG NULLS"
+        'query += " FROM RDB$RELATION_CONSTRAINTS REL_CONS"
+        'query += " INNER JOIN RDB$INDEX_SEGMENTS ISEG"
+        'query += " ON ISEG.RDB$INDEX_NAME = REL_CONS.RDB$INDEX_NAME"
+        'query += " INNER JOIN RDB$RELATION_FIELDS R"
+        'query += " ON R.RDB$FIELD_NAME = ISEG.RDB$FIELD_NAME"
+        'query += " WHERE REL_CONS.RDB$RELATION_NAME='" & table & "'"
+
+        query = "SELECT DISTINCT REL_CONS.RDB$CONSTRAINT_NAME CONSTRAINT_NAME"
         query += ", REL_CONS.RDB$CONSTRAINT_TYPE CONSTRAINT_TYPE"
-        query += ", REL_CONS.RDB$RELATION_NAME TABLE_NAME"
-        query += ", ISEG.RDB$FIELD_NAME COLUMN_NAME"
+        query += ", I.RDB$INDEX_NAME INDEX_NAME"
+        query += ", I.RDB$RELATION_NAME TABLE_NAME"
+        query += ", INS.RDB$FIELD_NAME COLUMN_NAME"
         query += ", R.RDB$NULL_FLAG NULLS"
-        query += " FROM RDB$RELATION_CONSTRAINTS REL_CONS"
-        query += " INNER JOIN RDB$INDEX_SEGMENTS ISEG"
-        query += " ON ISEG.RDB$INDEX_NAME = REL_CONS.RDB$INDEX_NAME"
-        query += " INNER JOIN RDB$RELATION_FIELDS R"
-        query += " ON R.RDB$FIELD_NAME = ISEG.RDB$FIELD_NAME"
-        query += " WHERE REL_CONS.RDB$RELATION_NAME='" & table & "'"
+        query += " FROM RDB$INDICES I"
+
+        query += " LEFT JOIN RDB$INDEX_SEGMENTS INS"
+        query += " ON I.RDB$INDEX_NAME = INS.RDB$INDEX_NAME"
+
+        query += " LEFT JOIN RDB$RELATION_FIELDS R"
+        query += " ON R.RDB$FIELD_NAME = INS.RDB$FIELD_NAME"
+
+        query += " LEFT JOIN RDB$RELATION_CONSTRAINTS REL_CONS"
+        query += " ON INS.RDB$INDEX_NAME = REL_CONS.RDB$INDEX_NAME"
+
+        query += " WHERE I.RDB$RELATION_NAME='" & table & "'"
+        query += " ORDER BY I.RDB$INDEX_ID, INS.RDB$FIELD_POSITION"
 
         Try
             ds = Execute(query)
 
-
             For Each dr In ds.Tables(0).Rows
                 id = New clsSchemaIndex
-                id.INDEX_NAME = dr("CONSTRAINT_NAME")
+
+                If Not IsDBNull(dr("CONSTRAINT_NAME")) Then
+                    id.INDEX_NAME = dr("CONSTRAINT_NAME")
+                ElseIf Not IsDBNull(dr("INDEX_NAME")) Then
+                    id.INDEX_NAME = dr("INDEX_NAME")
+                End If
 
                 If dr("CONSTRAINT_TYPE").ToString.Trim.ToUpper = "PRIMARY KEY" Then
                     id.IS_PRIMARY_KEY = True
