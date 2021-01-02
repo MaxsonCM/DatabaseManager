@@ -45,7 +45,7 @@ Public Class DB_AC
     End Sub
 
 
-    Public Shared Function SearchTable(ByVal table As String) As DataSet
+    Public Shared Function SearchTable(ByVal table As String, Optional ByVal where_clause As String = "") As DataSet
         Dim conn As New OleDb.OleDbConnection
         Dim myCmd As New OleDb.OleDbCommand
         Dim dataAdapter As OleDb.OleDbDataAdapter
@@ -59,6 +59,7 @@ Public Class DB_AC
             myCmd.CommandType = CommandType.Text
             myCmd.Connection = conn
             myCmd.CommandText = "SELECT * FROM [" & table & "]"
+            If where_clause.Trim.Length > 0 Then myCmd.CommandText += " WHERE " + where_clause
 
             dataAdapter = New System.Data.OleDb.OleDbDataAdapter(myCmd)
             dataAdapter.Fill(ds)
@@ -526,6 +527,55 @@ Public Class DB_AC
         Return "DROP PROCEDURE [" & procedure & "];"
     End Function
 
+    Shared Function Translate_criteria(ByVal column As String, ByVal criteria As String, ByVal value As String) As String
+        Dim trans As String = ""
+        'access requires that single quotes are not used in numeric fields
+
+        Select Case criteria.ToLower.Trim
+            Case "is null" : trans = column & " IS NULL"
+            Case "not is null" : trans = "NOT " & column & " IS NULL"
+            Case "starting with"
+                trans = column & " LIKE "
+                If IsNumeric(value) Then
+                    trans += "'" & value & "'"
+                Else
+                    trans += value
+                End If
+            Case "not starting with"
+                trans = "NOT " & column & " LIKE "
+                If IsNumeric(value) Then
+                    trans += "'" & value & "'"
+                Else
+                    trans += value
+                End If
+            Case "contains"
+                trans = "InStr(" & column & ","
+                If IsNumeric(value) Then
+                    trans += "'" & value & "'"
+                Else
+                    trans += value
+                End If
+                trans += ") > 0"
+            Case "not contains"
+                trans = "InStr(" & column & ","
+                If IsNumeric(value) Then
+                    trans += "'" & value & "'"
+                Else
+                    trans += value
+                End If
+                trans += ") = 0"
+            Case Else
+                trans = column & criteria
+                If Not IsNumeric(value) Then
+                    trans += "'" & value & "'"
+                Else
+                    trans += value
+                End If
+        End Select
+        Return trans
+    End Function
+
 #End Region
+
 
 End Class

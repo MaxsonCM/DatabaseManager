@@ -31,7 +31,7 @@ Public Class DB_FB
         End Try
     End Sub
 
-    Public Shared Function SearchTable(ByVal table As String) As DataSet
+    Public Shared Function SearchTable(ByVal table As String, Optional ByVal where_clause As String = "") As DataSet
         Dim conn As New FbConnection
         Dim myCmd As New FbCommand
         Dim dataAdapter As FbDataAdapter
@@ -45,6 +45,7 @@ Public Class DB_FB
             myCmd.CommandType = CommandType.Text
             myCmd.Connection = conn
             myCmd.CommandText = "SELECT * FROM " & table & ""
+            If where_clause.Trim.Length > 0 Then myCmd.CommandText += " WHERE " + where_clause
 
             dataAdapter = New FbDataAdapter(myCmd)
             dataAdapter.Fill(ds)
@@ -624,6 +625,26 @@ Public Class DB_FB
 
     Public Shared Function GetScriptDropProcedure(ByVal procedure As String) As String
         Return "DROP PROCEDURE """ & procedure & """;"
+    End Function
+
+    Shared Function Translate_criteria(ByVal column As String, ByVal criteria As String, ByVal value As String) As String
+        Dim trans As String = ""
+
+        Select Case criteria.ToLower.Trim
+            Case "is null" : trans = column & " IS NULL"
+            Case "not is null" : trans = "NOT " & column & " IS NULL"
+            Case "starting with"
+                trans = column & " STARTING WITH "
+                trans += "'" & value & "'"
+            Case "not starting with"
+                trans = column & " NOT STARTING WITH "
+                trans += "'" & value & "'"
+            Case "contains" : trans = column & " CONTAINING '" & value & "'"
+            Case "not contains" : trans = column & " NOT CONTAINING '" & value & "'"
+            Case Else
+                trans = column & criteria & "'" & value & "'"
+        End Select
+        Return trans
     End Function
 
 #End Region

@@ -1,17 +1,35 @@
-﻿Public Class FrmTableEditor
+﻿Imports System.ComponentModel
+
+Public Class FrmTableEditor
     Public table As String
     Dim ds As New DataSet
+    Dim where_clause, grid_selection As String
 
 #Region "Form Control"
 
     Private Sub FrmTableEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Table [" & table & "]"
-        TstTableName.Text = table
+        'Dim new_row As String()
+        'Dim last_row As DataGridViewRow
 
+        TstTableName.Text = table
+        where_clause = ""
         PanelDataFilters.Height = 24
 
         clsComponentsLoad.LoadSchemaTable(table, EstructureGrid)
         clsComponentsLoad.LoadSchemaIndexs(table, TreeViewIndex)
+
+        FilterDataGrid.Rows.Clear()
+
+        'For Each row As DataGridViewRow In EstructureGrid.Rows
+        '    If Not row.IsNewRow Then
+        '        new_row = New String() {False, True, row.Cells().Item(FindIndexColumn("Column Name", EstructureGrid)).Value, Nothing, Nothing, "AND"}
+        '        FilterDataGrid.Rows.Add(new_row)
+        '        last_row = FilterDataGrid.Rows.OfType(Of DataGridViewRow).Last()
+
+        '        last_row.DefaultCellStyle.Font = New Font(FilterDataGrid.Font, FontStyle.Bold)
+        '    End If
+        'Next
 
         Call LoadRegisters()
     End Sub
@@ -20,8 +38,6 @@
         PictureLoad.Top = (TableDataGrid.Height - PictureLoad.Height) / 2
         PictureLoad.Left = (TableDataGrid.Width - PictureLoad.Width) / 2
     End Sub
-
-#End Region
 
     Private Sub tsbRefresh_Click(sender As Object, e As EventArgs) Handles tsbRefresh.Click
         Me.Text = "Table [" & table & "]"
@@ -32,6 +48,8 @@
 
         Call LoadRegisters()
     End Sub
+
+#End Region
 
 #Region "Functions Thread"
 
@@ -52,7 +70,7 @@
     Private Sub BackgroundWorkerSearch_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerSearch.DoWork
         Try
 
-            ds = clsComponentsLoad.LoadGrid(table)
+            ds = clsComponentsLoad.LoadGrid(table, where_clause)
 
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -75,29 +93,138 @@
 
 #End Region
 
-    Private Shared Function ConfigureDataTableWhere() As DataTable
-        Dim dt As DataTable
-        Dim dc As DataColumn
+#Region "Data Grid View Actions"
 
-        dt = New DataTable()
+    Private Function FindIndexColumn(ByVal header As String, ByVal grid As DataGridView) As Integer
+        Dim index As Integer = -1
 
-        dc = New DataColumn("A", Type.GetType("System.Boolean"))
-        dt.Columns.Add(dc)
-        dc = New DataColumn("Column / Criteria", Type.GetType("System.String"))
-        dt.Columns.Add(dc)
-        dc = New DataColumn("Value", Type.GetType("System.String"))
-        dt.Columns.Add(dc)
-        'dc = New DataColumn("AND / OR", DataGridView.ComboBox)
-        'dt.Columns.Add(dc)
+        For Each col In grid.Columns
+            If col.HeaderText.ToString.ToUpper = header.ToUpper Then
+                index = col.Index
+            End If
+        Next
 
-        Return dt
+        Return index
     End Function
 
-    Private Sub TableDataGrid_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles TableDataGrid.CellClick
-        'TsbAddFilter.Enabled = True
+    Private Sub makeWhereClause()
+        Dim clause, query As String
+        Dim old_field, field, value, criteria As String
+
+        clause = ""
+        query = ""
+        For Each row As DataGridViewRow In FilterDataGrid.Rows
+
+            query += clause
+
+            field = row.Cells().Item(FindIndexColumn("Column", FilterDataGrid)).Value
+            criteria = row.Cells().Item(FindIndexColumn("Criteria", FilterDataGrid)).Value
+            value = row.Cells().Item(FindIndexColumn("Value", FilterDataGrid)).Value
+
+            query += clsComponentsLoad.Translate_criteria(field, criteria, value)
+            clause = " " + row.Cells().Item(FindIndexColumn("AND/OR", FilterDataGrid)).Value + " "
+
+            old_field = field
+        Next
+
+        TxtWhereClause.Text = query
+        where_clause = query
     End Sub
-    
+
     Private Sub TsbAddFilter_Click(sender As Object, e As EventArgs) Handles TsbAddFilter.Click
+        Dim column_name, row_value As String
+        Dim row_position As Long
+
+        row_value = ""
+
+        If grid_selection = TableDataGrid.Name Then
+
+            column_name = TableDataGrid.Columns(TableDataGrid.CurrentCell.ColumnIndex).HeaderText()
+            row_value = TableDataGrid.CurrentCell.Value
+
+            Dim new_row = New String() {True, True, column_name, "=", row_value, "AND"}
+            FilterDataGrid.Rows.Add(new_row)
+
+        ElseIf grid_selection = FilterDataGrid.Name Then
+
+            If IsNothing(FilterDataGrid.CurrentRow) Then Exit Sub
+
+            row_position = FilterDataGrid.CurrentRow.Index
+            If FilterDataGrid.Rows(row_position).Cells().Item(FindIndexColumn("Editable", FilterDataGrid)).Value = False Then
+
+                Dim new_row = New String() {True, True, FilterDataGrid.Rows(row_position).Cells().Item(FindIndexColumn("Column", FilterDataGrid)).Value, "=", Nothing, "AND"}
+                FilterDataGrid.Rows.Add(new_row)
+
+            Else
+
+                Dim new_row As New DataGridViewRow
+                new_row = FilterDataGrid.Rows(row_position)
+                FilterDataGrid.Rows.Add(new_row)
+
+            End If
+
+        End If
+
+        If PanelDataFilters.Height < 25 Then PanelDataFilters.Height = 100
+
+        FilterDataGrid.Sort(FilterDataGrid.Columns(FindIndexColumn("Column", FilterDataGrid)), ListSortDirection.Ascending)
+
+        Call makeWhereClause()
+    End Sub
+
+    Private Sub TsbRemoveFilter_Click(sender As Object, e As EventArgs) Handles TsbRemoveFilter.Click
+        Dim row_position As Long
+
+        If grid_selection = FilterDataGrid.Name And Not IsNothing(FilterDataGrid.CurrentRow) Then
+            row_position = FilterDataGrid.CurrentRow.Index
+            If FilterDataGrid.Rows(row_position).Cells().Item(FindIndexColumn("Editable", FilterDataGrid)).Value = True Then
+                FilterDataGrid.Rows.RemoveAt(row_position)
+            End If
+        End If
 
     End Sub
+
+    Private Sub TsbSearch_Click(sender As Object, e As EventArgs) Handles TsbSearch.Click
+        Call LoadRegisters()
+    End Sub
+
+    Private Sub TableDataGrid_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles TableDataGrid.CellClick
+        If Not IsNothing(TableDataGrid.CurrentCell) Then
+            TsbAddFilter.Enabled = True
+        Else
+            TsbAddFilter.Enabled = False
+        End If
+    End Sub
+
+    Private Sub FilterDataGrid_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles FilterDataGrid.CellClick
+        If Not IsNothing(FilterDataGrid.CurrentCell) Then
+            TsbAddFilter.Enabled = True
+            TsbRemoveFilter.Enabled = True
+        Else
+            TsbAddFilter.Enabled = False
+            TsbRemoveFilter.Enabled = False
+        End If
+    End Sub
+
+    Private Sub TableDataGrid_GotFocus(sender As Object, e As EventArgs) Handles TableDataGrid.GotFocus
+        grid_selection = TableDataGrid.Name
+    End Sub
+
+    Private Sub TableDataGrid_LostFocus(sender As Object, e As EventArgs) Handles TableDataGrid.LostFocus
+        TsbAddFilter.Enabled = False
+        TsbRemoveFilter.Enabled = False
+    End Sub
+
+    Private Sub FilterDataGrid_GotFocus(sender As Object, e As EventArgs) Handles FilterDataGrid.GotFocus
+        grid_selection = FilterDataGrid.Name
+    End Sub
+
+    Private Sub FilterDataGrid_LostFocus(sender As Object, e As EventArgs) Handles FilterDataGrid.LostFocus
+        TsbAddFilter.Enabled = False
+        TsbRemoveFilter.Enabled = False
+    End Sub
+
+#End Region
+
+
 End Class
