@@ -29,11 +29,6 @@ DatabaseManager
 	<param name="name">Name value</param>
 	<param name="value">Key valeu</param>
 	<returns></returns>
-</member><member name="T:DatabaseManager.REGEDIT">
-	<summary>
- CLASSE PARA ACESSO/MANIPULACAO DO REGISTRO DO WINDOWS
- </summary>
-	<remarks></remarks>
 </member><member name="M:DatabaseManager.DB_AC.Version">
 	<summary>
  Function test

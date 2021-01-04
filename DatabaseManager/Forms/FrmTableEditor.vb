@@ -12,12 +12,11 @@ Public Class FrmTableEditor
         'Dim new_row As String()
         'Dim last_row As DataGridViewRow
 
-        TstTableName.Text = table
         where_clause = ""
         PanelDataFilters.Height = 24
 
-        clsComponentsLoad.LoadSchemaTable(table, EstructureGrid)
-        clsComponentsLoad.LoadSchemaIndexs(table, TreeViewIndex)
+        DB_Mediator.LoadSchemaTable(table, EstructureGrid)
+        DB_Mediator.LoadSchemaIndexs(table, TreeViewIndex)
 
         FilterDataGrid.Rows.Clear()
 
@@ -41,10 +40,9 @@ Public Class FrmTableEditor
 
     Private Sub tsbRefresh_Click(sender As Object, e As EventArgs) Handles tsbRefresh.Click
         Me.Text = "Table [" & table & "]"
-        TstTableName.Text = table
 
-        clsComponentsLoad.LoadSchemaTable(table, EstructureGrid)
-        clsComponentsLoad.LoadSchemaIndexs(table, TreeViewIndex)
+        DB_Mediator.LoadSchemaTable(table, EstructureGrid)
+        DB_Mediator.LoadSchemaIndexs(table, TreeViewIndex)
 
         Call LoadRegisters()
     End Sub
@@ -70,7 +68,7 @@ Public Class FrmTableEditor
     Private Sub BackgroundWorkerSearch_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerSearch.DoWork
         Try
 
-            ds = clsComponentsLoad.LoadGrid(table, where_clause)
+            ds = DB_Mediator.LoadGrid(table, where_clause)
 
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -121,7 +119,7 @@ Public Class FrmTableEditor
             criteria = row.Cells().Item(FindIndexColumn("Criteria", FilterDataGrid)).Value
             value = row.Cells().Item(FindIndexColumn("Value", FilterDataGrid)).Value
 
-            query += clsComponentsLoad.Translate_criteria(field, criteria, value)
+            query += DB_Mediator.Translate_criteria(field, criteria, value)
             clause = " " + row.Cells().Item(FindIndexColumn("AND/OR", FilterDataGrid)).Value + " "
 
             old_field = field
@@ -225,6 +223,5 @@ Public Class FrmTableEditor
     End Sub
 
 #End Region
-
 
 End Class

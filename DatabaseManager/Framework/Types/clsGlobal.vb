@@ -14,7 +14,7 @@ Public Class clsGlobal
         Set(ByVal Value As String)
             _local_database = Value
 
-            Dim extension As String = clsUTIL.ExtensionFileName(_local_database)
+            Dim extension As String = clsUSEFUL.ExtensionFileName(_local_database)
 
             If extension = "MDB" Or extension = "ACCDB" Then
                 _type_database = DATABASE_TYPE.ACCESS

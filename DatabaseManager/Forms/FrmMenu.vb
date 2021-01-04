@@ -62,19 +62,19 @@ Public Class FrmMenu
         TrvEstructure.Nodes.Clear()
 
         If File.Exists(clsGlobal.localDataBase) Then
-            Call clsComponentsLoad.LoadListTable_Proc(TrvEstructure)
+            Call DB_Mediator.LoadListTable_Proc(TrvEstructure)
         End If
     End Sub
-    
+
     Private Sub tsbRefresh_Click(sender As Object, e As EventArgs) Handles tsbRefresh.Click
         lblVersionDB.Visible = False
         lblCaptionLabel.Visible = False
 
         If File.Exists(clsGlobal.localDataBase) Then
 
-            If clsComponentsLoad.LoadListTable_Proc(TrvEstructure) Then
+            If DB_Mediator.LoadListTable_Proc(TrvEstructure) Then
 
-                lblVersionDB.Text = clsComponentsLoad.GetVersionDB
+                lblVersionDB.Text = DB_Mediator.GetVersionDB
                 If lblVersionDB.Text <> "error" Then
                     lblVersionDB.Visible = True
                     lblCaptionLabel.Visible = True
@@ -211,18 +211,18 @@ Public Class FrmMenu
             note = "Proceed with deleting the items listed below?" & vbCrLf & vbCrLf & note
             If MsgBox(note, vbQuestion + vbYesNo, "Warning") = MsgBoxResult.Yes Then
                 For Each item In listTables
-                    listCommands.Add(clsComponentsLoad.ScriptDropTable(item))
+                    listCommands.Add(DB_Mediator.ScriptDropTable(item))
                 Next
                 For Each item In listProcs
-                    listCommands.Add(clsComponentsLoad.ScriptDropProcedure(item))
+                    listCommands.Add(DB_Mediator.ScriptDropProcedure(item))
                 Next
 
                 For Each item In listCommands
                     result = New clsResultCommand
 
                     result.COMMAND = item
-                    result.HAS_ERRO = Not clsComponentsLoad.Script_execute(item, result.RESULT)
-                    
+                    result.HAS_ERRO = Not DB_Mediator.Script_execute(item, result.RESULT)
+
                     listResults.Add(result)
                 Next
 
@@ -283,7 +283,7 @@ Public Class FrmMenu
 
         Dim new_window As FrmCommand
         new_window = New FrmCommand
-        new_window.txtCommand.Text = clsComponentsLoad.ScriptDropTable(node_child)
+        new_window.txtCommand.Text = DB_Mediator.ScriptDropTable(node_child)
 
         Dim x As New TreeNode
         'For Each x In TrvEstructure.SelectedNode
@@ -302,7 +302,7 @@ Public Class FrmMenu
 
         Dim new_window As FrmCommand
         new_window = New FrmCommand
-        new_window.txtCommand.Text = clsComponentsLoad.ScriptDropProcedure(node_child)
+        new_window.txtCommand.Text = DB_Mediator.ScriptDropProcedure(node_child)
 
         Dim x As New TreeNode
         'For Each x In TrvEstructure.SelectedNode

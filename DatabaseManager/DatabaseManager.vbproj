@@ -122,9 +122,9 @@
     <Compile Include="Forms\FrmTableEditor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Framework\clsResultCommand.vb" />
-    <Compile Include="Framework\clsSchemaTable.vb" />
-    <Compile Include="Framework\clsShemaIndex.vb" />
+    <Compile Include="Framework\Types\clsResultCommand.vb" />
+    <Compile Include="Framework\Types\clsSchemaTable.vb" />
+    <Compile Include="Framework\Types\clsShemaIndex.vb" />
     <Compile Include="Framework\Components\ccoTreeView.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -139,17 +139,17 @@
       <DependentUpon>FrmCommand.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Framework\clsComponentsLoad.vb" />
-    <Compile Include="Framework\clsGlobal.vb" />
+    <Compile Include="Framework\Databases\DB_Mediator.vb" />
+    <Compile Include="Framework\Types\clsGlobal.vb" />
     <Compile Include="Framework\Databases\DB_FB.vb" />
-    <Compile Include="Framework\ENUM.vb" />
+    <Compile Include="Framework\Types\ENUM.vb" />
     <Compile Include="Forms\FrmResult.Designer.vb">
       <DependentUpon>FrmResult.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmResult.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Framework\clsUTIL.vb" />
+    <Compile Include="Framework\Functions\clsUSEFUL.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -165,7 +165,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Framework\REGEDIT.vb" />
+    <Compile Include="Framework\Functions\REGEDIT.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\FrmAbout.resx">

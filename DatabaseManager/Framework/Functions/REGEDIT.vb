@@ -1,9 +1,5 @@
 ﻿Imports Microsoft.Win32
 
-''' <summary>
-''' CLASSE PARA ACESSO/MANIPULACAO DO REGISTRO DO WINDOWS
-''' </summary>
-''' <remarks></remarks>
 Public NotInheritable Class REGEDIT
 
     Private Sub New()

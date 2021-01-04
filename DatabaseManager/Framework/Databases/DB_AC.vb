@@ -44,7 +44,6 @@ Public Class DB_AC
         End Try
     End Sub
 
-
     Public Shared Function SearchTable(ByVal table As String, Optional ByVal where_clause As String = "") As DataSet
         Dim conn As New OleDb.OleDbConnection
         Dim myCmd As New OleDb.OleDbCommand
@@ -164,22 +163,58 @@ Public Class DB_AC
     End Function
 
     Public Shared Sub RepairDatabase()
-        Try
-            Dim File_Path, compact_file As String
-            File_Path = clsGlobal.localDataBase
-            compact_file = Path.GetFullPath(clsGlobal.localDataBase) & Replace(Path.GetFileName(clsGlobal.localDataBase), Path.GetExtension(clsGlobal.localDataBase), "") & "_NEW" & Path.GetExtension(clsGlobal.localDataBase)
-            If File.Exists(File_Path) Then
-                'Dim db As New DAO.DBEngine()
-                'db.CompactDatabase(File_Path, compact_file)
-            End If
-            If File.Exists(compact_file) Then
-                File.Delete(File_Path)
-                File.Move(compact_file, File_Path)
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
+        ''need DAO360.DLL
+        'Try
+        '    Dim File_Path, compact_file As String
+        '    Dim db As New dao.DBEngine()
+
+        '    File_Path = clsGlobal.localDataBase
+        '    compact_file = Path.GetFullPath(clsGlobal.localDataBase) & Replace(Path.GetFileName(clsGlobal.localDataBase), Path.GetExtension(clsGlobal.localDataBase), "") & "_NEW" & Path.GetExtension(clsGlobal.localDataBase)
+
+        '    If File.Exists(File_Path) Then
+        '        db.CompactDatabase(File_Path, compact_file)
+        '    End If
+
+        '    If File.Exists(compact_file) Then
+        '        File.Delete(File_Path)
+        '        File.Move(compact_file, File_Path)
+        '    End If
+        'Catch ex As Exception
+        '    MsgBox(ex.Message)
+        'End Try
     End Sub
+
+    Public Shared Function AlterTableName(ByVal old_name As String, ByVal new_name As String) As Boolean
+        ''need DAO360.DLL
+        'Dim dbe As New dao.DBEngine
+        'Dim db As dao.Database
+        'Dim tbd As New dao.TableDef
+        'Dim result As Boolean = False
+
+        'Try
+
+        '    db = dbe.OpenDatabase(clsGlobal.localDataBase, False, True, "MS Access;PWD=" & clsGlobal.passDataBase)
+        '    tbd = db.TableDefs(old_name)
+        '    tbd.Name = new_name
+        '    db.Close()
+
+        '    result = True
+        'Catch ex As Exception
+        '    MsgBox(ex.Message)
+        '    result = False
+        'End Try
+
+        'Try
+        '    dbe = Nothing
+        '    db = Nothing
+        '    tbd = Nothing
+        'Catch ex As Exception
+        'End Try
+
+        'Return result
+        Return False
+    End Function
+
 #End Region
 
 #Region "Get the structure of the database"
@@ -191,6 +226,7 @@ Public Class DB_AC
     ''' <remarks></remarks>
     Public Shared Function Version() As String
         ' need access installaed
+
         Dim objAccess As New Object
         Dim intFormat As Integer
 
@@ -220,6 +256,7 @@ Public Class DB_AC
             Try
                 objAccess.Close()
             Catch ex2 As Exception
+
             End Try
 
             Return "error"
@@ -235,20 +272,22 @@ Public Class DB_AC
 
     Public Shared Function ListTable() As List(Of String)
         Dim list As New List(Of String)
+        Dim conn As New System.Data.OleDb.OleDbConnection
 
         Try
-            Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
-                conn.Open()
-                Dim dt As DataTable = conn.GetSchema("TABLES", {Nothing, Nothing, Nothing, "TABLE"})
 
-                For Each row In dt.Rows
-                    list.Add(row("TABLE_NAME"))
-                Next
+            conn.ConnectionString = string_conection
+            conn.Open()
+            Dim dt As DataTable = conn.GetSchema("TABLES", {Nothing, Nothing, Nothing, "TABLE"})
 
-                dt.Dispose()
-                conn.Close()
-            End Using
+            For Each row In dt.Rows
+                list.Add(row("TABLE_NAME"))
+            Next
 
+            dt.Dispose()
+            conn.Close()
+
+            conn = Nothing
 
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -274,7 +313,6 @@ Public Class DB_AC
                 Return ds
             End Using
 
-
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -284,76 +322,77 @@ Public Class DB_AC
 
     Public Shared Function ListFields(ByVal table As String) As List(Of clsSchemaTable)
         Dim dr, dr_pk As DataRow
-
+        Dim conn As New System.Data.OleDb.OleDbConnection
         Dim list_fields As New List(Of clsSchemaTable)
         Dim field As clsSchemaTable
 
         Try
-            Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
-                conn.Open()
 
-                Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Columns, {Nothing, Nothing, table})
-                Dim dt_pk As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Primary_Keys, {Nothing, Nothing, table})
+            conn.ConnectionString = string_conection
+            conn.Open()
 
-                For Each dr In dt.Rows
-                    field = New clsSchemaTable
-                    field.POSITION = dr("ORDINAL_POSITION")
-                    field.COLUMN_NAME = dr("COLUMN_NAME")
-                    field.DATA_TYPE_CODE = dr("DATA_TYPE")
-                    Select Case dr("DATA_TYPE")
-                        Case 2 : field.DATA_TYPE = "Integer"
-                        Case 3 : field.DATA_TYPE = "Long"
-                        Case 4 : field.DATA_TYPE = "Simple"
-                        Case 5 : field.DATA_TYPE = "Double"
-                        Case 6 : field.DATA_TYPE = "Currency"
-                        Case 7 : field.DATA_TYPE = "Date Time"
-                        Case 11 : field.DATA_TYPE = "Boolean"
-                        Case 17 : field.DATA_TYPE = "Byte"
-                        Case 72 : field.DATA_TYPE = "Replication code"
-                        Case 128 : field.DATA_TYPE = "Object OLE"
-                        Case 130
-                            field.DATA_TYPE = "Memo"
-                            If dr("CHARACTER_MAXIMUM_LENGTH") > 0 Then
-                                field.DATA_TYPE = "Text"
-                            End If
-                        Case 131 : field.DATA_TYPE = "Decimal"
-                        Case Else : field.DATA_TYPE = "Unknown"
-                    End Select
+            Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Columns, {Nothing, Nothing, table})
+            Dim dt_pk As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Primary_Keys, {Nothing, Nothing, table})
 
-                    If Not IsDBNull(dr("CHARACTER_MAXIMUM_LENGTH")) Then field.CHARACTER_LENGHT = dr("CHARACTER_MAXIMUM_LENGTH")
-
-                    field.DEFAULT_VALUE = ""
-                    If Not IsDBNull(dr("COLUMN_DEFAULT")) Then field.DEFAULT_VALUE = dr("COLUMN_DEFAULT")
-                    field.DESCRIPTION = ""
-                    If Not IsDBNull(dr("DESCRIPTION")) Then field.DESCRIPTION = dr("DESCRIPTION")
-                    field.IS_NULLABLE = dr("IS_NULLABLE")
-
-                    field.IS_PRIMARY_KEY = False
-                    For Each dr_pk In dt_pk.Select("COLUMN_NAME='" & dr("COLUMN_NAME") & "' AND PK_NAME='PrimaryKey'")
-                        If dr_pk("COLUMN_NAME") = dr("COLUMN_NAME") Then
-                            field.IS_PRIMARY_KEY = True
-                            Exit For
+            For Each dr In dt.Rows
+                field = New clsSchemaTable
+                field.POSITION = dr("ORDINAL_POSITION")
+                field.COLUMN_NAME = dr("COLUMN_NAME")
+                field.DATA_TYPE_CODE = dr("DATA_TYPE")
+                Select Case dr("DATA_TYPE")
+                    Case 2 : field.DATA_TYPE = "Integer"
+                    Case 3 : field.DATA_TYPE = "Long"
+                    Case 4 : field.DATA_TYPE = "Simple"
+                    Case 5 : field.DATA_TYPE = "Double"
+                    Case 6 : field.DATA_TYPE = "Currency"
+                    Case 7 : field.DATA_TYPE = "Date Time"
+                    Case 11 : field.DATA_TYPE = "Boolean"
+                    Case 17 : field.DATA_TYPE = "Byte"
+                    Case 72 : field.DATA_TYPE = "Replication code"
+                    Case 128 : field.DATA_TYPE = "Object OLE"
+                    Case 130
+                        field.DATA_TYPE = "Memo"
+                        If dr("CHARACTER_MAXIMUM_LENGTH") > 0 Then
+                            field.DATA_TYPE = "Text"
                         End If
-                    Next
+                    Case 131 : field.DATA_TYPE = "Decimal"
+                    Case Else : field.DATA_TYPE = "Unknown"
+                End Select
 
-                    If Not IsDBNull(dr("NUMERIC_PRECISION")) Then field.NUMERIC_PRECISION = dr("NUMERIC_PRECISION")
-                    If Not IsDBNull(dr("NUMERIC_SCALE")) Then field.NUMERIC_SCALE = dr("NUMERIC_SCALE")
+                If Not IsDBNull(dr("CHARACTER_MAXIMUM_LENGTH")) Then field.CHARACTER_LENGHT = dr("CHARACTER_MAXIMUM_LENGTH")
 
-                    list_fields.Add(field)
+                field.DEFAULT_VALUE = ""
+                If Not IsDBNull(dr("COLUMN_DEFAULT")) Then field.DEFAULT_VALUE = dr("COLUMN_DEFAULT")
+                field.DESCRIPTION = ""
+                If Not IsDBNull(dr("DESCRIPTION")) Then field.DESCRIPTION = dr("DESCRIPTION")
+                field.IS_NULLABLE = dr("IS_NULLABLE")
+
+                field.IS_PRIMARY_KEY = False
+                For Each dr_pk In dt_pk.Select("COLUMN_NAME='" & dr("COLUMN_NAME") & "' AND PK_NAME='PrimaryKey'")
+                    If dr_pk("COLUMN_NAME") = dr("COLUMN_NAME") Then
+                        field.IS_PRIMARY_KEY = True
+                        Exit For
+                    End If
                 Next
 
-                dt.Dispose()
-                dt_pk.Dispose()
-                conn.Close()
+                If Not IsDBNull(dr("NUMERIC_PRECISION")) Then field.NUMERIC_PRECISION = dr("NUMERIC_PRECISION")
+                If Not IsDBNull(dr("NUMERIC_SCALE")) Then field.NUMERIC_SCALE = dr("NUMERIC_SCALE")
 
-                'sort the result
-                list_fields.Sort(Function(x, y) x.POSITION.CompareTo(y.POSITION))
-                'or
-                'list_fields = list_fields.OrderBy(Function(x) x.POSITION).ToList()
+                list_fields.Add(field)
+            Next
 
-                Return list_fields
-            End Using
+            dt.Dispose()
+            dt_pk.Dispose()
+            conn.Close()
 
+            'sort the result
+            list_fields.Sort(Function(x, y) x.POSITION.CompareTo(y.POSITION))
+            'or
+            'list_fields = list_fields.OrderBy(Function(x) x.POSITION).ToList()
+
+            Return list_fields
+
+            conn = Nothing
 
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -363,24 +402,23 @@ Public Class DB_AC
     End Function
 
     Public Shared Function ListPrimaryKey(ByVal table As String) As DataSet
+        Dim conn As New System.Data.OleDb.OleDbConnection()
         Dim ds As New DataSet
 
         Try
 
-            Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
+            conn.ConnectionString = string_conection
+            conn.Open()
+            Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Primary_Keys, {Nothing, Nothing, table})
 
-                conn.Open()
-                Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Primary_Keys, {Nothing, Nothing, table})
-                
-                ds.Tables.Add(dt)
+            ds.Tables.Add(dt)
 
-                dt.Dispose()
+            dt.Dispose()
 
-                conn.Close()
+            conn.Close()
+            conn = Nothing
 
-                Return ds
-            End Using
-
+            Return ds
 
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -390,26 +428,26 @@ Public Class DB_AC
     End Function
 
     Public Shared Function ListProcedures() As List(Of String)
+        Dim conn As New System.Data.OleDb.OleDbConnection()
         Dim list As New List(Of String)
         Dim ds As New DataSet
+
         Try
 
-            Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
+            conn.ConnectionString = string_conection()
+            conn.Open()
 
-                conn.Open()
+            Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Procedures, Nothing)
 
-                Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Procedures, Nothing)
+            ds.Tables.Add(dt)
 
-                ds.Tables.Add(dt)
+            For Each row In dt.Rows
+                list.Add(row("PROCEDURE_NAME"))
+            Next
 
-                For Each row In dt.Rows
-                    list.Add(row("PROCEDURE_NAME"))
-                Next
-
-                dt.Dispose()
-                conn.Close()
-
-            End Using
+            dt.Dispose()
+            conn.Close()
+            conn = Nothing
 
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -419,23 +457,24 @@ Public Class DB_AC
     End Function
 
     Public Shared Function ListViews() As List(Of String)
+        Dim conn As New System.Data.OleDb.OleDbConnection()
         Dim my_views As New List(Of String)
         
         Try
-            Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
-                conn.Open()
+            conn.ConnectionString = string_conection
+            conn.Open()
 
-                Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Views, {})
+            Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Views, {})
 
-                conn.Close()
+            conn.Close()
 
-                For Each row In dt.Rows
-                    my_views.Add(row("TABLE_NAME"))
-                Next
+            For Each row In dt.Rows
+                my_views.Add(row("TABLE_NAME"))
+            Next
 
-                dt.Dispose()
+            dt.Dispose()
 
-            End Using
+            conn = Nothing
 
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -446,42 +485,44 @@ Public Class DB_AC
 
     Public Shared Function ListModules() As List(Of String)
         Dim my_list As New List(Of String)
+        'TODO
 
         'SELECT ModuleName FROM MSysNavPaneObjectIDs WHERE Type = 32775
 
         Return my_list
     End Function
 
-
     Public Shared Function ListAllIndex(ByVal table As String) As List(Of clsSchemaIndex)
+        Dim conn As New System.Data.OleDb.OleDbConnection
         Dim dt As DataTable
         Dim dr As DataRow
         Dim id As New clsSchemaIndex
         Dim my_indexs As New List(Of clsSchemaIndex)
         Try
-            Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
-                conn.Open()
+            conn.ConnectionString = string_conection
+            conn.Open()
 
-                dt = conn.GetOleDbSchemaTable(System.Data.OleDb.OleDbSchemaGuid.Indexes, {Nothing, Nothing, Nothing, Nothing, table})
+            dt = conn.GetOleDbSchemaTable(System.Data.OleDb.OleDbSchemaGuid.Indexes, {Nothing, Nothing, Nothing, Nothing, table})
 
-                For Each dr In dt.Rows
-                    id = New clsSchemaIndex
-                    id.INDEX_NAME = dr("INDEX_NAME")
-                    id.IS_PRIMARY_KEY = dr("PRIMARY_KEY")
-                    id.IS_UNIQUE = dr("UNIQUE")
-                    id.IS_FOREIGN_KEY = False
-                    id.NOT_NULL = dr("NULLS")
+            For Each dr In dt.Rows
+                id = New clsSchemaIndex
+                id.INDEX_NAME = dr("INDEX_NAME")
+                id.IS_PRIMARY_KEY = dr("PRIMARY_KEY")
+                id.IS_UNIQUE = dr("UNIQUE")
+                id.IS_FOREIGN_KEY = False
+                id.NOT_NULL = dr("NULLS")
 
-                    id.COLUMNS_NAME = (dr("COLUMN_NAME"))
-                    my_indexs.Add(id)
-                Next
+                id.COLUMNS_NAME = (dr("COLUMN_NAME"))
+                my_indexs.Add(id)
+            Next
 
-                dt.Dispose()
+            dt.Dispose()
 
-                conn.Close()
+            conn.Close()
 
-                Return my_indexs
-            End Using
+            conn = Nothing
+
+            Return my_indexs
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -490,31 +531,32 @@ Public Class DB_AC
     End Function
 
     Public Shared Sub GetSchema()
-
+        Dim conn As New System.Data.OleDb.OleDbConnection
         Try
-            Using conn As New System.Data.OleDb.OleDbConnection(string_conection())
-                conn.Open()
+            conn.ConnectionString = string_conection
+            conn.Open()
 
-                Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Procedures, {})
+            Dim dt As DataTable = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Procedures, {})
 
-                conn.Close()
+            conn.Close()
 
-                FrmResult.MdiParent = FrmMenu
-                If FrmResult.IsHandleCreated Then
-                    FrmResult.Focus()
-                Else
-                    FrmResult.Show()
-                End If
+            FrmResult.MdiParent = FrmMenu
+            If FrmResult.IsHandleCreated Then
+                FrmResult.Focus()
+            Else
+                FrmResult.Show()
+            End If
 
-                FrmResult.Grid.DataSource = dt
-            End Using
+            FrmResult.Grid.DataSource = dt
 
+            conn = Nothing
 
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
 
     End Sub
+
 #End Region
 
 #Region "Scripts"

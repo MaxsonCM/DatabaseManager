@@ -1,6 +1,6 @@
 ﻿Imports System.IO
 
-Public Class clsUTIL
+Public Class clsUSEFUL
 
     Public Shared Function ExtensionFileName(ByVal file As String) As String
         Dim fi As New IO.FileInfo(file)
@@ -67,4 +67,5 @@ Public Class clsUTIL
 
         Return resultado
     End Function
+
 End Class

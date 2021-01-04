@@ -1,4 +1,4 @@
-﻿Public Class clsComponentsLoad
+﻿Public Class DB_Mediator
 
     Public Shared Function GetVersionDB() As String
         If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
