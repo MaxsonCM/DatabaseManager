@@ -91,7 +91,6 @@ Public Class FrmTableEditor
 
 #End Region
 
-#Region "Data Grid View Actions"
 
     Private Function FindIndexColumn(ByVal header As String, ByVal grid As DataGridView) As Integer
         Dim index As Integer = -1
@@ -105,6 +104,42 @@ Public Class FrmTableEditor
         Return index
     End Function
 
+#Region "Grid Estructure - Actions"
+
+    Private Sub EstructureGrid_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles EstructureGrid.CellClick
+        If Not IsNothing(TableDataGrid.CurrentCell) Then
+            tsbRemoveField.Enabled = True
+            tsbEditField.Enabled = True
+        Else
+            tsbRemoveField.Enabled = False
+            tsbEditField.Enabled = False
+        End If
+    End Sub
+
+    Private Sub tsbRemoveField_Click(sender As Object, e As EventArgs) Handles tsbRemoveField.Click
+        If IsNothing(TableDataGrid.CurrentCell) Then
+            tsbRemoveField.Enabled = False
+            tsbEditField.Enabled = False
+            Exit Sub
+        End If
+
+
+    End Sub
+
+    Private Sub tsbEditField_Click(sender As Object, e As EventArgs) Handles tsbEditField.Click
+        If IsNothing(TableDataGrid.CurrentCell) Then
+            tsbRemoveField.Enabled = False
+            tsbEditField.Enabled = False
+            Exit Sub
+        End If
+
+
+    End Sub
+
+#End Region
+
+#Region "Grid - Data and filter - Actions"
+
     Private Sub makeWhereClause()
         Dim clause, query As String
         Dim old_field, field, value, criteria As String
@@ -113,16 +148,21 @@ Public Class FrmTableEditor
         query = ""
         For Each row As DataGridViewRow In FilterDataGrid.Rows
 
-            query += clause
+            If row.Cells().Item(FindIndexColumn("A", FilterDataGrid)).Value = True Then
 
-            field = row.Cells().Item(FindIndexColumn("Column", FilterDataGrid)).Value
-            criteria = row.Cells().Item(FindIndexColumn("Criteria", FilterDataGrid)).Value
-            value = row.Cells().Item(FindIndexColumn("Value", FilterDataGrid)).Value
+                query += clause
 
-            query += DB_Mediator.Translate_criteria(field, criteria, value)
-            clause = " " + row.Cells().Item(FindIndexColumn("AND/OR", FilterDataGrid)).Value + " "
+                field = row.Cells().Item(FindIndexColumn("Column", FilterDataGrid)).Value
+                criteria = row.Cells().Item(FindIndexColumn("Criteria", FilterDataGrid)).Value
+                value = row.Cells().Item(FindIndexColumn("Value", FilterDataGrid)).Value
 
-            old_field = field
+                query += DB_Mediator.Translate_criteria(field, criteria, value)
+                clause = " " + row.Cells().Item(FindIndexColumn("AND/OR", FilterDataGrid)).Value + " "
+
+                old_field = field
+
+            End If
+
         Next
 
         TxtWhereClause.Text = query
@@ -150,13 +190,12 @@ Public Class FrmTableEditor
             row_position = FilterDataGrid.CurrentRow.Index
             If FilterDataGrid.Rows(row_position).Cells().Item(FindIndexColumn("Editable", FilterDataGrid)).Value = False Then
 
-                Dim new_row = New String() {True, True, FilterDataGrid.Rows(row_position).Cells().Item(FindIndexColumn("Column", FilterDataGrid)).Value, "=", Nothing, "AND"}
+                Dim new_row = New String() {True, True, "", "=", Nothing, "AND"}
                 FilterDataGrid.Rows.Add(new_row)
 
             Else
 
-                Dim new_row As New DataGridViewRow
-                new_row = FilterDataGrid.Rows(row_position)
+                Dim new_row = New String() {True, True, FilterDataGrid.Rows(row_position).Cells().Item(FindIndexColumn("Column", FilterDataGrid)).Value, "=", Nothing, "AND"}
                 FilterDataGrid.Rows.Add(new_row)
 
             End If
@@ -180,28 +219,11 @@ Public Class FrmTableEditor
             End If
         End If
 
+        Call makeWhereClause()
     End Sub
 
     Private Sub TsbSearch_Click(sender As Object, e As EventArgs) Handles TsbSearch.Click
         Call LoadRegisters()
-    End Sub
-
-    Private Sub TableDataGrid_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles TableDataGrid.CellClick
-        If Not IsNothing(TableDataGrid.CurrentCell) Then
-            TsbAddFilter.Enabled = True
-        Else
-            TsbAddFilter.Enabled = False
-        End If
-    End Sub
-
-    Private Sub FilterDataGrid_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles FilterDataGrid.CellClick
-        If Not IsNothing(FilterDataGrid.CurrentCell) Then
-            TsbAddFilter.Enabled = True
-            TsbRemoveFilter.Enabled = True
-        Else
-            TsbAddFilter.Enabled = False
-            TsbRemoveFilter.Enabled = False
-        End If
     End Sub
 
     Private Sub TableDataGrid_GotFocus(sender As Object, e As EventArgs) Handles TableDataGrid.GotFocus
@@ -213,6 +235,19 @@ Public Class FrmTableEditor
         TsbRemoveFilter.Enabled = False
     End Sub
 
+    Private Sub TableDataGrid_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles TableDataGrid.CellClick
+        If Not IsNothing(TableDataGrid.CurrentCell) Then
+            TsbAddFilter.Enabled = True
+        Else
+            TsbAddFilter.Enabled = False
+        End If
+    End Sub
+
+    Private Sub FilterDataGrid_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles FilterDataGrid.CellValueChanged
+        Call makeWhereClause()
+        Call LoadRegisters()
+    End Sub
+
     Private Sub FilterDataGrid_GotFocus(sender As Object, e As EventArgs) Handles FilterDataGrid.GotFocus
         grid_selection = FilterDataGrid.Name
     End Sub
@@ -220,6 +255,16 @@ Public Class FrmTableEditor
     Private Sub FilterDataGrid_LostFocus(sender As Object, e As EventArgs) Handles FilterDataGrid.LostFocus
         TsbAddFilter.Enabled = False
         TsbRemoveFilter.Enabled = False
+    End Sub
+
+    Private Sub FilterDataGrid_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles FilterDataGrid.CellClick
+        If Not IsNothing(FilterDataGrid.CurrentCell) Then
+            TsbAddFilter.Enabled = True
+            TsbRemoveFilter.Enabled = True
+        Else
+            TsbAddFilter.Enabled = False
+            TsbRemoveFilter.Enabled = False
+        End If
     End Sub
 
 #End Region

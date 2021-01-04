@@ -61,6 +61,10 @@ DatabaseManager
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:DatabaseManager.My.Resources.Resources.edit_16">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:DatabaseManager.My.Resources.Resources.F_16">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.

@@ -32,4 +32,3 @@ D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Database Manager.ex
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Database Manager.xml
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Database Manager.pdb
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.vbprojResolveAssemblyReference.cache
-D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.vbproj.ResolveComReference.cache

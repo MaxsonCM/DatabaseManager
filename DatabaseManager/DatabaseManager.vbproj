@@ -229,6 +229,7 @@
     <None Include="Resources\table_remove_16.png" />
     <None Include="Resources\minus_16.png" />
     <None Include="Resources\plus_16.png" />
+    <None Include="Resources\edit_16.png" />
     <Content Include="Sql_runner.ico" />
   </ItemGroup>
   <ItemGroup>

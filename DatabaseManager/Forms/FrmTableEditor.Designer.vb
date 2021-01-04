@@ -24,21 +24,21 @@ Partial Class FrmTableEditor
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmTableEditor))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("id", 6, 6)
-        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("PrimaryKey", 5, 5, New System.Windows.Forms.TreeNode() {TreeNode1})
-        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("id_name", 6, 6)
-        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("ForenigKey", 4, 4, New System.Windows.Forms.TreeNode() {TreeNode3})
-        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Name", 6, 6)
-        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Birthday", 6, 6)
-        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("UniqueKey", 2, 2, New System.Windows.Forms.TreeNode() {TreeNode5, TreeNode6})
-        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Name", 6, 6)
-        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Index", 3, 3, New System.Windows.Forms.TreeNode() {TreeNode8})
-        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Indexes", 1, 1, New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode4, TreeNode7, TreeNode9})
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("id", 6, 6)
+        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("PrimaryKey", 5, 5, New System.Windows.Forms.TreeNode() {TreeNode11})
+        Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("id_name", 6, 6)
+        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("ForenigKey", 4, 4, New System.Windows.Forms.TreeNode() {TreeNode13})
+        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Name", 6, 6)
+        Dim TreeNode16 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Birthday", 6, 6)
+        Dim TreeNode17 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("UniqueKey", 2, 2, New System.Windows.Forms.TreeNode() {TreeNode15, TreeNode16})
+        Dim TreeNode18 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Name", 6, 6)
+        Dim TreeNode19 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Index", 3, 3, New System.Windows.Forms.TreeNode() {TreeNode18})
+        Dim TreeNode20 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Indexes", 1, 1, New System.Windows.Forms.TreeNode() {TreeNode12, TreeNode14, TreeNode17, TreeNode19})
         Me.TabControlPrincipal = New System.Windows.Forms.TabControl()
         Me.TabPageEstructure = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanelEstructure = New System.Windows.Forms.TableLayoutPanel()
@@ -48,6 +48,8 @@ Partial Class FrmTableEditor
         Me.tsbRefresh = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripLabelSeparator = New System.Windows.Forms.ToolStripLabel()
         Me.tsbAddField = New System.Windows.Forms.ToolStripButton()
+        Me.tsbRemoveField = New System.Windows.Forms.ToolStripButton()
+        Me.tsbEditField = New System.Windows.Forms.ToolStripButton()
         Me.PanelEstructureView = New System.Windows.Forms.Panel()
         Me.SplitterEstructure = New System.Windows.Forms.Splitter()
         Me.EstructureGrid = New System.Windows.Forms.DataGridView()
@@ -72,18 +74,18 @@ Partial Class FrmTableEditor
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Splitter1 = New System.Windows.Forms.Splitter()
         Me.FilterDataGrid = New System.Windows.Forms.DataGridView()
-        Me.Editable = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Active = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Column = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Clause = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.Value = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AND_OR = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.ToolStripFilters = New System.Windows.Forms.ToolStrip()
         Me.TsbAddFilter = New System.Windows.Forms.ToolStripButton()
         Me.TsbRemoveFilter = New System.Windows.Forms.ToolStripButton()
         Me.TsbSearch = New System.Windows.Forms.ToolStripButton()
         Me.PictureLoad = New System.Windows.Forms.PictureBox()
         Me.BackgroundWorkerSearch = New System.ComponentModel.BackgroundWorker()
+        Me.Editable = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Active = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Column = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Clause = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.Value = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AND_OR = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.TabControlPrincipal.SuspendLayout()
         Me.TabPageEstructure.SuspendLayout()
         Me.TableLayoutPanelEstructure.SuspendLayout()
@@ -140,7 +142,7 @@ Partial Class FrmTableEditor
         'ToolStripEstructure
         '
         Me.ToolStripEstructure.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ToolStripEstructure.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbSalve, Me.ToolStripLabel3, Me.tsbRefresh, Me.ToolStripLabelSeparator, Me.tsbAddField})
+        Me.ToolStripEstructure.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbSalve, Me.ToolStripLabel3, Me.tsbRefresh, Me.ToolStripLabelSeparator, Me.tsbAddField, Me.tsbRemoveField, Me.tsbEditField})
         Me.ToolStripEstructure.Location = New System.Drawing.Point(0, 0)
         Me.ToolStripEstructure.Name = "ToolStripEstructure"
         Me.ToolStripEstructure.Size = New System.Drawing.Size(670, 25)
@@ -155,12 +157,14 @@ Partial Class FrmTableEditor
         Me.tsbSalve.Name = "tsbSalve"
         Me.tsbSalve.Size = New System.Drawing.Size(23, 22)
         Me.tsbSalve.Text = "Save"
+        Me.tsbSalve.Visible = False
         '
         'ToolStripLabel3
         '
         Me.ToolStripLabel3.AutoSize = False
         Me.ToolStripLabel3.Name = "ToolStripLabel3"
         Me.ToolStripLabel3.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripLabel3.Visible = False
         '
         'tsbRefresh
         '
@@ -185,6 +189,26 @@ Partial Class FrmTableEditor
         Me.tsbAddField.Name = "tsbAddField"
         Me.tsbAddField.Size = New System.Drawing.Size(23, 22)
         Me.tsbAddField.Text = "Add field"
+        '
+        'tsbRemoveField
+        '
+        Me.tsbRemoveField.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbRemoveField.Enabled = False
+        Me.tsbRemoveField.Image = Global.DatabaseManager.My.Resources.Resources.minus_16
+        Me.tsbRemoveField.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbRemoveField.Name = "tsbRemoveField"
+        Me.tsbRemoveField.Size = New System.Drawing.Size(23, 22)
+        Me.tsbRemoveField.Text = "Remove field"
+        '
+        'tsbEditField
+        '
+        Me.tsbEditField.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tsbEditField.Enabled = False
+        Me.tsbEditField.Image = Global.DatabaseManager.My.Resources.Resources.edit_16
+        Me.tsbEditField.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbEditField.Name = "tsbEditField"
+        Me.tsbEditField.Size = New System.Drawing.Size(23, 22)
+        Me.tsbEditField.Text = "Edit field"
         '
         'PanelEstructureView
         '
@@ -240,8 +264,8 @@ Partial Class FrmTableEditor
         'Position
         '
         Me.Position.DataPropertyName = "Position"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Position.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Position.DefaultCellStyle = DataGridViewCellStyle16
         Me.Position.HeaderText = "Position"
         Me.Position.MaxInputLength = 6
         Me.Position.Name = "Position"
@@ -265,8 +289,8 @@ Partial Class FrmTableEditor
         'Character_Lenght
         '
         Me.Character_Lenght.DataPropertyName = "Character Lenght"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Character_Lenght.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Character_Lenght.DefaultCellStyle = DataGridViewCellStyle17
         Me.Character_Lenght.HeaderText = "Character Lenght"
         Me.Character_Lenght.MaxInputLength = 4
         Me.Character_Lenght.Name = "Character_Lenght"
@@ -276,8 +300,8 @@ Partial Class FrmTableEditor
         'Precision
         '
         Me.Precision.DataPropertyName = "Precision"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Precision.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Precision.DefaultCellStyle = DataGridViewCellStyle18
         Me.Precision.HeaderText = "Precision"
         Me.Precision.MaxInputLength = 3
         Me.Precision.Name = "Precision"
@@ -287,8 +311,8 @@ Partial Class FrmTableEditor
         'Numeric_Scale
         '
         Me.Numeric_Scale.DataPropertyName = "Scale"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Numeric_Scale.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Numeric_Scale.DefaultCellStyle = DataGridViewCellStyle19
         Me.Numeric_Scale.HeaderText = "Scale"
         Me.Numeric_Scale.MaxInputLength = 3
         Me.Numeric_Scale.Name = "Numeric_Scale"
@@ -298,8 +322,8 @@ Partial Class FrmTableEditor
         'Description
         '
         Me.Description.DataPropertyName = "Description"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.Description.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.Description.DefaultCellStyle = DataGridViewCellStyle20
         Me.Description.HeaderText = "Description"
         Me.Description.Name = "Description"
         Me.Description.ReadOnly = True
@@ -330,47 +354,47 @@ Partial Class FrmTableEditor
         Me.TreeViewIndex.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.TreeViewIndex.Location = New System.Drawing.Point(0, 0)
         Me.TreeViewIndex.Name = "TreeViewIndex"
-        TreeNode1.ImageIndex = 6
-        TreeNode1.Name = "id"
-        TreeNode1.SelectedImageIndex = 6
-        TreeNode1.Text = "id"
-        TreeNode2.ImageIndex = 5
-        TreeNode2.Name = "PrimaryKey"
-        TreeNode2.SelectedImageIndex = 5
-        TreeNode2.Text = "PrimaryKey"
-        TreeNode3.ImageIndex = 6
-        TreeNode3.Name = "id_name"
-        TreeNode3.SelectedImageIndex = 6
-        TreeNode3.Text = "id_name"
-        TreeNode4.ImageIndex = 4
-        TreeNode4.Name = "ForenigKey"
-        TreeNode4.SelectedImageIndex = 4
-        TreeNode4.Text = "ForenigKey"
-        TreeNode5.ImageIndex = 6
-        TreeNode5.Name = "Name"
-        TreeNode5.SelectedImageIndex = 6
-        TreeNode5.Text = "Name"
-        TreeNode6.ImageIndex = 6
-        TreeNode6.Name = "Birthday"
-        TreeNode6.SelectedImageIndex = 6
-        TreeNode6.Text = "Birthday"
-        TreeNode7.ImageIndex = 2
-        TreeNode7.Name = "UniqueKey"
-        TreeNode7.SelectedImageIndex = 2
-        TreeNode7.Text = "UniqueKey"
-        TreeNode8.ImageIndex = 6
-        TreeNode8.Name = "Name"
-        TreeNode8.SelectedImageIndex = 6
-        TreeNode8.Text = "Name"
-        TreeNode9.ImageIndex = 3
-        TreeNode9.Name = "Index"
-        TreeNode9.SelectedImageIndex = 3
-        TreeNode9.Text = "Index"
-        TreeNode10.ImageIndex = 1
-        TreeNode10.Name = "Indexes"
-        TreeNode10.SelectedImageIndex = 1
-        TreeNode10.Text = "Indexes"
-        Me.TreeViewIndex.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode10})
+        TreeNode11.ImageIndex = 6
+        TreeNode11.Name = "id"
+        TreeNode11.SelectedImageIndex = 6
+        TreeNode11.Text = "id"
+        TreeNode12.ImageIndex = 5
+        TreeNode12.Name = "PrimaryKey"
+        TreeNode12.SelectedImageIndex = 5
+        TreeNode12.Text = "PrimaryKey"
+        TreeNode13.ImageIndex = 6
+        TreeNode13.Name = "id_name"
+        TreeNode13.SelectedImageIndex = 6
+        TreeNode13.Text = "id_name"
+        TreeNode14.ImageIndex = 4
+        TreeNode14.Name = "ForenigKey"
+        TreeNode14.SelectedImageIndex = 4
+        TreeNode14.Text = "ForenigKey"
+        TreeNode15.ImageIndex = 6
+        TreeNode15.Name = "Name"
+        TreeNode15.SelectedImageIndex = 6
+        TreeNode15.Text = "Name"
+        TreeNode16.ImageIndex = 6
+        TreeNode16.Name = "Birthday"
+        TreeNode16.SelectedImageIndex = 6
+        TreeNode16.Text = "Birthday"
+        TreeNode17.ImageIndex = 2
+        TreeNode17.Name = "UniqueKey"
+        TreeNode17.SelectedImageIndex = 2
+        TreeNode17.Text = "UniqueKey"
+        TreeNode18.ImageIndex = 6
+        TreeNode18.Name = "Name"
+        TreeNode18.SelectedImageIndex = 6
+        TreeNode18.Text = "Name"
+        TreeNode19.ImageIndex = 3
+        TreeNode19.Name = "Index"
+        TreeNode19.SelectedImageIndex = 3
+        TreeNode19.Text = "Index"
+        TreeNode20.ImageIndex = 1
+        TreeNode20.Name = "Indexes"
+        TreeNode20.SelectedImageIndex = 1
+        TreeNode20.Text = "Indexes"
+        Me.TreeViewIndex.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode20})
         Me.TreeViewIndex.SelectedImageIndex = 0
         Me.TreeViewIndex.Size = New System.Drawing.Size(132, 299)
         Me.TreeViewIndex.StateImageList = Me.ImageList1
@@ -501,51 +525,6 @@ Partial Class FrmTableEditor
         Me.FilterDataGrid.Size = New System.Drawing.Size(426, 76)
         Me.FilterDataGrid.TabIndex = 2
         '
-        'Editable
-        '
-        Me.Editable.HeaderText = "Editable"
-        Me.Editable.Name = "Editable"
-        Me.Editable.ReadOnly = True
-        Me.Editable.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Editable.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Editable.Visible = False
-        '
-        'Active
-        '
-        Me.Active.HeaderText = "A"
-        Me.Active.Name = "Active"
-        Me.Active.ReadOnly = True
-        Me.Active.Width = 20
-        '
-        'Column
-        '
-        Me.Column.HeaderText = "Column"
-        Me.Column.Name = "Column"
-        Me.Column.ReadOnly = True
-        '
-        'Clause
-        '
-        Me.Clause.HeaderText = "Criteria"
-        Me.Clause.Items.AddRange(New Object() {"", "=", "!=", ">", ">=", "<", "<=", "is null", "not is null", "starting with", "not starting with", "contains", "not contains"})
-        Me.Clause.Name = "Clause"
-        Me.Clause.ReadOnly = True
-        Me.Clause.Width = 70
-        '
-        'Value
-        '
-        Me.Value.HeaderText = "Value"
-        Me.Value.Name = "Value"
-        Me.Value.ReadOnly = True
-        Me.Value.Width = 130
-        '
-        'AND_OR
-        '
-        Me.AND_OR.HeaderText = "AND/OR"
-        Me.AND_OR.Items.AddRange(New Object() {"", "AND", "OR"})
-        Me.AND_OR.Name = "AND_OR"
-        Me.AND_OR.ReadOnly = True
-        Me.AND_OR.Width = 60
-        '
         'ToolStripFilters
         '
         Me.ToolStripFilters.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TsbAddFilter, Me.TsbRemoveFilter, Me.TsbSearch})
@@ -599,6 +578,47 @@ Partial Class FrmTableEditor
         '
         Me.BackgroundWorkerSearch.WorkerReportsProgress = True
         Me.BackgroundWorkerSearch.WorkerSupportsCancellation = True
+        '
+        'Editable
+        '
+        Me.Editable.HeaderText = "Editable"
+        Me.Editable.Name = "Editable"
+        Me.Editable.ReadOnly = True
+        Me.Editable.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Editable.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Editable.Visible = False
+        '
+        'Active
+        '
+        Me.Active.HeaderText = "A"
+        Me.Active.Name = "Active"
+        Me.Active.Width = 20
+        '
+        'Column
+        '
+        Me.Column.HeaderText = "Column"
+        Me.Column.Name = "Column"
+        Me.Column.ReadOnly = True
+        '
+        'Clause
+        '
+        Me.Clause.HeaderText = "Criteria"
+        Me.Clause.Items.AddRange(New Object() {"", "=", "!=", ">", ">=", "<", "<=", "is null", "not is null", "starting with", "not starting with", "contains", "not contains"})
+        Me.Clause.Name = "Clause"
+        Me.Clause.Width = 70
+        '
+        'Value
+        '
+        Me.Value.HeaderText = "Value"
+        Me.Value.Name = "Value"
+        Me.Value.Width = 130
+        '
+        'AND_OR
+        '
+        Me.AND_OR.HeaderText = "AND/OR"
+        Me.AND_OR.Items.AddRange(New Object() {"", "AND", "OR"})
+        Me.AND_OR.Name = "AND_OR"
+        Me.AND_OR.Width = 60
         '
         'FrmTableEditor
         '
@@ -673,11 +693,13 @@ Partial Class FrmTableEditor
     Friend WithEvents TsbRemoveFilter As System.Windows.Forms.ToolStripButton
     Friend WithEvents PanelWhereClause As System.Windows.Forms.Panel
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents TsbSearch As System.Windows.Forms.ToolStripButton
+    Friend WithEvents tsbRemoveField As System.Windows.Forms.ToolStripButton
+    Friend WithEvents tsbEditField As System.Windows.Forms.ToolStripButton
     Friend WithEvents Editable As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents Active As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents Column As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Clause As System.Windows.Forms.DataGridViewComboBoxColumn
     Friend WithEvents Value As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AND_OR As System.Windows.Forms.DataGridViewComboBoxColumn
-    Friend WithEvents TsbSearch As System.Windows.Forms.ToolStripButton
 End Class
