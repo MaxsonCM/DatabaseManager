@@ -31,6 +31,7 @@ Public Class FrmTableEditor
         'Next
 
         Call LoadRegisters()
+        Call FrmTableEditor_Resize(sender, e)
     End Sub
 
     Private Sub FrmTableEditor_Resize(sender As Object, e As EventArgs) Handles Me.Resize
@@ -54,6 +55,7 @@ Public Class FrmTableEditor
     Private Sub LoadRegisters()
 
         If Not BackgroundWorkerSearch.IsBusy Then
+            If IsNothing(table) Then Exit Sub
 
             TableDataGrid.Visible = False
             Application.DoEvents()
@@ -67,7 +69,7 @@ Public Class FrmTableEditor
 
     Private Sub BackgroundWorkerSearch_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerSearch.DoWork
         Try
-
+            If IsNothing(table) Then Exit Sub
             ds = DB_Mediator.LoadGrid(table, where_clause)
 
         Catch ex As Exception
@@ -227,23 +229,30 @@ Public Class FrmTableEditor
     End Sub
 
     Private Sub TableDataGrid_GotFocus(sender As Object, e As EventArgs) Handles TableDataGrid.GotFocus
+
         grid_selection = TableDataGrid.Name
+
     End Sub
 
     Private Sub TableDataGrid_LostFocus(sender As Object, e As EventArgs) Handles TableDataGrid.LostFocus
+
         TsbAddFilter.Enabled = False
         TsbRemoveFilter.Enabled = False
+
     End Sub
 
     Private Sub TableDataGrid_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles TableDataGrid.CellClick
+
         If Not IsNothing(TableDataGrid.CurrentCell) Then
             TsbAddFilter.Enabled = True
         Else
             TsbAddFilter.Enabled = False
         End If
+
     End Sub
 
     Private Sub FilterDataGrid_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles FilterDataGrid.CellValueChanged
+        If e.RowIndex < 0 Then Exit Sub
         Call makeWhereClause()
         Call LoadRegisters()
     End Sub
