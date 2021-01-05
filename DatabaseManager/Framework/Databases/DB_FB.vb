@@ -99,8 +99,7 @@ Public Class DB_FB
         Return Nothing
     End Function
 
-    Public Shared Function Script_execute(ByVal my_command As String, Optional ByRef my_status As String = "") As Boolean
-        Dim dataSet As New DataSet()
+    Public Shared Function Script_execute(ByVal my_command As String, Optional ByRef my_status As String = "", Optional ByRef data As DataSet = Nothing) As Boolean
         Dim dataAdapter As FbDataAdapter
         Dim myCmd As FbCommand
         Dim conn As FbConnection
@@ -119,21 +118,12 @@ Public Class DB_FB
             If InStr(UCase(my_command), "SELECT ", CompareMethod.Text) > 0 Then
 
                 dataAdapter = New FbDataAdapter(myCmd)
-                dataAdapter.Fill(dataSet)
+
+                data = New DataSet
+
+                dataAdapter.Fill(data)
 
                 dataAdapter.Dispose()
-
-                If dataSet.Tables.Count > 0 Then
-                    FrmResult.MdiParent = FrmMenu
-                    If FrmResult.IsHandleCreated Then
-                        FrmResult.Focus()
-                    Else
-                        FrmResult.Show()
-                    End If
-
-                    FrmResult.Grid.DataSource = dataSet
-                    FrmResult.Grid.DataMember = dataSet.Tables(0).TableName
-                End If
 
             Else
                 my_status = "Affected rows: " & myCmd.ExecuteNonQuery()
@@ -149,6 +139,36 @@ Public Class DB_FB
 
     End Function
 
+    Public Shared Function Test_conection() As Boolean
+        Dim conn As New FbConnection
+        Dim myCmd As New FbCommand
+        Dim dataAdapter As New FbDataAdapter
+        Dim dataSet As New DataSet
+
+        Try
+            conn.ConnectionString = string_conection()
+            conn.Open()
+
+            myCmd.CommandType = CommandType.Text
+            myCmd.Connection = conn
+            myCmd.CommandText = "SELECT cast('Now' as date) FROM RDB$DATABASE"
+
+            dataAdapter = New FbDataAdapter(myCmd)
+            dataAdapter.Fill(dataSet)
+
+            dataAdapter.Dispose()
+            conn.Close()
+
+            If IsDate(dataSet.Tables(0).Rows(0).Item(0)) Then
+                Return True
+            End If
+
+        Catch ex As Exception
+            Call CloseConnection(conn)
+        End Try
+
+        Return False
+    End Function
 
 #End Region
 

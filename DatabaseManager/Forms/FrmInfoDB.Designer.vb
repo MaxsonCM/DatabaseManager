@@ -122,7 +122,6 @@ Partial Class FrmInfoDB
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtPort.Location = New System.Drawing.Point(85, 116)
         Me.TxtPort.Name = "TxtPort"
-        Me.TxtPort.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TxtPort.Size = New System.Drawing.Size(298, 20)
         Me.TxtPort.TabIndex = 5
         '

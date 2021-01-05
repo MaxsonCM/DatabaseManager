@@ -112,8 +112,7 @@ Public Class DB_AC
         Return Nothing
     End Function
 
-    Public Shared Function Script_execute(ByVal my_command As String, Optional ByRef my_status As String = "") As Boolean
-        Dim dataSet As New DataSet()
+    Public Shared Function Script_execute(ByVal my_command As String, Optional ByRef my_status As String = "", Optional ByRef data As DataSet = Nothing) As Boolean
         Dim dataAdapter As System.Data.OleDb.OleDbDataAdapter
         Dim myCmd As System.Data.OleDb.OleDbCommand
         Dim conn As System.Data.OleDb.OleDbConnection
@@ -132,21 +131,24 @@ Public Class DB_AC
             If InStr(UCase(my_command), "SELECT ", CompareMethod.Text) > 0 Then
 
                 dataAdapter = New System.Data.OleDb.OleDbDataAdapter(myCmd)
-                dataAdapter.Fill(dataSet)
+
+                data = New DataSet
+
+                dataAdapter.Fill(data)
 
                 dataAdapter.Dispose()
 
-                If dataSet.Tables.Count > 0 Then
-                    FrmResult.MdiParent = FrmMenu
-                    If FrmResult.IsHandleCreated Then
-                        FrmResult.Focus()
-                    Else
-                        FrmResult.Show()
-                    End If
+                'If dataSet.Tables.Count > 0 Then
+                '    FrmResult.MdiParent = FrmMenu
+                '    If FrmResult.IsHandleCreated Then
+                '        FrmResult.Focus()
+                '    Else
+                '        FrmResult.Show()
+                '    End If
 
-                    FrmResult.Grid.DataSource = dataSet
-                    FrmResult.Grid.DataMember = dataSet.Tables(0).TableName
-                End If
+                '    FrmResult.Grid.DataSource = dataSet
+                '    FrmResult.Grid.DataMember = dataSet.Tables(0).TableName
+                'End If
 
             Else
                 my_status = "Affected rows: " & myCmd.ExecuteNonQuery()
@@ -160,6 +162,37 @@ Public Class DB_AC
             Return False
         End Try
 
+    End Function
+
+    Public Shared Function Test_connection() As Boolean
+        Dim conn As New OleDb.OleDbConnection
+        Dim myCmd As New OleDb.OleDbCommand
+        Dim dataAdapter As OleDb.OleDbDataAdapter
+        Dim dataSet As New DataSet()
+
+        Try
+            conn.ConnectionString = string_conection()
+            conn.Open()
+
+            myCmd.CommandType = CommandType.Text
+            myCmd.Connection = conn
+            myCmd.CommandText = "SELECT NOW"
+
+            dataAdapter = New System.Data.OleDb.OleDbDataAdapter(myCmd)
+            dataAdapter.Fill(dataSet)
+
+            dataAdapter.Dispose()
+            conn.Close()
+
+            If IsDate(dataSet.Tables(0).Rows(0).Item(0)) Then
+                Return True
+            End If
+
+        Catch ex As Exception
+            Call CloseConnection(conn)
+        End Try
+
+        Return False
     End Function
 
     Public Shared Sub RepairDatabase()
@@ -618,6 +651,8 @@ Public Class DB_AC
     End Function
 
 #End Region
+
+    
 
 
 End Class

@@ -107,7 +107,9 @@ Public Class FrmMenu
             If e.Node.Nodes.Count > 0 Then
                 ' Calls the CheckAllChildNodes method, passing in the current 
                 ' Checked value of the TreeNode whose checked state changed. 
-                CheckChildNodes(e.Node, e.Node.Checked)
+                Call CheckChildNodes(e.Node, e.Node.Checked)
+            Else
+                Call CheckParentNode(e.Node)
             End If
         End If
     End Sub
@@ -275,6 +277,22 @@ Public Class FrmMenu
             child.Checked = checked
             If child.Nodes.Count > 0 Then CheckChildNodes(child, checked)
         Next
+    End Sub
+
+    Private Sub CheckParentNode(ByVal currNode As TreeNode)
+        Dim parentNode As TreeNode = currNode.Parent
+        If parentNode Is Nothing Then Exit Sub
+
+        parentNode.Checked = True
+
+        For Each node As TreeNode In parentNode.Nodes
+            If Not node.Checked Then
+                parentNode.Checked = False
+                Exit For
+            End If
+        Next
+
+        CheckParentNode(parentNode)
     End Sub
 
 #End Region

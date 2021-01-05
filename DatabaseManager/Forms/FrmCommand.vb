@@ -2,6 +2,8 @@
 Public Class FrmCommand
 
     Private Sub btnExecute_Click(sender As Object, e As EventArgs) Handles btnExecute.Click
+        Dim data As New DataSet
+
         Try
 
             If InStr(UCase(txtCommand.Text), "UPDATE ", CompareMethod.Text) > 0 Then
@@ -23,30 +25,12 @@ Public Class FrmCommand
 
             If Trim(txtCommand.Text) = "" Then Exit Sub
 
-            If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
+            DB_Mediator.Script_execute(txtCommand.Text, txtStatus.Text, data)
 
-                If DB_AC.Script_execute(txtCommand.Text, txtStatus.Text) Then
-                    Me.DialogResult = Windows.Forms.DialogResult.OK
-
-                    If Me.Modal = True Then
-                        Me.Close()
-                        Me.Dispose()
-                        Exit Sub
-                    End If
-                End If
-            ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
-
-                If DB_FB.Script_execute(txtCommand.Text, txtStatus.Text) Then
-                    Me.DialogResult = Windows.Forms.DialogResult.OK
-
-                    If Me.Modal = True Then
-                        Me.Close()
-                        Me.Dispose()
-                        Exit Sub
-                    End If
-                End If
-            Else
-                MsgBox("Execution has not been implemented for the current database!", vbInformation, "Attention")
+            GridResult.DataSource = data
+            If Not IsNothing(data) Then
+                GridResult.DataMember = data.Tables(0).TableName
+                If data.Tables(0).Rows.Count > 0 Then TabControlCommand.SelectedIndex = 1
             End If
 
         Catch ex As Exception
@@ -57,4 +41,8 @@ Public Class FrmCommand
 
     End Sub
 
+    Private Sub FrmCommand_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TabControlCommand.SelectedIndex = 0
+
+    End Sub
 End Class

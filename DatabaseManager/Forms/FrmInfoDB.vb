@@ -16,8 +16,12 @@
             clsGlobal.sourceDataBase = ""
             clsGlobal.portDataBase = ""
         ElseIf clsGlobal.type_database = DATABASE_TYPE.NONE Then
-        Else
-            'validate config
+
+        End If
+
+        If Not DB_Mediator.test_connection() Then
+            MsgBox("Could not connect to the database!", vbInformation)
+            Exit Sub
         End If
 
         Me.DialogResult = Windows.Forms.DialogResult.OK

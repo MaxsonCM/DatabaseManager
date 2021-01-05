@@ -272,12 +272,12 @@
         Return ""
     End Function
 
-    Shared Function Script_execute(ByVal my_command As String, Optional ByRef my_status As String = "") As Boolean
+    Shared Function Script_execute(ByVal my_command As String, Optional ByRef my_status As String = "", Optional ByRef data As DataSet = Nothing) As Boolean
 
         If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
-            Return DB_AC.Script_execute(my_command, my_status)
+            Return DB_AC.Script_execute(my_command, my_status, data)
         ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
-            Return DB_FB.Script_execute(my_command, my_status)
+            Return DB_FB.Script_execute(my_command, my_status, data)
         Else
             MsgBox("The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!")
             my_status = "The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!"
@@ -299,6 +299,29 @@
             Return ""
         End If
 
+    End Function
+
+    Shared Function test_connection() As Boolean
+        
+        If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
+
+            If Not DB_AC.Test_connection Then
+                Return False
+            End If
+
+        ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
+
+            If Not DB_FB.Test_conection Then
+                Return False
+            End If
+
+        Else
+            MsgBox("The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!")
+
+            Return False
+        End If
+
+        Return True
     End Function
 
 End Class
