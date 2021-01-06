@@ -602,6 +602,10 @@ Public Class DB_AC
         Return "DROP PROCEDURE [" & procedure & "];"
     End Function
 
+    Public Shared Function GetScriptDropField(ByVal table As String, ByVal column As String) As String
+        Return "ALTER TABLE [" & table & "] DROP [" & column & "]"
+    End Function
+
     Shared Function Translate_criteria(ByVal column As String, ByVal criteria As String, ByVal value As String) As String
         Dim trans As String = ""
         'access requires that single quotes are not used in numeric fields
@@ -649,6 +653,7 @@ Public Class DB_AC
         End Select
         Return trans
     End Function
+
 
 #End Region
 

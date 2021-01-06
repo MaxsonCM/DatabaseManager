@@ -1,11 +1,13 @@
 ﻿Imports System.ComponentModel
 
 Public Class FrmTableEditor
+
     Public table As String
     Dim ds As New DataSet
     Dim where_clause, grid_selection As String
 
 #Region "Form Control"
+
 
     Private Sub FrmTableEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Table [" & table & "]"
@@ -93,7 +95,6 @@ Public Class FrmTableEditor
 
 #End Region
 
-
     Private Function FindIndexColumn(ByVal header As String, ByVal grid As DataGridView) As Integer
         Dim index As Integer = -1
 
@@ -108,8 +109,8 @@ Public Class FrmTableEditor
 
 #Region "Grid Estructure - Actions"
 
-    Private Sub EstructureGrid_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles EstructureGrid.CellClick
-        If Not IsNothing(TableDataGrid.CurrentCell) Then
+    Private Sub EstructureGrid_MouseClick(sender As Object, e As MouseEventArgs) Handles EstructureGrid.MouseClick
+        If Not IsNothing(EstructureGrid.CurrentCell) Then
             tsbRemoveField.Enabled = True
             tsbEditField.Enabled = True
         Else
@@ -118,24 +119,64 @@ Public Class FrmTableEditor
         End If
     End Sub
 
+    Private Sub EstructureGrid_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles EstructureGrid.CellDoubleClick
+
+        Call Open_field_editor()
+
+    End Sub
+
+    Private Sub tsbAddField_Click(sender As Object, e As EventArgs) Handles tsbAddField.Click
+        Dim result As Windows.Forms.DialogResult
+        Dim new_window As New FrmFieldEditor
+        new_window.table = table
+        new_window.field = ""
+        result = new_window.ShowDialog()
+
+        If result = Windows.Forms.DialogResult.OK Then
+            Call tsbRefresh_Click(Nothing, EventArgs.Empty)
+        End If
+    End Sub
+
     Private Sub tsbRemoveField_Click(sender As Object, e As EventArgs) Handles tsbRemoveField.Click
-        If IsNothing(TableDataGrid.CurrentCell) Then
+        If IsNothing(EstructureGrid.CurrentCell) Then
             tsbRemoveField.Enabled = False
             tsbEditField.Enabled = False
             Exit Sub
         End If
 
+        Dim query, column As String
+        column = EstructureGrid.CurrentRow.Cells("Column_Name").Value
+
+        If MsgBox("Are you sure that you want to drop [" & column & "] field  ?", vbQuestion + vbYesNo, "Warning") = MsgBoxResult.Yes Then
+
+            query = DB_Mediator.ScriptDropField(table, column)
+            If DB_Mediator.Script_execute(query) Then
+                Call tsbRefresh_Click(sender, e)
+            End If
+
+        End If
 
     End Sub
 
     Private Sub tsbEditField_Click(sender As Object, e As EventArgs) Handles tsbEditField.Click
-        If IsNothing(TableDataGrid.CurrentCell) Then
-            tsbRemoveField.Enabled = False
-            tsbEditField.Enabled = False
-            Exit Sub
+        Call Open_field_editor()
+    End Sub
+
+    Private Sub Open_field_editor()
+        Dim result As Windows.Forms.DialogResult
+
+        If Not IsNothing(EstructureGrid.CurrentCell) Then
+
+            Dim new_window As New FrmFieldEditor
+            new_window.table = table
+            new_window.field = EstructureGrid.CurrentRow.Cells("Column_Name").Value
+            result = new_window.ShowDialog()
+
+            If result = Windows.Forms.DialogResult.OK Then
+                Call tsbRefresh_Click(Nothing, EventArgs.Empty)
+            End If
+
         End If
-
-
     End Sub
 
 #End Region

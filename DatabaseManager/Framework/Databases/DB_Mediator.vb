@@ -10,6 +10,8 @@
         End If
     End Function
 
+#Region "Load Components"
+
     Public Shared Function LoadListTable(ByRef listBox As ListBox) As Boolean
         Dim myList As New List(Of String)
         Dim item As String
@@ -246,6 +248,11 @@
         Return dt
     End Function
 
+#End Region
+
+
+#Region "Script"
+
     Shared Function ScriptDropTable(ByVal table As String) As String
 
         If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
@@ -271,6 +278,21 @@
 
         Return ""
     End Function
+
+    Shared Function ScriptDropField(ByVal table As String, ByVal column As String) As String
+
+        If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
+            Return DB_AC.GetScriptDropField(table, column)
+        ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
+            Return DB_FB.GetScriptDropField(table, column)
+        Else
+            MsgBox("The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!")
+        End If
+
+        Return ""
+    End Function
+
+#End Region
 
     Shared Function Script_execute(ByVal my_command As String, Optional ByRef my_status As String = "", Optional ByRef data As DataSet = Nothing) As Boolean
 
