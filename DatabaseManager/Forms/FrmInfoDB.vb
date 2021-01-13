@@ -56,6 +56,7 @@
     End Sub
 
     Private Sub FrmInfoDB_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.Icon = FrmMenu.Icon
         CmbDatabaseType.DataSource = System.Enum.GetValues(GetType(DATABASE_TYPE))
         CmbDatabaseType.TabIndex = 0
     End Sub

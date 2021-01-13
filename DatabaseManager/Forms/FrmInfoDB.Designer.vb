@@ -179,7 +179,7 @@ Partial Class FrmInfoDB
         Me.CcoBotaoPasta1.Name = "CcoBotaoPasta1"
         Me.CcoBotaoPasta1.PUAuxControl = Me.txtDatabase
         Me.CcoBotaoPasta1.PUDataType = DatabaseManager.TYPE_FOLDER.FOLDER_FILE
-        Me.CcoBotaoPasta1.PUFilterType = DatabaseManager.TYPE_FILTER_FILE.ALL
+        Me.CcoBotaoPasta1.PUFilterType = DatabaseManager.TYPE_FILTER_FILE.ALL_DATABASE
         Me.CcoBotaoPasta1.Size = New System.Drawing.Size(26, 21)
         Me.CcoBotaoPasta1.TabIndex = 2
         Me.CcoBotaoPasta1.UseVisualStyleBackColor = True

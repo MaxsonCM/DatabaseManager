@@ -110,11 +110,12 @@ Public Class ccoFolderButton
         Dim resultado As String = "All Files|*.*"
 
         Select Case _type_filter
-            Case TYPE_FILTER_FILE.ACCESS : resultado = "Files MDB e ACCDB |*.MDB;*.ACCDB|All Files|*.*"
+            Case TYPE_FILTER_FILE.ACCESS : resultado = "Access Files|*.MDB;*.ACCDB|All Files|*.*"
             Case TYPE_FILTER_FILE.TEXT : resultado = "Text Files|*.txt|All Files|*.*"
             Case TYPE_FILTER_FILE.EXCEL : resultado = "Excel Fiels|*.xls;*.xlsx|All Files|*.*"
             Case TYPE_FILTER_FILE.JPEG : resultado = "Image Files (*.jpeg)|*.jpeg|All Files|*.*"
             Case TYPE_FILTER_FILE.FIREBIRD : resultado = "Firebird (*.fdb)|*.fdb;*.gdb|All Files|*.*"
+            Case TYPE_FILTER_FILE.ALL_DATABASE : resultado = "Compatible databases |*.MDB;*.ACCDB;*.FDB;*.GDB|Access Files|*.MDB;*.ACCDB|Firebird and Int. |*.FDB;*.GDB|All Files|*.*"
         End Select
 
         Return resultado

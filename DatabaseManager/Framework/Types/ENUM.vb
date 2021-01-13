@@ -17,6 +17,7 @@ Public Enum TYPE_FILTER_FILE
     EXCEL
     JPEG
     ALL
+    ALL_DATABASE
 End Enum
 
 Public Enum DATABASE_TYPE

@@ -83,8 +83,12 @@ Public Class FrmTableEditor
     Private Sub BackgroundWorkerSearch_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorkerSearch.RunWorkerCompleted
         Try
 
-            TableDataGrid.DataSource = ds.Tables(0)
-            TableDataGrid.ClearSelection()
+            If IsNothing(ds) Then
+                TableDataGrid.DataSource = Nothing
+            Else
+                TableDataGrid.DataSource = ds.Tables(0)
+                TableDataGrid.ClearSelection()
+            End If
 
         Catch ex As Exception
             MsgBox(ex.Message)
