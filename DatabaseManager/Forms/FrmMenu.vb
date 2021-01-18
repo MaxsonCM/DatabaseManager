@@ -129,8 +129,7 @@ Public Class FrmMenu
 
     End Sub
 
-    Private Sub TrvEstructure_DoubleClick(sender As Object, e As EventArgs) Handles TrvEstructure.DoubleClick
-
+    Private Sub CallTableEditor()
         If node_root = "" Or node_child = "" Then Exit Sub
 
         Try
@@ -160,6 +159,16 @@ Public Class FrmMenu
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+    End Sub
+
+    Private Sub TrvEstructure_DoubleClick(sender As Object, e As EventArgs) Handles TrvEstructure.DoubleClick
+        Call CallTableEditor()
+    End Sub
+
+    Private Sub TrvEstructure_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TrvEstructure.KeyPress
+        If Asc(e.KeyChar) = 13 Then
+            Call CallTableEditor()
+        End If
     End Sub
 
     Private Sub TrvEstructure_KeyDown(sender As Object, e As KeyEventArgs) Handles TrvEstructure.KeyDown
