@@ -674,4 +674,34 @@ Public Class DB_FB
 
 #End Region
 
+    Public Shared Sub LoadTypes(ByRef combo As ComboBox)
+
+        combo.Items.Clear()
+
+        combo.Items.Add("SMALLINT") '7
+        combo.Items.Add("INTEGER") '8
+        combo.Items.Add("FLOAT") '10
+        combo.Items.Add("DATE") '12
+        combo.Items.Add("TIME") '13
+        combo.Items.Add("CHAR") '14
+        combo.Items.Add("BIGINT") '16 - 0
+        combo.Items.Add("NUMERIC") '16 - 1
+        combo.Items.Add("DECIMAL") '16 - 2
+        combo.Items.Add("DOUBLE PRECISION") '27
+        combo.Items.Add("TIMESTAMP") '35
+        combo.Items.Add("VARCHAR") '37
+        combo.Items.Add("BLOB") '261 - 0  Binary or 1 Text
+
+    End Sub
+
+    Public Shared Sub LoadSubTypes(ByRef combo As ComboBox)
+
+        combo.Items.Clear()
+
+        combo.Items.Add("Binary") '0
+        combo.Items.Add("Text") '1
+
+    End Sub
+
+
 End Class

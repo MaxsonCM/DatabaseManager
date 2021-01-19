@@ -657,7 +657,24 @@ Public Class DB_AC
 
 #End Region
 
-    
+    Public Shared Sub LoadTypes(ByRef combo As ComboBox)
+
+        combo.Items.Clear()
+
+        combo.Items.Add("Integer") '2
+        combo.Items.Add("Long") '3
+        combo.Items.Add("Simple") '4
+        combo.Items.Add("Double") '5
+        combo.Items.Add("Currency") '6
+        combo.Items.Add("Date Time") '7
+        combo.Items.Add("Boolean") '11
+        combo.Items.Add("Byte") '17
+        combo.Items.Add("Replication Code") '72
+        combo.Items.Add("Object OLE") '128
+        combo.Items.Add("Memo") '130
+        combo.Items.Add("Decimal") '131
+
+    End Sub
 
 
 End Class

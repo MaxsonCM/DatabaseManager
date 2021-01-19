@@ -5,9 +5,21 @@ Public Class FrmFieldEditor
     Public table, field As String
 
     Private Sub FrmFieldEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.Text = "Edit field [" & field & "]"
+        If Len(field) > 0 Then
+            Me.Text = "Edit field [" & field & "]"
+        Else
+            Me.Text = "New field"
+        End If
+
         LblTable.Text = table
         TxtField.Text = field
+
+        Call DB_Mediator.LoadTypes(CmbType)
+
+        CmbSubType.Items.Clear()
+        CmbSubType.Visible = False
+        LblSubType.Visible = False
+
     End Sub
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click

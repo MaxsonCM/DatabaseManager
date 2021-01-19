@@ -221,6 +221,7 @@
     End Function
 
     Private Shared Function ConfigureDataTable() As DataTable
+
         Dim dt As DataTable
         Dim dc As DataColumn
 
@@ -246,7 +247,30 @@
         dt.Columns.Add(dc)
 
         Return dt
+
     End Function
+
+    Public Shared Sub LoadTypes(ByRef combo As ComboBox)
+
+        If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
+            DB_AC.LoadTypes(combo)
+        ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
+            DB_FB.LoadTypes(combo)
+        Else
+            MsgBox("The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!")
+        End If
+    End Sub
+
+    Public Shared Sub LoadSubTypes(ByRef combo As ComboBox)
+
+        If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
+            combo.Items.Clear()
+        ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
+            DB_FB.LoadSubTypes(combo)
+        Else
+            MsgBox("The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!")
+        End If
+    End Sub
 
 #End Region
 
