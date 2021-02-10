@@ -113,6 +113,14 @@ Public Class FrmTableEditor
 
 #Region "Grid Estructure - Actions"
 
+    Private Sub EstructureGrid_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles EstructureGrid.DataError
+        Try
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
     Private Sub EstructureGrid_MouseClick(sender As Object, e As MouseEventArgs) Handles EstructureGrid.MouseClick
         If Not IsNothing(EstructureGrid.CurrentCell) Then
             tsbRemoveField.Enabled = True
@@ -271,6 +279,14 @@ Public Class FrmTableEditor
 
     Private Sub TsbSearch_Click(sender As Object, e As EventArgs) Handles TsbSearch.Click
         Call LoadRegisters()
+    End Sub
+
+    Private Sub TableDataGrid_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles TableDataGrid.DataError
+        Try
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub TableDataGrid_GotFocus(sender As Object, e As EventArgs) Handles TableDataGrid.GotFocus
