@@ -5,9 +5,9 @@ Public Class FrmTableEditor
     Public table As String
     Dim ds As New DataSet
     Dim where_clause, grid_selection As String
+    Dim params As New List(Of clsParameter)
 
 #Region "Form Control"
-
 
     Private Sub FrmTableEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Table [" & table & "]"
@@ -72,7 +72,9 @@ Public Class FrmTableEditor
     Private Sub BackgroundWorkerSearch_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerSearch.DoWork
         Try
             If IsNothing(table) Then Exit Sub
-            ds = DB_Mediator.LoadGrid(table, where_clause)
+
+
+            ds = DB_Mediator.LoadGrid(table, where_clause, params)
 
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -196,32 +198,40 @@ Public Class FrmTableEditor
 #Region "Grid - Data and filter - Actions"
 
     Private Sub makeWhereClause()
-        Dim clause, query As String
+        Dim clause, query_fake, query As String
         Dim old_field, field, value, criteria As String
+        Dim param_t As New clsParameter
 
         clause = ""
+        query_fake = ""
         query = ""
+        params.Clear()
+
         For Each row As DataGridViewRow In FilterDataGrid.Rows
 
             If row.Cells().Item(FindIndexColumn("A", FilterDataGrid)).Value = True Then
 
-                query += clause
+                query_fake += clause
 
                 field = row.Cells().Item(FindIndexColumn("Column", FilterDataGrid)).Value
                 criteria = row.Cells().Item(FindIndexColumn("Criteria", FilterDataGrid)).Value
                 value = row.Cells().Item(FindIndexColumn("Value", FilterDataGrid)).Value
 
-                query += DB_Mediator.Translate_criteria(field, criteria, value)
+                query_fake += DB_Mediator.Translate_criteria(field, criteria, value)
                 clause = " " + row.Cells().Item(FindIndexColumn("AND/OR", FilterDataGrid)).Value + " "
+
+                query += DB_Mediator.Translate_criteria(param_t, field, criteria, value)
 
                 old_field = field
 
+
+                params.Add(param_t)
             End If
 
         Next
 
-        TxtWhereClause.Text = query
-        where_clause = query
+        TxtWhereClause.Text = query_fake
+        where_clause = query_fake
     End Sub
 
     Private Sub TsbAddFilter_Click(sender As Object, e As EventArgs) Handles TsbAddFilter.Click

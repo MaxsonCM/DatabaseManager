@@ -110,6 +110,21 @@
         Return ds
     End Function
 
+    Public Shared Function LoadGrid(ByVal table As String, Optional ByVal where_clause As String = "", Optional ByVal params As List(Of clsParameter) = Nothing) As DataSet
+        Dim ds As New DataSet
+
+        If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
+            ds = DB_AC.SearchTable(table, where_clause, params)
+        ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
+            ds = DB_FB.SearchTable(table, where_clause, params)
+        Else
+            MsgBox("The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!")
+            Return Nothing
+        End If
+
+        Return ds
+    End Function
+
     Public Shared Function LoadSchemaTable(ByVal my_table As String, ByRef grid As DataGridView) As Boolean
         Dim my_fields As New List(Of clsSchemaTable)
         Dim field As New clsSchemaTable
@@ -339,6 +354,22 @@
             Return DB_AC.Translate_criteria(column, criteria, value)
         ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
             Return DB_FB.Translate_criteria(column, criteria, value)
+        Else
+            MsgBox("The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!")
+
+            Return ""
+        End If
+
+    End Function
+
+    Shared Function Translate_criteria(ByRef param As clsParameter, ByVal column As String, ByVal criteria As String, ByVal value As String) As String
+
+        param = New clsParameter
+
+        If clsGlobal.type_database = DATABASE_TYPE.ACCESS Then
+            Return DB_AC.Translate_criteria(param, column, criteria, value)
+        ElseIf clsGlobal.type_database = DATABASE_TYPE.FIREBIRD Then
+            Return DB_FB.Translate_criteria(param, column, criteria, value)
         Else
             MsgBox("The functions [" & System.Reflection.MethodInfo.GetCurrentMethod().Name & "] has not implemented for the current database!")
 

@@ -2,121 +2,145 @@
 <doc>
 <assembly>
 <name>
-DatabaseManager
+Database Manager
 </name>
 </assembly>
 <members>
-<member name="T:DatabaseManager.TYPE_FOLDER">
-	<summary>
- LIST OF GENERAL USE ENUMERATORS
- </summary>
-	<remarks></remarks>
-</member><member name="M:DatabaseManager.REGEDIT.GetRegistry(System.String,System.String,System.String)">
-	<summary>
- Read a key/value in the windows registry.
- Recording path: HKEY_CURRENT_USER/Software/[APP_NAME]:[KEY]-&gt;[NAME::VALUE]
- </summary>
-	<param name="key">registry key name</param>
-	<param name="name">Name value</param>
-	<param name="value">Default value</param>
-	<returns></returns>
-</member><member name="M:DatabaseManager.REGEDIT.SetRegistry(System.String,System.String,System.String)">
-	<summary>
- Record a key/value in the windows registry.
- Recording path: HKEY_CURRENT_USER/Software/[APP_NAME]:[KEY]-&gt;[NAME::VALUE]
- </summary>
-	<param name="key">registry key name</param>
-	<param name="name">Name value</param>
-	<param name="value">Key valeu</param>
-	<returns></returns>
-</member><member name="M:DatabaseManager.DB_AC.Version">
-	<summary>
- Function test
- </summary>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="T:DatabaseManager.DB_AC">
-	<summary>
+<member name="T:DatabaseManager.My.Resources.Resources">
+<summary>
+  Uma classe de recurso de tipo de alta segurança, para pesquisar cadeias de caracteres localizadas etc.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.ResourceManager">
+<summary>
+  Retorna a instância de ResourceManager armazenada em cache usada por essa classe.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.Culture">
+<summary>
+  Substitui a propriedade CurrentUICulture do thread atual para todas as
+  pesquisas de recursos que usam essa classe de recurso de tipo de alta segurança.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources._16">
+<summary>
+  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.blank_16">
+<summary>
+  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.Data_table_16">
+<summary>
+  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.edit_16">
+<summary>
+  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.F_16">
+<summary>
+  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.Folder_Explorer_16">
+<summary>
+  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.I_16">
+<summary>
+  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.Key_16">
+<summary>
+  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.Loading_64">
+<summary>
+  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.minus_16">
+<summary>
+  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.P_16">
+<summary>
+  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.Play_32">
+<summary>
+  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.plus_16">
+<summary>
+  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.Refresh_16">
+<summary>
+  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.U_16">
+<summary>
+  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DatabaseManager.My.Resources.Resources.window_16">
+<summary>
+  Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="T:DatabaseManager.DB_AC">
+ <summary>
  CLASS WITH METHODS / ROUTINES FOR ACCESS TO DATABASE ACCESS
  </summary>
-	<remarks></remarks>
-</member><member name="P:DatabaseManager.My.Resources.Resources.ResourceManager">
-	<summary>
-  Returns the cached ResourceManager instance used by this class.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.Culture">
-	<summary>
-  Overrides the current thread's CurrentUICulture property for all
-  resource lookups using this strongly typed resource class.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources._16">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.blank_16">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.Data_table_16">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.edit_16">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.F_16">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.Folder_Explorer_16">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.I_16">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.Key_16">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.Loading_64">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.minus_16">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.P_16">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.Play_32">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.plus_16">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.Refresh_16">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.U_16">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:DatabaseManager.My.Resources.Resources.window_16">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="T:DatabaseManager.My.Resources.Resources">
-	<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
+ <remarks></remarks>
+</member>
+<member name="M:DatabaseManager.DB_AC.Version">
+ <summary>
+ Function test
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:DatabaseManager.TYPE_FOLDER">
+ <summary>
+ LIST OF GENERAL USE ENUMERATORS
+ </summary>
+ <remarks></remarks>
+ 
+</member>
+<member name="M:DatabaseManager.REGEDIT.GetRegistry(System.String,System.String,System.String)">
+ <summary>
+ Read a key/value in the windows registry.
+ Recording path: HKEY_CURRENT_USER/Software/[APP_NAME]:[KEY]->[NAME::VALUE]
+ </summary>
+ <param name="key">registry key name</param>
+ <param name="name">Name value</param>
+ <param name="value">Default value</param>
+ <returns></returns>
+</member>
+<member name="M:DatabaseManager.REGEDIT.SetRegistry(System.String,System.String,System.String)">
+ <summary>
+ Record a key/value in the windows registry.
+ Recording path: HKEY_CURRENT_USER/Software/[APP_NAME]:[KEY]->[NAME::VALUE]
+ </summary>
+ <param name="key">registry key name</param>
+ <param name="name">Name value</param>
+ <param name="value">Key valeu</param>
+ <returns></returns>
 </member>
 </members>
 </doc>

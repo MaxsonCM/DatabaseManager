@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "9e0a218d-17a5-4155-aaac-ac4a7679ea81": {
+      "ProjectGuid": "9e0a218d-17a5-4155-aaac-ac4a7679ea81",
+      "DisplayName": "DatabaseManager",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

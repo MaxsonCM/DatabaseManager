@@ -33,3 +33,22 @@ D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.vbp
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Database Manager.exe
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Database Manager.xml
 D:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Database Manager.pdb
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.exe.config
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.exe
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.pdb
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\bin\Debug\Database Manager.xml
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.vbproj.AssemblyReference.cache
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmAbout.resources
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmCommand.resources
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmFieldEditor.resources
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmResult.resources
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmInfoDB.resources
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmMenu.resources
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.FrmTableEditor.resources
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.Resources.resources
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.vbproj.GenerateResource.cache
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.vbproj.CoreCompileInputs.cache
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\DatabaseManager.vbproj.CopyComplete
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Database Manager.exe
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Database Manager.xml
+E:\PROJETOS\VS2013\DatabaseManager\DatabaseManager\obj\Debug\Database Manager.pdb

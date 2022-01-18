@@ -61,6 +61,40 @@ Public Class DB_FB
             Return Nothing
         End Try
     End Function
+    Public Shared Function SearchTable(ByVal table As String, Optional ByVal where_clause As String = "", Optional ByVal params As List(Of clsParameter) = Nothing) As DataSet
+        Dim conn As New FbConnection
+        Dim myCmd As New FbCommand
+        Dim dataAdapter As FbDataAdapter
+        Dim ds As New DataSet()
+
+        Try
+
+            conn.ConnectionString = string_conection()
+            conn.Open()
+
+            myCmd.CommandType = CommandType.Text
+            myCmd.Connection = conn
+            myCmd.CommandText = "SELECT * FROM " & table & ""
+            If where_clause.Trim.Length > 0 Then myCmd.CommandText += " WHERE " + where_clause
+
+            For Each column In params
+                myCmd.Parameters.Add(New FbParameter(column.COLUMN_NAME, column.VALUE))
+            Next
+
+            dataAdapter = New FbDataAdapter(myCmd)
+            dataAdapter.Fill(ds)
+
+            dataAdapter.Dispose()
+            conn.Close()
+
+            Return ds
+
+        Catch ex As Exception
+
+            Call CloseConnection(conn)
+            Return Nothing
+        End Try
+    End Function
 
     Public Shared Function Execute(ByVal my_command As String) As DataSet
         Dim conn As New FbConnection
@@ -669,6 +703,30 @@ Public Class DB_FB
             Case Else
                 trans = column & criteria & "'" & value & "'"
         End Select
+        Return trans
+    End Function
+
+    Shared Function Translate_criteria(ByRef param As clsParameter, ByVal column As String, ByVal criteria As String, ByVal value As String) As String
+        Dim trans As String = ""
+
+        Select Case criteria.ToLower.Trim
+            Case "is null" : trans = column & " IS NULL"
+            Case "not is null" : trans = "NOT " & column & " IS NULL"
+            Case "starting with"
+                trans = column & " STARTING WITH "
+                trans += "@" & column
+            Case "not starting with"
+                trans = column & " NOT STARTING WITH "
+                trans += "@" & column
+            Case "contains" : trans = column & " CONTAINING @" & column
+            Case "Not contains" : trans = column & " Not CONTAINING @" & column
+            Case Else
+                trans = column & criteria & "@" & column
+        End Select
+
+        param.COLUMN_NAME = "@" & column
+        param.VALUE = value
+
         Return trans
     End Function
 
