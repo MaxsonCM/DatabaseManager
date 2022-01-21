@@ -93,7 +93,7 @@ Public Class DB_AC
             If where_clause.Trim.Length > 0 Then myCmd.CommandText += " WHERE " + where_clause
 
             For Each column In params
-                myCmd.Parameters.Add(New OleDbParameter(column.COLUMN_NAME, column.VALUE))
+                myCmd.Parameters.AddWithValue(column.COLUMN_NAME, column.VALUE)
             Next
 
             dataAdapter = New System.Data.OleDb.OleDbDataAdapter(myCmd)
@@ -645,48 +645,35 @@ Public Class DB_AC
 
     Shared Function Translate_criteria(ByVal column As String, ByVal criteria As String, ByVal value As String) As String
         Dim trans As String = ""
+        Dim value_temp As String
         'access requires that single quotes are not used in numeric fields
+
+        If IsNothing(value) Then
+            value_temp = "NULL"
+        Else
+            value_temp = value
+        End If
 
         Select Case criteria.ToLower.Trim
             Case "is null" : trans = column & " IS NULL"
             Case "not is null" : trans = "NOT " & column & " IS NULL"
             Case "starting with"
                 trans = column & " LIKE "
-                If IsNumeric(value) Then
-                    trans += "'" & value & "'"
-                Else
-                    trans += value
-                End If
+                trans += value_temp
             Case "not starting with"
                 trans = "NOT " & column & " LIKE "
-                If IsNumeric(value) Then
-                    trans += "'" & value & "'"
-                Else
-                    trans += value
-                End If
+                trans += value_temp
             Case "contains"
                 trans = "InStr(" & column & ","
-                If IsNumeric(value) Then
-                    trans += "'" & value & "'"
-                Else
-                    trans += value
-                End If
+                trans += value_temp
                 trans += ") > 0"
             Case "not contains"
                 trans = "InStr(" & column & ","
-                If IsNumeric(value) Then
-                    trans += "'" & value & "'"
-                Else
-                    trans += value
-                End If
+                trans += value_temp
                 trans += ") = 0"
             Case Else
                 trans = column & criteria
-                If Not IsNumeric(value) Then
-                    trans += "'" & value & "'"
-                Else
-                    trans += value
-                End If
+                trans += value_temp
         End Select
         Return trans
     End Function
@@ -716,6 +703,7 @@ Public Class DB_AC
                 trans = column & criteria
                 trans += "@" & column
         End Select
+
 
         param.COLUMN_NAME = "@" & column
         param.VALUE = value

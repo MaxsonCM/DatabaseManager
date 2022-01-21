@@ -110,7 +110,7 @@ Partial Class FrmTableEditor
         Me.TabControlPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.TabControlPrincipal.Name = "TabControlPrincipal"
         Me.TabControlPrincipal.SelectedIndex = 0
-        Me.TabControlPrincipal.Size = New System.Drawing.Size(684, 362)
+        Me.TabControlPrincipal.Size = New System.Drawing.Size(778, 432)
         Me.TabControlPrincipal.TabIndex = 0
         '
         'TabPageEstructure
@@ -120,7 +120,7 @@ Partial Class FrmTableEditor
         Me.TabPageEstructure.Location = New System.Drawing.Point(4, 22)
         Me.TabPageEstructure.Name = "TabPageEstructure"
         Me.TabPageEstructure.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageEstructure.Size = New System.Drawing.Size(676, 336)
+        Me.TabPageEstructure.Size = New System.Drawing.Size(770, 406)
         Me.TabPageEstructure.TabIndex = 0
         Me.TabPageEstructure.Text = "Estructure"
         '
@@ -136,7 +136,7 @@ Partial Class FrmTableEditor
         Me.TableLayoutPanelEstructure.RowCount = 2
         Me.TableLayoutPanelEstructure.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanelEstructure.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelEstructure.Size = New System.Drawing.Size(670, 330)
+        Me.TableLayoutPanelEstructure.Size = New System.Drawing.Size(764, 400)
         Me.TableLayoutPanelEstructure.TabIndex = 3
         '
         'ToolStripEstructure
@@ -145,7 +145,7 @@ Partial Class FrmTableEditor
         Me.ToolStripEstructure.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbSalve, Me.ToolStripLabel3, Me.tsbRefresh, Me.ToolStripLabelSeparator, Me.tsbAddField, Me.tsbRemoveField, Me.tsbEditField})
         Me.ToolStripEstructure.Location = New System.Drawing.Point(0, 0)
         Me.ToolStripEstructure.Name = "ToolStripEstructure"
-        Me.ToolStripEstructure.Size = New System.Drawing.Size(670, 25)
+        Me.ToolStripEstructure.Size = New System.Drawing.Size(764, 25)
         Me.ToolStripEstructure.TabIndex = 8
         Me.ToolStripEstructure.Text = "ToolStrip1"
         '
@@ -220,14 +220,14 @@ Partial Class FrmTableEditor
         Me.PanelEstructureView.Margin = New System.Windows.Forms.Padding(0)
         Me.PanelEstructureView.Name = "PanelEstructureView"
         Me.PanelEstructureView.Padding = New System.Windows.Forms.Padding(3)
-        Me.PanelEstructureView.Size = New System.Drawing.Size(670, 305)
+        Me.PanelEstructureView.Size = New System.Drawing.Size(764, 375)
         Me.PanelEstructureView.TabIndex = 0
         '
         'SplitterEstructure
         '
         Me.SplitterEstructure.Location = New System.Drawing.Point(135, 3)
         Me.SplitterEstructure.Name = "SplitterEstructure"
-        Me.SplitterEstructure.Size = New System.Drawing.Size(4, 299)
+        Me.SplitterEstructure.Size = New System.Drawing.Size(4, 369)
         Me.SplitterEstructure.TabIndex = 3
         Me.SplitterEstructure.TabStop = False
         '
@@ -248,7 +248,7 @@ Partial Class FrmTableEditor
         Me.EstructureGrid.ShowCellErrors = False
         Me.EstructureGrid.ShowEditingIcon = False
         Me.EstructureGrid.ShowRowErrors = False
-        Me.EstructureGrid.Size = New System.Drawing.Size(532, 299)
+        Me.EstructureGrid.Size = New System.Drawing.Size(626, 369)
         Me.EstructureGrid.TabIndex = 0
         '
         'key
@@ -342,7 +342,7 @@ Partial Class FrmTableEditor
         Me.PanelIndexes.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelIndexes.Location = New System.Drawing.Point(3, 3)
         Me.PanelIndexes.Name = "PanelIndexes"
-        Me.PanelIndexes.Size = New System.Drawing.Size(132, 299)
+        Me.PanelIndexes.Size = New System.Drawing.Size(132, 369)
         Me.PanelIndexes.TabIndex = 1
         '
         'TreeViewIndex
@@ -396,7 +396,7 @@ Partial Class FrmTableEditor
         TreeNode10.Text = "Indexes"
         Me.TreeViewIndex.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode10})
         Me.TreeViewIndex.SelectedImageIndex = 0
-        Me.TreeViewIndex.Size = New System.Drawing.Size(132, 299)
+        Me.TreeViewIndex.Size = New System.Drawing.Size(132, 369)
         Me.TreeViewIndex.StateImageList = Me.ImageList1
         Me.TreeViewIndex.TabIndex = 3
         '
@@ -422,7 +422,7 @@ Partial Class FrmTableEditor
         Me.TabPageData.Location = New System.Drawing.Point(4, 22)
         Me.TabPageData.Name = "TabPageData"
         Me.TabPageData.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageData.Size = New System.Drawing.Size(676, 336)
+        Me.TabPageData.Size = New System.Drawing.Size(770, 406)
         Me.TabPageData.TabIndex = 1
         Me.TabPageData.Text = "Registres"
         '
@@ -441,15 +441,15 @@ Partial Class FrmTableEditor
         Me.TableDataGrid.ShowCellErrors = False
         Me.TableDataGrid.ShowEditingIcon = False
         Me.TableDataGrid.ShowRowErrors = False
-        Me.TableDataGrid.Size = New System.Drawing.Size(670, 224)
+        Me.TableDataGrid.Size = New System.Drawing.Size(764, 294)
         Me.TableDataGrid.TabIndex = 1
         '
         'SplitterData
         '
         Me.SplitterData.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.SplitterData.Location = New System.Drawing.Point(3, 227)
+        Me.SplitterData.Location = New System.Drawing.Point(3, 297)
         Me.SplitterData.Name = "SplitterData"
-        Me.SplitterData.Size = New System.Drawing.Size(670, 5)
+        Me.SplitterData.Size = New System.Drawing.Size(764, 5)
         Me.SplitterData.TabIndex = 3
         Me.SplitterData.TabStop = False
         '
@@ -460,9 +460,9 @@ Partial Class FrmTableEditor
         Me.PanelDataFilters.Controls.Add(Me.FilterDataGrid)
         Me.PanelDataFilters.Controls.Add(Me.ToolStripFilters)
         Me.PanelDataFilters.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelDataFilters.Location = New System.Drawing.Point(3, 232)
+        Me.PanelDataFilters.Location = New System.Drawing.Point(3, 302)
         Me.PanelDataFilters.Name = "PanelDataFilters"
-        Me.PanelDataFilters.Size = New System.Drawing.Size(670, 101)
+        Me.PanelDataFilters.Size = New System.Drawing.Size(764, 101)
         Me.PanelDataFilters.TabIndex = 4
         '
         'PanelWhereClause
@@ -473,7 +473,7 @@ Partial Class FrmTableEditor
         Me.PanelWhereClause.Location = New System.Drawing.Point(429, 25)
         Me.PanelWhereClause.Margin = New System.Windows.Forms.Padding(0)
         Me.PanelWhereClause.Name = "PanelWhereClause"
-        Me.PanelWhereClause.Size = New System.Drawing.Size(241, 76)
+        Me.PanelWhereClause.Size = New System.Drawing.Size(335, 76)
         Me.PanelWhereClause.TabIndex = 5
         '
         'TxtWhereClause
@@ -484,7 +484,7 @@ Partial Class FrmTableEditor
         Me.TxtWhereClause.Multiline = True
         Me.TxtWhereClause.Name = "TxtWhereClause"
         Me.TxtWhereClause.ReadOnly = True
-        Me.TxtWhereClause.Size = New System.Drawing.Size(241, 63)
+        Me.TxtWhereClause.Size = New System.Drawing.Size(335, 63)
         Me.TxtWhereClause.TabIndex = 3
         '
         'Label1
@@ -494,7 +494,7 @@ Partial Class FrmTableEditor
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(0, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(241, 13)
+        Me.Label1.Size = New System.Drawing.Size(335, 13)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Where Clause"
         '
@@ -571,7 +571,7 @@ Partial Class FrmTableEditor
         Me.ToolStripFilters.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TsbAddFilter, Me.TsbRemoveFilter, Me.TsbSearch})
         Me.ToolStripFilters.Location = New System.Drawing.Point(0, 0)
         Me.ToolStripFilters.Name = "ToolStripFilters"
-        Me.ToolStripFilters.Size = New System.Drawing.Size(670, 25)
+        Me.ToolStripFilters.Size = New System.Drawing.Size(764, 25)
         Me.ToolStripFilters.TabIndex = 0
         Me.ToolStripFilters.Text = "ToolStrip2"
         '
@@ -625,7 +625,7 @@ Partial Class FrmTableEditor
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(684, 362)
+        Me.ClientSize = New System.Drawing.Size(778, 432)
         Me.Controls.Add(Me.TabControlPrincipal)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MinimumSize = New System.Drawing.Size(700, 400)

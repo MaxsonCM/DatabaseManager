@@ -231,7 +231,7 @@ Public Class FrmTableEditor
         Next
 
         TxtWhereClause.Text = query_fake
-        where_clause = query_fake
+        where_clause = query
     End Sub
 
     Private Sub TsbAddFilter_Click(sender As Object, e As EventArgs) Handles TsbAddFilter.Click
